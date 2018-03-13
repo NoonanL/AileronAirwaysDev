@@ -30,17 +30,7 @@ public class TimelineRegisterServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Hello I am a get method");
 
-        TimelineRepository timelineRepository = new TimelineRepository();
-
-        Timeline timeline1 = new Timeline("timelineId01", "Timeline Title 01");
-        Timeline timeline2 = new Timeline("timelineId02", "Timeline Title 02");
-        Timeline timeline3 = new Timeline("timelineId03", "Timeline Title 03");
-
-        timelineRepository.add(timeline1);
-        timelineRepository.add(timeline2);
-        timelineRepository.add(timeline3);
-
-        String json = new Gson().toJson(timelineRepository.getTimelines());
+        String json = new Gson().toJson(application.Runner.timelineRepository.getTimelines());
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

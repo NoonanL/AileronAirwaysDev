@@ -1,6 +1,10 @@
 package application;
 
 
+import application.model.Event;
+import application.model.Timeline;
+import application.repositories.EventRepository;
+import application.repositories.TimelineRepository;
 import application.servlet.IndexServlet;
 import application.servlet.TimelineRegisterServlet;
 import org.eclipse.jetty.server.Server;
@@ -15,17 +19,36 @@ public class Runner {
 
     private Runner() {}
 
+    /*
+    Declare repository for Timeline objects for persistence
+     */
+    public static TimelineRepository timelineRepository = new TimelineRepository();
+
+    /*
+    Declare repository for Event objects for persistence
+     */
+    public static EventRepository eventRepository = new EventRepository();
+
 
 
     private void start() throws Exception {
         Server server = new Server(PORT);
 
+        /*temporarily populating timeline and event Repository for testing purposes
+         */
+        Timeline timeline1 = new Timeline("timelineId01", "Timeline Title 01");
+        Timeline timeline2 = new Timeline("timelineId02", "Timeline Title 02");
+        Timeline timeline3 = new Timeline("timelineId03", "Timeline Title 03");
+        timelineRepository.add(timeline1);
+        timelineRepository.add(timeline2);
+        timelineRepository.add(timeline3);
 
-        /*
-    The runner is probably going to need some sort of method that fetches the required data on server start
-    ie all timelines and events
-     */
-
+        Event event1 = new Event("eventId01", "Event 01 Title", "I am test event 01", "22:36","Glasgow");
+        Event event2 = new Event("eventId02", "Event 02 Title", "I am test event 02", "22:37","Edinburgh");
+        Event event3 = new Event("eventId03", "Event 03 Title", "I am test event 03", "22:38","London");
+        eventRepository.add(event1);
+        eventRepository.add(event2);
+        eventRepository.add(event3);
 
 
         /*
