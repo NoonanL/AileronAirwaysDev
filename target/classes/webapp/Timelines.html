@@ -63,9 +63,10 @@
     </div>    
 
         <div class="row">
-	
+
             <div class="col-12">
-                <div style="overflow-x:auto; color:black; text-align: center;">
+                <div id="tableDiv">
+<!--                <div style="overflow-x:auto; color:black; text-align: center;">
 			       <button class="accordion">Timeline 1</button>
 <div class="panel">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -81,26 +82,42 @@
 <button class="accordion">Timeline 3</button>
 <div class="panel">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <button><a href="Timeline.html">Go to timeline</a></button>
+    <button><a href="Timeline.html">Go to timeline</a></button>-->
 </div>
+            </div>
+            <script>
 
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+                    buildTable();
+                function buildTable() {
+                    console.log("TestyTest");
+                    $.get("/timelineRegisterServlet", function (responseJson) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        var $table = $("<table>").appendTo($("#gimmeData")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
+                        $.each(responseJson, function (index, product) {    // Iterate over the JSON array.
+                            $("<tr>").appendTo($table)                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
+                                .append($("<td>").text(product.id))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
+                                .append($("<td>").text(product.title))      // Create HTML <td> element, set its text content with name of currently iterated product and append it to the <tr>.
+                        });
+                    });
+                }
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-    });
-}
-</script>
-                    </div>      
+
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    });
+                }
+            </script>
+
+        </div>
                 
             </div>
     
