@@ -13,6 +13,11 @@ public class Runner {
 
     private Runner() {}
 
+    /*
+    The runner is probably going to need some sort of method that fetches the required data on server start
+    ie all timelines and events
+     */
+
     private void start() throws Exception {
         Server server = new Server(PORT);
 
