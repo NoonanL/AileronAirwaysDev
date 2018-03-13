@@ -1,42 +1,45 @@
 package application.repositories;
 
-import application.model.Timeline;
+
+import application.model.Event;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-public class TimelineRepository {
+public class EventRepository {
 
-    private ArrayList<Timeline> objects;
+    private ArrayList<Event> objects;
 
-    public TimelineRepository(){
+    public EventRepository(){
         this.objects = new ArrayList<>();
     }
 
-    public ArrayList<Timeline> getTimelines(){
+    public ArrayList<Event> getEvents(){
         return this.objects;
     }
 
 
-    public void add(Timeline object) {
+    public void add(Event object) {
         this.objects.add(object);
 
     }
 
 
-    public Timeline get(String id) {
-        for (Timeline object : this.objects)
+    public Event get(String id) {
+        for (Event object : this.objects)
             if(object.getId().equals(id)){
                 return object;
             }
-            return null;
-        }
+        return null;
+    }
 
 
 
     public void remove(String id) {
-        Predicate<Timeline> predicate = e->e.getId().equals(id);
+        Predicate<Event> predicate = e->e.getId().equals(id);
         this.objects.removeIf(predicate);
 
     }
+
+
 }
