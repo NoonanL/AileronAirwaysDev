@@ -12,7 +12,7 @@ public interface RepositoryInterface {
     /*
     get object by its id
      */
-    Timeline getItem(String id);
+    Timeline getTimeline(String id);
 
     /*
     remove object from repository

@@ -1,6 +1,8 @@
 package application;
 
+
 import application.servlet.IndexServlet;
+import application.servlet.TimelineRegisterServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -13,13 +15,18 @@ public class Runner {
 
     private Runner() {}
 
-    /*
+
+
+    private void start() throws Exception {
+        Server server = new Server(PORT);
+
+
+        /*
     The runner is probably going to need some sort of method that fetches the required data on server start
     ie all timelines and events
      */
 
-    private void start() throws Exception {
-        Server server = new Server(PORT);
+
 
         /*
         servlet handler controls the context, ie where web resources are located.
@@ -33,6 +40,12 @@ public class Runner {
          */
         IndexServlet indexServlet = new IndexServlet();
         handler.addServlet(new ServletHolder(indexServlet), "/indexServlet");
+
+        /*
+        Servlet to handle timelineRegister page.
+         */
+        TimelineRegisterServlet timelineRegisterServletServlet = new TimelineRegisterServlet();
+        handler.addServlet(new ServletHolder(timelineRegisterServletServlet), "/timelineRegisterServlet");
 
         /*
         sets default servlet path.

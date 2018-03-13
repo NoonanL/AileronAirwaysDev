@@ -13,6 +13,10 @@ public class TimelineRepository  implements RepositoryInterface{
         this.objects = new ArrayList<>();
     }
 
+    public ArrayList<Timeline> getTimelines(){
+        return this.objects;
+    }
+
     @Override
     public void add(Timeline object) {
         this.objects.add(object);
@@ -20,7 +24,7 @@ public class TimelineRepository  implements RepositoryInterface{
     }
 
     @Override
-    public Timeline getItem(String id) {
+    public Timeline getTimeline(String id) {
         for (Timeline object : this.objects)
             if(object.getId().equals(id)){
                 return object;
