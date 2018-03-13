@@ -27,6 +27,25 @@ public class AttatchmentTest
 
     }
 
+    @Test
+    public void t11uploadFile() throws Exception{
+        Attachment test = new Attachment();
+
+        System.out.println("Test: Get Linked Events");
+        System.out.println("------------------------");
+        test.createAndUploadAttatchment("Place the path of the file you want to upload here!");
+    }
+
+    @Test
+    public void t12downloadfile() throws Exception{
+        Attachment test = new Attachment();
+
+        System.out.println("Test: Get Linked Events");
+        System.out.println("------------------------");
+        test.downloadAttatchment("Place the name of the file that has been uploaded you want to get",
+                "Place the path for the file to go to");
+    }
+
     @After
     public void tearDown() throws Exception {
     }

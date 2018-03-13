@@ -73,94 +73,95 @@ public class Get {
                 /*
                 WARNING: John wizardry below. We <3 John.
                  */
+                if (path.contains("/TimelineEventAttachment/GenerateUploadPresignedUrl")){
+                    String jsonString = content.toString();
 
-                String jsonString = content.toString();
-                JsonElement jelement = new JsonParser().parse(content.toString());
+                }else {
+                    JsonElement jelement = new JsonParser().parse(content.toString());
 
-                //For timelines and events
-                if (jelement instanceof JsonObject) {
-                    JsonObject timelineFromGson = jelement.getAsJsonObject();
-                    if(path.contains("/TimelineEvent")){
-                        System.out.println(timelineFromGson.get("Title"));
-                        System.out.println(timelineFromGson.get("EventDateTime"));
-                        System.out.println(timelineFromGson.get("Description"));
-                        System.out.println(timelineFromGson.get("Location"));
-                        System.out.println(timelineFromGson.get("Id"));
-                    }
-                    else if(path.contains("/Timeline")) {
-                        if (path.contains("/GetAllTimelinesAndEvent")) {
-                            //turn timeline element into a JsonObject
-                            JsonArray temp = (JsonArray) timelineFromGson.get("Timelines");
-                            for (int i = 0; i < temp.size(); i++) {
-                                JsonObject jsonObject1 = (JsonObject) temp.get(i);
-                                System.out.println(jsonObject1.get("Title"));
-                                System.out.println(jsonObject1.get("Id"));
-                                JsonArray temp1 = (JsonArray) jsonObject1.get("TimelineEvents");
-                                for (int x = 0; x < temp1.size(); x++) {
-                                    JsonObject jsonObject2 = (JsonObject) temp1.get(x);
-                                    System.out.println(jsonObject2.get("Title"));
-                                    System.out.println(jsonObject2.get("EventDateTime"));
-                                    System.out.println(jsonObject2.get("Description"));
-                                    System.out.println(jsonObject2.get("Location"));
-                                    System.out.println(jsonObject2.get("Id"));
-                                    JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
-                                    JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
-                                }
-                                System.out.println("");
-                            }
-                        }
-                        if (path.contains("/GetTimeline")) {
+                    //For timelines and events
+                    if (jelement instanceof JsonObject) {
+                        JsonObject timelineFromGson = jelement.getAsJsonObject();
+                        if (path.contains("/TimelineEvent")) {
                             System.out.println(timelineFromGson.get("Title"));
+                            System.out.println(timelineFromGson.get("EventDateTime"));
+                            System.out.println(timelineFromGson.get("Description"));
+                            System.out.println(timelineFromGson.get("Location"));
                             System.out.println(timelineFromGson.get("Id"));
+                        } else if (path.contains("/Timeline")) {
+                            if (path.contains("/GetAllTimelinesAndEvent")) {
+                                //turn timeline element into a JsonObject
+                                JsonArray temp = (JsonArray) timelineFromGson.get("Timelines");
+                                for (int i = 0; i < temp.size(); i++) {
+                                    JsonObject jsonObject1 = (JsonObject) temp.get(i);
+                                    System.out.println(jsonObject1.get("Title"));
+                                    System.out.println(jsonObject1.get("Id"));
+                                    JsonArray temp1 = (JsonArray) jsonObject1.get("TimelineEvents");
+                                    for (int x = 0; x < temp1.size(); x++) {
+                                        JsonObject jsonObject2 = (JsonObject) temp1.get(x);
+                                        System.out.println(jsonObject2.get("Title"));
+                                        System.out.println(jsonObject2.get("EventDateTime"));
+                                        System.out.println(jsonObject2.get("Description"));
+                                        System.out.println(jsonObject2.get("Location"));
+                                        System.out.println(jsonObject2.get("Id"));
+                                        JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
+                                        JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
+                                    }
+                                    System.out.println("");
+                                }
+                            }
+                            if (path.contains("/GetTimeline")) {
+                                System.out.println(timelineFromGson.get("Title"));
+                                System.out.println(timelineFromGson.get("Id"));
+                            }
                         }
-                    }
 
 
-                    //For Linked timelines
-                } else if (jelement instanceof JsonArray) {
-                    JsonArray timelineFromGson = jelement.getAsJsonArray();
-                    if (path.contains("/TimelineEvent")) {
-                        if (path.contains("/GetLinkedTimelineEvents")) {
-                            for (int i = 0; i < timelineFromGson.size(); i++) {
-                                JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                System.out.println(temp.get("TimelineEventId"));
-                                System.out.println(temp.get("LinkedToTimelineEventId"));
-                                System.out.println(temp.get("Id"));
-                                System.out.println("");
+                        //For Linked timelines
+                    } else if (jelement instanceof JsonArray) {
+                        JsonArray timelineFromGson = jelement.getAsJsonArray();
+                        if (path.contains("/TimelineEvent")) {
+                            if (path.contains("/GetLinkedTimelineEvents")) {
+                                for (int i = 0; i < timelineFromGson.size(); i++) {
+                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                    System.out.println(temp.get("TimelineEventId"));
+                                    System.out.println(temp.get("LinkedToTimelineEventId"));
+                                    System.out.println(temp.get("Id"));
+                                    System.out.println("");
+                                }
                             }
-                        }
-                        if (path.contains("/GetAllEvents")) {
-                            for (int i = 0; i < timelineFromGson.size(); i++) {
-                                JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                System.out.println(temp.get("Title"));
-                                System.out.println(temp.get("EventDateTime"));
-                                System.out.println(temp.get("Description"));
-                                System.out.println(temp.get("Location"));
-                                System.out.println(temp.get("Id"));
-                                System.out.println("");
+                            if (path.contains("/GetAllEvents")) {
+                                for (int i = 0; i < timelineFromGson.size(); i++) {
+                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                    System.out.println(temp.get("Title"));
+                                    System.out.println(temp.get("EventDateTime"));
+                                    System.out.println(temp.get("Description"));
+                                    System.out.println(temp.get("Location"));
+                                    System.out.println(temp.get("Id"));
+                                    System.out.println("");
 
+                                }
+                            }
+                        } else if (path.contains("/Timeline")) {
+                            if (path.contains("/GetTimelines")) {
+                                for (int i = 0; i < timelineFromGson.size(); i++) {
+                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                    System.out.println(temp.get("Title"));
+                                    System.out.println(temp.get("Id"));
+                                    System.out.println("");
+                                }
+                            }
+                            if (path.contains("/GetEvents")) {
+                                for (int i = 0; i < timelineFromGson.size(); i++) {
+                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                    System.out.println(temp.get("TimelineEventId"));
+                                    System.out.println(temp.get("TimelineId"));
+                                    System.out.println("");
+                                }
                             }
                         }
                     }
-                    else if (path.contains("/Timeline")) {
-                        if (path.contains("/GetTimelines")) {
-                            for (int i = 0; i < timelineFromGson.size(); i++) {
-                                JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                System.out.println(temp.get("Title"));
-                                System.out.println(temp.get("Id"));
-                                System.out.println("");
-                            }
-                        }
-                        if (path.contains("/GetEvents")) {
-                            for (int i = 0; i < timelineFromGson.size(); i++) {
-                                JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                System.out.println(temp.get("TimelineEventId"));
-                                System.out.println(temp.get("TimelineId"));
-                                System.out.println("");
-                            }
-                        }
-                    }
-                    }
+                }
 
 
                 //close input buffer
@@ -172,5 +173,81 @@ public class Get {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String getReturn(String path, String key, String value) {
+
+
+        /*
+        Java url library isn't great so the following code block converts the hardcoded url to URI and then back
+        to url which deals with any of the issues with java parsing.
+         */
+        URI uri = null;
+        {
+            try {
+                uri = new URI("https", "gcu.ideagen-development.com", path, null); //MAKE ME GENERIC - PASS ME A VAR
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+        URL url = null;
+        {
+            try {
+                url = uri.toURL();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        /*
+        The following code block does most of the hard work:
+        -opens a url connection
+        -sends appropriate headers as per the passed variables
+        -prints out the result from the server
+         */
+        {
+            try {
+                //open url connection
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                //set header*s
+                con.setRequestProperty("TenantId", "Team8");
+                con.setRequestProperty("AuthToken", "28dfb21a-8dbd-47cb-a6a2-96fb225cb138");
+                con.setRequestProperty(key, value);
+                //set connection type
+                con.setRequestMethod("GET");
+                con.setDoOutput(true);
+
+                //create buffered reader for appropriate server response
+                BufferedReader in = Put.getBufferedReader(con.getResponseCode(), con.getInputStream(), con.getErrorStream());
+
+                //get reply from server
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while (((inputLine = in.readLine()) != null)) {
+
+                    content.append(inputLine);
+
+                }
+
+                /*
+                WARNING: John wizardry below. We <3 John.
+                 */
+                if (path.contains("/TimelineEventAttachment/Generate")) {
+                    String jsonString = content.toString();
+                    return jsonString;
+                }
+
+
+                //close input buffer
+                in.close();
+                //disconnect from server
+                con.disconnect();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "failed";
     }
 }
