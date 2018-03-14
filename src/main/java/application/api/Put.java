@@ -1,8 +1,11 @@
 package application.api;
 
 
+import com.sun.deploy.net.HttpRequest;
+
 import java.io.*;
 import java.net.*;
+import java.nio.Buffer;
 
 /*
 Class that carries out PUT api calls
@@ -91,7 +94,6 @@ public class Put {
             e.printStackTrace();
         }
     }
-
 }
 
 /*
@@ -99,15 +101,15 @@ Handy buffered reader override:
 -good server responses receive normal server output
 -bad server responses receive and print the error logs
  */
-    static BufferedReader getBufferedReader(int responseCode, InputStream inputStream, InputStream errorStream) throws IOException {
+    public static BufferedReader getBufferedReader(int responseCode, InputStream inputStream, InputStream errorStream) throws IOException {
         BufferedReader in;
         if (200 <= responseCode && responseCode <= 299) {
             in = new BufferedReader(new InputStreamReader(inputStream));
-            //System.out.println("CODE 200");
+            System.out.println("CODE 200");
 
         } else { //if response is bad then get the server messages
             in = new BufferedReader(new InputStreamReader(errorStream));
-            //System.out.println("CODE 500");
+            System.out.println("CODE 500");
         }
         return in;
     }

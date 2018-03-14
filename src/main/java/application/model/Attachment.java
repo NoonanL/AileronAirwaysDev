@@ -1,13 +1,25 @@
 package application.model;
 
 
+import application.api.Get;
 import application.api.Put;
 import util.ParameterStringBuilder;
 
-import java.io.UnsupportedEncodingException;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
+
+
 
 public class Attachment {
 
@@ -89,6 +101,30 @@ public class Attachment {
 
     }
 
+    public void createAndUploadAttatchment(String filename) throws IOException {
+        //Generate the URL to upload to from the filename
+        String urlString = generateUploadPresignedURL(filename);
+        URL url = new URL(urlString);
+        try {
+            //Passes the url and file to be uploaded
+            uploadObject(url, filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void downloadAttatchment(String filename, String newFilePath) throws UnsupportedEncodingException, MalformedURLException {
+        //Generate the URL to download from using the filename
+        String urlString = generateDownloadPresignedURL(filename);
+        URL url = new URL(urlString);
+        try {
+            //Passes the URL and the new path for the file to download to
+            downloadObject(url,newFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /*
     API METHODS HERE
      */
@@ -105,7 +141,77 @@ public class Attachment {
         Put.put("/TimelineEventAttachment/Create",postData);
     }
 
-    public void generateUploadPresignedURL() throws UnsupportedEncodingException {
+    public String generateUploadPresignedURL(String filename) throws UnsupportedEncodingException {
+        Get getEvent = new Get();
+
+        String website = getEvent.getReturn("/TimelineEventAttachment/GenerateUploadPresignedUrl", "AttachmentId", filename);
+        return website;
+    }
+
+    public String generateDownloadPresignedURL(String filename) throws UnsupportedEncodingException {
+        Get getEvent = new Get();
+
+        String website = getEvent.getReturn("/TimelineEventAttachment/GenerateGetPresignedUrl", "AttachmentId", filename);
+        return website;
+    }
+
+    public static void uploadObject(URL url,String filename) throws IOException {
+        HttpURLConnection connection=(HttpURLConnection) url.openConnection();
+        connection.setDoOutput(true);
+        connection.setRequestMethod("PUT");
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+
+
+        //Checks for the filetype and then uploads based on that, only accepts the three filetypes Ideagen gave
+        try {
+            if (filename.contains(".doc")) {
+                FileInputStream fin = new FileInputStream(filename);
+                int i = 0;
+                while ((i = fin.read()) != -1) {
+                    out.write(i);
+                }
+                fin.close();
+        }else if (filename.contains(".png") ){
+                //Creates a bufferedimage from the filename and then writes to the URL(fuck this bit was annoying)
+            BufferedImage image = ImageIO.read(new File(filename));
+                ImageIO.write(image, "png", out);
+        }
+        else if(filename.contains(".jpeg")){
+                BufferedImage image = ImageIO.read(new File(filename));
+                ImageIO.write(image, "jpeg", out);
+            }
+            //int[] temp = new int[fSize];
+        }catch (Exception e ){System.out.println(e);}
+        out.close();
+        int responseCode = connection.getResponseCode();
+        System.out.println("Service returned response code " + responseCode);
+    }
+
+    private static void downloadObject(URL url, String filePath)
+            throws IOException {
+        HttpURLConnection connection=(HttpURLConnection) url.openConnection();
+        connection.setDoOutput(true);
+        connection.setRequestMethod("GET");
+
+        //Checks for filetype of the new path some error checking might be good here for conflicting types
+        if (filePath.contains(".doc")) {
+            BufferedReader in = Put.getBufferedReader(connection.getResponseCode(), connection.getInputStream(), connection.getErrorStream());
+            System.out.println(connection.getInputStream().read());
+            PrintWriter writer = new PrintWriter(filePath);
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                writer.println(inputLine);
+            in.close();
+            writer.close();
+            }
+        else if (filePath.contains(".png")){
+            BufferedImage image = ImageIO.read(connection.getInputStream());
+            ImageIO.write(image, "png", new File(filePath));
+        }
+        else if(filePath.contains(".jpeg")){
+            BufferedImage image = ImageIO.read(connection.getInputStream());
+            ImageIO.write(image, "png", new File(filePath));
+        }
 
     }
 

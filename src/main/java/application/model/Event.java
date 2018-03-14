@@ -231,5 +231,11 @@ public class Event {
         getEvent.get("/TimelineEvent/GetTimelineEvent", "TimelineEventId", id);
     }
 
+    public void getAllEvents() throws UnsupportedEncodingException {
+        Get getEvent = new Get();
+
+        getEvent.get("/TimelineEvent/GetAllEvents", "", "");
+    }
+
 
 }
