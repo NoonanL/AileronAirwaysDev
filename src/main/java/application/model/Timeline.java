@@ -134,6 +134,10 @@ public class Timeline {
 
     }
 
+    /*
+    This should probably be refactored elsewhere because it fetches both timelines and events
+    Probably should happen on server start to populate the arrays. Potentially where offline mode will come in.
+     */
     public void getTimelinesAndEvents() throws UnsupportedEncodingException{
         Get getTimeline = new Get();
         getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
