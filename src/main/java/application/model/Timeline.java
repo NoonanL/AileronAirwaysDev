@@ -16,9 +16,14 @@ public class Timeline {
     */
     private String id;
     private String title;
-
-
-
+    private String eventDateTime;
+    private String description;
+    private String isDeleted;
+    private String location;
+    private String creationTimeStamp;
+    private String linkedTimelineEventIds;
+    private String attachments;
+    private String timelineEvents;
 
     /*
     CONSTRUCTORS HERE
@@ -31,25 +36,19 @@ public class Timeline {
     public Timeline(){
         this.id = null;
         this.title = null;
+        this.eventDateTime = null;
+        this.description = null;
+        this.isDeleted = null;
+        this.location = null;
+        this.linkedTimelineEventIds = null;
+        this.attachments = null;
     }
 
-
-
-
     /*
-    GETTERS/SETTERS HERE
-    Note - these getters/setters are for the java objects only and will not persist to the API database.
+    API METHODS HERE
      */
 
     public Map timelinePut() throws UnsupportedEncodingException {
-
-
-        //To stop the repeating the same bits of code over and over for each put method
-        //Created a method that can be called to create a map for any put method that requires it
-        //The TenantID and AuthToken will always be the same so they are hard coded
-        //Each of the API calls for the timeline involve TimelineID so this is stored here
-        //Any method that calls this map can then add any further required fields to the map
-
 
         //create hashmap of key-value pairs
         Map<String, String> parameters = new LinkedHashMap<>();
@@ -59,39 +58,9 @@ public class Timeline {
         //below are the variables you may need to add to/change depending on the method you're implementing
         parameters.put("TimelineId", this.id);
 
-
         return parameters;
         //When this is returned to the calling method it is then free to add to the bottom of the map
-
     }
-
-    //sets title
-    public void setTitle(String title){
-        this.title = title;
-    }
-
-    //gets title
-    public String getTitle(){
-        return this.title;
-    }
-
-    //set id
-    public void setId(String id){
-        this.id = id;
-    }
-
-    //get id
-    public String getId(){
-        return this.id;
-
-    }
-
-
-
-
-    /*
-    API METHODS HERE
-     */
 
     /*
     Example of a method calling the API. Things you'll need to change are pretty much just the last few
@@ -121,7 +90,6 @@ public class Timeline {
 
         Put.put("/Timeline/EditTitle",postData);
     }
-
 
     public void linkEvent(String eventId) throws UnsupportedEncodingException {
         //Will this method need input validation or will this be handled on the front end?
@@ -159,8 +127,6 @@ public class Timeline {
         Put.put("/Timeline/Delete",postData);
     }
 
-
-
     public void getTimelines() throws UnsupportedEncodingException{
         Get getTimeline = new Get();
         getTimeline.get("/Timeline/GetTimelines", "", "");
@@ -186,10 +152,89 @@ public class Timeline {
         Get getTimeline = new Get();
 
         getTimeline.get("/Timeline/GetEvents", "TimelineId", id);
-
-
     }
 
 
 
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle(){
+        return this.title;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public String getEventDateTime() {
+        return eventDateTime;
+    }
+
+    public void setEventDateTime(String eventDateTime) {
+        this.eventDateTime = eventDateTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLinkedTimelineEventIds() {
+        return linkedTimelineEventIds;
+    }
+
+    public void setLinkedTimelineEventIds(String linkedTimelineEventIds) {
+        this.linkedTimelineEventIds = linkedTimelineEventIds;
+    }
+
+    public String getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(String attachments) {
+        this.attachments = attachments;
+    }
+
+    public String getCreationTimeStamp() {
+        return creationTimeStamp;
+    }
+
+    public void setCreationTimeStamp(String creationTimeStamp) {
+        this.creationTimeStamp = creationTimeStamp;
+    }
+
+    public String getTimelineEvents() {
+        return timelineEvents;
+    }
+
+
+    public void setTimelineEvents(String timelineEvents) {
+        this.timelineEvents = timelineEvents;
+    }
 }

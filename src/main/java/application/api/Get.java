@@ -1,5 +1,9 @@
 package application.api;
 
+import application.Runner;
+import application.model.Event;
+import application.model.Timeline;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -93,17 +97,30 @@ public class Get {
                                 //turn timeline element into a JsonObject
                                 JsonArray temp = (JsonArray) timelineFromGson.get("Timelines");
                                 for (int i = 0; i < temp.size(); i++) {
+                                    Timeline timeline = new Timeline();
                                     JsonObject jsonObject1 = (JsonObject) temp.get(i);
-                                    System.out.println(jsonObject1.get("Title"));
-                                    System.out.println(jsonObject1.get("Id"));
+                                    //ObjectMapper mapper = new ObjectMapper();
+                                    //Timeline timeline = mapper.readValue(jsonObject1.toString(),Timeline.class);
+                                    //System.out.println(jsonObject1.get("Title"));
+                                    timeline.setTitle(jsonObject1.get("Title").toString());
+                                    //System.out.println(jsonObject1.get("Id"));
+                                    timeline.setId(jsonObject1.get("Id").toString());
+                                    Runner.timelineRepository.add(timeline);
                                     JsonArray temp1 = (JsonArray) jsonObject1.get("TimelineEvents");
                                     for (int x = 0; x < temp1.size(); x++) {
+                                        Event event = new Event();
                                         JsonObject jsonObject2 = (JsonObject) temp1.get(x);
-                                        System.out.println(jsonObject2.get("Title"));
-                                        System.out.println(jsonObject2.get("EventDateTime"));
-                                        System.out.println(jsonObject2.get("Description"));
+                                        //System.out.println(jsonObject2.get("Title"));
+                                        event.setTitle(jsonObject2.get("Title").toString());
+                                        //System.out.println(jsonObject2.get("EventDateTime"));
+                                        event.setEventDateTime(jsonObject2.get("EventDateTime").toString());
+                                        //System.out.println(jsonObject2.get("Description"));
+                                        event.setDescription(jsonObject2.get("Description").toString());
                                         System.out.println(jsonObject2.get("Location"));
+                                        //event.setLocation(jsonObject2.get("Location").toString());
                                         System.out.println(jsonObject2.get("Id"));
+                                        //event.setId(jsonObject2.get("Id").toString());
+                                        Runner.eventRepository.add(event);
                                         JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
                                     }
