@@ -1,6 +1,8 @@
 package application.servlet;
 
+import application.Runner;
 import application.model.Event;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +40,12 @@ public class EventDetailsServlet extends HttpServlet{
         Fetch something from front end to specify which event to send
         send event details as json
          */
+
+        String json = new Gson().toJson(Runner.eventRepository.getEvents());
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
 
     }
 

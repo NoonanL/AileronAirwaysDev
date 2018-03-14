@@ -116,10 +116,10 @@ public class Get {
                                         event.setEventDateTime(jsonObject2.get("EventDateTime").toString());
                                         //System.out.println(jsonObject2.get("Description"));
                                         event.setDescription(jsonObject2.get("Description").toString());
-                                        System.out.println(jsonObject2.get("Location"));
-                                        //event.setLocation(jsonObject2.get("Location").toString());
-                                        System.out.println(jsonObject2.get("Id"));
-                                        //event.setId(jsonObject2.get("Id").toString());
+                                        //System.out.println(jsonObject2.get("Location"));
+                                        event.setLocation(jsonObject2.get("Location").toString());
+                                        //System.out.println(jsonObject2.get("Id"));
+                                        event.setId(jsonObject2.get("Id").toString());
                                         Runner.eventRepository.add(event);
                                         JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");

@@ -5,6 +5,7 @@ import application.model.Event;
 import application.model.Timeline;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
+import application.servlet.EventDetailsServlet;
 import application.servlet.IndexServlet;
 import application.servlet.TimelineRegisterServlet;
 import org.eclipse.jetty.server.Server;
@@ -51,8 +52,6 @@ public class Runner {
 //        eventRepository.add(event3);
 
         Timeline test = new Timeline("150","testTitle2");
-        System.out.println("Testing: Get all Linked Events with Timelines");
-        System.out.println("------------------------");
         test.getTimelinesAndEvents();
 
 
@@ -74,6 +73,11 @@ public class Runner {
          */
         TimelineRegisterServlet timelineRegisterServletServlet = new TimelineRegisterServlet();
         handler.addServlet(new ServletHolder(timelineRegisterServletServlet), "/timelineRegisterServlet");
+
+
+        EventDetailsServlet eventDetailsServlet = new EventDetailsServlet();
+        handler.addServlet(new ServletHolder(eventDetailsServlet), "/eventDetailsServlet");
+
 
         /*
         sets default servlet path.
