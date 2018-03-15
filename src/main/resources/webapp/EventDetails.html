@@ -6,7 +6,10 @@
 <title>Aileron Airways ETT</title>
 <link href="StyleSheet.css" rel="styleSheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  
+    <!--this script calls the Google maps API-->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap">
+    </script>
  
     <link rel=stylesheet type="text/css" href="stylesheet.css">
     
@@ -145,7 +148,7 @@
 
                
 
-           
+
 <script>
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -180,22 +183,25 @@ window.onclick = function(event) {
         </div>
   
 </div> 
-<!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->	
+<!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->
 <script>
-      function initMap() {
-          
+    //construct variables used to set the information for the event details - Effectively this is where each value will be replaced with grabDetails.0.title and so on
+    var sampleEventTitle=grabDetails();
+    //basically this would be sampleEventTitle=grabDetails().0.title; but that causes a syntax error - no idea why  
+    var sampleEventDate="25/11/2017";
+    var sampleEventTime="09:00";
+    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
+    //this function creates the map. it is self calling. it is called by line 11 > Dont worry about calling this!!!
+    function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: {lat:55.86, lng:-4.43}
         });
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
-
         window.onload = function() {
           geocodeLatLng(geocoder, map, infowindow);
         };
-          
-          
       }
 
       function geocodeLatLng(geocoder, map, infowindow) {
@@ -213,7 +219,7 @@ window.onclick = function(event) {
                  marker.addListener('click', function() {
     infowindow.open(map, marker);
   });
-                
+
     var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -226,10 +232,8 @@ window.onclick = function(event) {
                  var infowindow = new google.maps.InfoWindow({
                     content: contentString
                  });
-
-//              infowindow.setContent(results[3].formatted_address);
               var div = document.getElementById('location');
-                
+
                 infowindow.open(map, marker);
                 map.setCenter(latlng);
             } else {
@@ -239,45 +243,40 @@ window.onclick = function(event) {
             window.alert('Geocoder failed due to: ' + status);
           }
         });
-          
+
       }
-    </script>
-    
-    
-    <!--this script calls the Google maps API-->      
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap">
-    </script>
 
-    <!-- the following is a script to create a description list of events and drop it inside the modal box-->
-    <script>
-    var descriptionList= $("<dl /;>",{
-        "id": "linkedEvents"
-    });
-   //construct variables used to set the information for the event details
-   //This is NOT to do with linkedevents
-    //fill the details page with details
+    //grab the API data about event details
     //This is currently set to do with the first item in the API. IN the next scrum we will make it pick an object
-
-
-
-    grabDetails();
     function grabDetails() {
         console.log("Grabbing Event Details from API");
         $.get("/eventDetailsServlet", function(responseJson) {
-            console.log(responseJson[0].title);
+
             $.each(responseJson, function(index, product) {
                 // Iterate over the JSON array.
                 //$('#title').innerHTML="<h2>"+product.id+"</h2>";
-
-
             });
+
         });
+        //I want this method to return the JSON object so that it can be called from wherever
+        //i.e it would allow me to set the innerHTML of the title tag to contain "grabDetails().whatevernumber.title"
+        //when I do this it breaks in various weird and wonderful ways
+        //is something similar to the following commented line a solution??? currently uncommenting that line breaks the map i.e breaks the whole script by having
+        //incorrect syntax or similar
+        // var responseJson[]=responseJson;
+        return responseJson;
     }
-    var sampleEventTitle="Plane Crash";
-    var sampleEventDate="25/11/2017";
-    var sampleEventTime="09:00";
-    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
+
+    </script>
+
+
+
+
+    <!-- the following is a script to create a description list of linked events and drop it inside the modal box-->
+<script>
+    var descriptionList= $("<dl /;>",{
+        "id": "linkedEvents"
+    });
 
     //eventsNum is the number of linked events. This must be retrieved from the API. Currently this is hardcoded to 4
     var eventsNum=4;
