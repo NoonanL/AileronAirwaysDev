@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUCK JAVASCRIPT</title>
+<link href="StyleSheet.css" rel="styleSheet" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ 
+    <link rel=stylesheet type="text/css" href="Stylesheet.css">
+
+</head>
+
+<body>
+<h1>JAVASCRIPT IS ASS CANCER</h1>
+<h2> Dont nest objects inside arrays if you like your sanity kiddos</h2>
+<!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->
+<script>
+    var jsonDetails=grabDetails();
+    console.log("call the method and log the details outside the method")
+    console.log(jsonDetails);
+    //grab the API data about event details
+    //This is currently set to do with the first item in the API. IN the next scrum we will make it pick an object
+    function grabDetails() {
+    var jsonHolder = new Array();
+        console.log("Grabbing Event Details from API");
+        $.get("/eventDetailsServlet", function(responseJson) {
+            //console.log(responseJson);
+            //jsonHolder=responseJson; this should work?!?!
+            $.each(responseJson, function(index, product) {
+                // Iterate over the JSON array.
+                jsonHolder[index]=responseJson[index];
+                jsonHolder.push(responseJson[index]);
+                });
+            console.log("logging the details before I return them");
+            console.log(jsonHolder);
+            return (jsonHolder);
+        });
+        //I want this method to return the JSON object so that it can be called from wherever
+        //i.e it would allow me to set the innerHTML of the title tag to contain "grabDetails().whatevernumber.title"
+        //when I do this it breaks in various weird and wonderful ways
+        //is something similar to the following commented line a solution??? currently uncommenting that line breaks the map i.e breaks the whole script by having
+        //incorrect syntax or similar
+        // var responseJson[]=responseJson;
+
+    }
+    </script>
+</body>
+</html>
+
+
+
+
+
