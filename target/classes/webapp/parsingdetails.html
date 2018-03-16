@@ -35,13 +35,10 @@
                 //document.getElementById("TestDiv").innerHTML += product;
                 });
 
-
-
-
             /*
             FAO Scott: don't need to convert the json array into a regular javascript array, they seem to work the same way.
             So all I'm doing is setting the innerHTML of the TestDiv i've created to the String value of the id value
-            of the responseJson(positionInArray) The below should all work. 
+            of the responseJson(positionInArray)
             */
             document.getElementById("TestDiv").innerHTML += responseJson[0].id.toString();
             //document.getElementById("TestDiv").innerHTML += responseJson[1].id.toString();
@@ -49,16 +46,14 @@
             console.log("logging the details before I return them");
             console.log(jsonHolder[1]);
 
-
-
             /*
             I dont know that returning anything from a JS function is of any use other than to pass it to another
             JS function? If you want to populate divs etc i think it needs done within the script.
              */
-            //Creating a new var and using the json stringify (basically just toString) because the internet said so.
+
             var eventName = JSON.stringify(responseJson[1].id);
             console.log(JSON.stringify(responseJson[1].id));
-            //console.log(eventName);
+            console.log(eventName);
             //return (jsonHolder[1]);
             return eventName;
         });
@@ -73,10 +68,6 @@
 
 
 
-    /*
-    Okay so heres the weird bit. When you try to use the function to return the value to a different function you're back to "undefined"
-    Hopefully this is easier to fix at least.
-     */
     function testReturnFromFunction(){
         //console.log(grabDetails());
         document.getElementById("TestDiv").innerHTML += "<p>" + grabDetails() + "</p>";
