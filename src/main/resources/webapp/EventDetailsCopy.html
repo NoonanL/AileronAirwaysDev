@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aileron Airways ETT</title>
+<link href="StyleSheet.css" rel="styleSheet" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ 
+    <link rel=stylesheet type="text/css" href="stylesheet.css">
+    
+
+<style>
+  /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-x:  auto ;/* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color:black;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+    
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #1a90c7;
+    color:white;
+}
+
+.modal-body {padding: 2px 16px;
+    }
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #1a90c7;
+    color: white;
+}  
+</style>
+</head>
+
+<body>
+    <header>
+        <div class="aboutUsBanner">
+            <img src="images/Banner.jpeg" style="width:100%;">
+            <div class="top-left">
+                      <h2> Event Timeline Tool - View Event</h2> 
+            </div>
+            <div class="bottom-right">
+	                   <img src="images/AileronLogoThumb.png">
+                
+            </div>
+        </div>      
+        
+    </header>
+
+
+    <div class="row">
+	   <div class="col-12">
+ 
+          <label for="title" id="title" autofocus><h2>Wings fell off plane!</h2></label>
+           
+           <label for="date" id="date" autofocus><h3>Event Date: 25/11/2017</h3></label>
+           
+           <label for="time" id="time" autofocus><h3>Event Time: 09:00</h3></label>
+           
+           <h3 id="location">Event Location:</h3>
+<!--
+           <input id="latlng" type="text" value="55.869074, -4.435053">
+           <input id="submit" type="button" value="Reverse Geocode">
+-->
+           <div id="map"></div>
+           <br>
+           <!-- modal box goes in here -->
+           <button id="myBtn" class="button">View Linked Events </button>
+           <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div id="boxshadow" style ="card container centre" class="modal-content">
+    <div style ="height:50px;" class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+        <div>
+            <dl id="linkedEvents">
+            </dl> 
+            <br>
+        </div>    
+        
+    </div>
+    <div style ="height:50px;" class="modal-footer">
+    </div>
+  </div>
+
+</div>
+<br>
+
+               
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>    
+           <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
+           <div style="width: 25%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
+            The wings fell off the plane!
+            </div>
+        </div>
+  
+</div> 
+<!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->
+<script>
+    console.log(grabDetails());
+    //construct variables used to set the information for the event details - Effectively this is where each value will be replaced with grabDetails.0.title and so on
+    var sampleEventTitle="Plane Crash";
+    //basically this would be sampleEventTitle=grabDetails().0.title; but that causes a syntax error - no idea why  
+    var sampleEventDate="25/11/2017";
+    var sampleEventTime="09:00";
+    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
+    //this function creates the map. it is self calling. it is called by line 11 > Dont worry about calling this!!!
+
+
+    //grab the API data about event details
+    //This is currently set to do with the first item in the API. IN the next scrum we will make it pick an object
+    var jsonHolder = new Array();
+    function grabDetails() {
+        console.log("Grabbing Event Details from API");
+        $.get("/eventDetailsServlet", function(responseJson) {
+            //console.log(responseJson);
+            //jsonHolder=responseJson; this should work?!?!
+            $.each(responseJson, function(index, product) {
+                // Iterate over the JSON array.
+                jsonHolder[index]=responseJson[index];
+                console.log(jsonHolder);
+                });
+            return jsonHolder;
+        });
+        //I want this method to return the JSON object so that it can be called from wherever
+        //i.e it would allow me to set the innerHTML of the title tag to contain "grabDetails().whatevernumber.title"
+        //when I do this it breaks in various weird and wonderful ways
+        //is something similar to the following commented line a solution??? currently uncommenting that line breaks the map i.e breaks the whole script by having
+        //incorrect syntax or similar
+        // var responseJson[]=responseJson;
+
+    }
+
+    </script>
+
+
+
+
+    <!-- the following is a script to create a description list of linked events and drop it inside the modal box-->
+<script>
+    var descriptionList= $("<dl /;>",{
+        "id": "linkedEvents"
+    });
+
+    //eventsNum is the number of linked events. This must be retrieved from the API. Currently this is hardcoded to 4
+    var eventsNum=4;
+    //now construct arrays of event information for the linkedEvents Object builder
+    var linkedEventTitle=new Array(eventsNum);
+    var linkedEventDate=new Array(eventsNum);
+    var linkedEventTime=new Array(eventsNum);
+    var linkedEventDescription=new Array(eventsNum);
+
+
+        //Here is where the arrays of information would be filled by data from the API
+        //in the mean time I have added a for loop to fill them with sample data
+        console.log("---ARRAY FILLER START---");
+    for(var i=0; i<eventsNum; i++){
+        linkedEventTitle[i]="Sample "+ (i+1);
+        linkedEventDate[i]="25/11/2017";
+        linkedEventTime[i]="09:00";
+        linkedEventDescription[i]="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.";
+        //log everything you build in the console
+        console.log("Pass: "+(i+1));
+        console.log("TITLE: " + linkedEventTitle[i]);
+        console.log("DATE: " + linkedEventDate[i]);
+        console.log("TIME: " + linkedEventTime[i]);
+        console.log("DESCRIPTION: " + linkedEventDescription[i]);
+    }
+        console.log("---ARRAY FILLER COMPLETE---");
+
+    //this is the object builder - this takes the values of linkedEventTitle[], linkedEventDate[], linkedEventTime[] and linkedEventDescription[] and builds a list on the page out of listItem objects. This is done an amount of times based on the value of eventsNum i.e the number of linkedevents
+    for(var i=0; i<eventsNum; i++){
+        var eventTitle = $("<h2 />", {
+			text: linkedEventTitle[i] + " - Date:" + linkedEventDate[i],
+            "class": "eventTitle"
+		});
+        var eventTime = $("<h3 />", {
+			text: "Event time: " + linkedEventTime[i],
+            "class": "eventTime"
+		});
+        var eventDescription = $("<p />", {
+			text: linkedEventDescription[i],
+            "class": "eventTime"
+		});
+        var listItem = $("<dt />", {
+        text: ""
+        });
+
+        listItem.append(eventTitle);
+        listItem.append(eventTime);
+        listItem.append(eventDescription);
+
+        $("#linkedEvents").append(listItem);
+    }
+
+    </script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
