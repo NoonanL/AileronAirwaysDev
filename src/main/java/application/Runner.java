@@ -1,8 +1,7 @@
 package application;
 
 
-import application.model.Event;
-import application.model.Timeline;
+import application.api.Get;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
 import application.servlet.EventDetailsServlet;
@@ -35,27 +34,13 @@ public class Runner {
     private void start() throws Exception {
         Server server = new Server(PORT);
 
-        /*temporarily populating timeline and event Repository for testing purposes
-         */
-//        Timeline timeline1 = new Timeline("timelineId01", "Timeline Title 01");
-//        Timeline timeline2 = new Timeline("timelineId02", "Timeline Title 02");
-//        Timeline timeline3 = new Timeline("timelineId03", "Timeline Title 03");
-//        timelineRepository.add(timeline1);
-//        timelineRepository.add(timeline2);
-//        timelineRepository.add(timeline3);
-//
-//        Event event1 = new Event("eventId01", "Event 01 Title", "I am test event 01", "22:36","Glasgow");
-//        Event event2 = new Event("eventId02", "Event 02 Title", "I am test event 02", "22:37","Edinburgh");
-//        Event event3 = new Event("eventId03", "Event 03 Title", "I am test event 03", "22:38","London");
-//        eventRepository.add(event1);
-//        eventRepository.add(event2);
-//        eventRepository.add(event3);
 
         //Run get Timelines and Events to populate repository. Pure hack atm.
-        Timeline test = new Timeline("150","testTitle2");
-        test.getTimelinesAndEvents();
+        Get getTimeline = new Get();
+        getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
+
         //Print all Timelines fetched from API
-        System.out.println(timelineRepository.getTimelines().toString());
+        System.out.println(timelineRepository.getTimelines());
         System.out.println(eventRepository.getEvents());
 
 
@@ -64,7 +49,6 @@ public class Runner {
          */
         ServletContextHandler handler = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS);
         handler.setInitParameter("org.eclipse.jetty.servlet.Default." + "resourceBase", "src/main/resources/webapp");
-
 
         /*
         Servlet to handle index page.
@@ -78,7 +62,9 @@ public class Runner {
         TimelineRegisterServlet timelineRegisterServletServlet = new TimelineRegisterServlet();
         handler.addServlet(new ServletHolder(timelineRegisterServletServlet), "/timelineRegisterServlet");
 
-
+        /*
+        Servlet to handle EventDetails page
+         */
         EventDetailsServlet eventDetailsServlet = new EventDetailsServlet();
         handler.addServlet(new ServletHolder(eventDetailsServlet), "/eventDetailsServlet");
 

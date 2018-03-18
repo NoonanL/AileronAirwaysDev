@@ -1,5 +1,7 @@
 package application.servlet;
 
+import application.Runner;
+import application.model.Timeline;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -22,6 +24,13 @@ public class IndexServlet extends HttpServlet{
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             System.out.println("Hello I am a post method");
+            response.setContentType("text");
+            Timeline timeline = new Timeline(request.getParameter("timeline_id"),request.getParameter("timeline_name"));
+            Runner.timelineRepository.add(timeline);
+            response.sendRedirect(response.encodeRedirectURL("index.html"));
+            //send me to api or do that later in the repository?
+
+
         }
 
         /*
