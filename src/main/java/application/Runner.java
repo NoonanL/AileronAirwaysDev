@@ -51,8 +51,12 @@ public class Runner {
 //        eventRepository.add(event2);
 //        eventRepository.add(event3);
 
+        //Run get Timelines and Events to populate repository. Pure hack atm.
         Timeline test = new Timeline("150","testTitle2");
         test.getTimelinesAndEvents();
+        //Print all Timelines fetched from API
+        System.out.println(timelineRepository.getTimelines().toString());
+        System.out.println(eventRepository.getEvents());
 
 
         /*

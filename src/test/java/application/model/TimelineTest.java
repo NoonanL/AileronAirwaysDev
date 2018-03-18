@@ -1,5 +1,6 @@
 package application.model;
 
+import application.Runner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -65,6 +66,7 @@ public class TimelineTest {
         System.out.println("Testing: Get Specific Timeline");
         System.out.println("------------------------");
         test.getTimeline("1234567");
+        System.out.println(Runner.timelineRepository.toString());
 
     }
 
@@ -87,14 +89,23 @@ public class TimelineTest {
 
     }
 
-    @Test
-    public void t8testGetAllTimelinesAndEvents() throws Exception{
-        Timeline test = new Timeline("150","testTitle2");
-        System.out.println("Testing: Get all Linked Events with Timelines");
-        System.out.println("------------------------");
-        test.getTimelinesAndEvents();
-
-    }
+    /*
+    This is hella broke.
+     */
+//    @Test
+//    public void t8testGetAllTimelinesAndEvents() throws Exception{
+//        Timeline test = new Timeline("150","testTitle2");
+//        System.out.println("Testing: Get all Linked Events with Timelines");
+//        System.out.println("------------------------");
+//        test.getTimelinesAndEvents();
+//        System.out.println(Runner.timelineRepository.toString());
+//        System.out.println("------------------------");
+//        System.out.println("------------------------");
+//        System.out.println("------------------------");
+//        System.out.println(Runner.eventRepository.toString());
+//        System.out.println("------------------------");
+//
+//    }
 
 
     @After

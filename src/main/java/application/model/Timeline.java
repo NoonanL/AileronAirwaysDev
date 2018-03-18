@@ -5,6 +5,7 @@ import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -23,7 +24,8 @@ public class Timeline {
     private String creationTimeStamp;
     private String linkedTimelineEventIds;
     private String attachments;
-    private String timelineEvents;
+    private ArrayList<Event> timelineEvents;
+
 
     /*
     CONSTRUCTORS HERE
@@ -61,6 +63,11 @@ public class Timeline {
         return parameters;
         //When this is returned to the calling method it is then free to add to the bottom of the map
     }
+
+    /*
+    API METHODS HERE
+     */
+
 
     /*
     Example of a method calling the API. Things you'll need to change are pretty much just the last few
@@ -233,12 +240,17 @@ public class Timeline {
         this.creationTimeStamp = creationTimeStamp;
     }
 
-    public String getTimelineEvents() {
+    public ArrayList getTimelineEvents() {
         return timelineEvents;
     }
 
-
-    public void setTimelineEvents(String timelineEvents) {
+    public void setTimelineEvents(ArrayList timelineEvents) {
         this.timelineEvents = timelineEvents;
+    }
+
+    @Override
+    public String toString(){
+        String str = this.id + ", " + this.title;
+        return str;
     }
 }
