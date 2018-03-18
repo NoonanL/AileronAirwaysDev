@@ -27,28 +27,28 @@ public class Attachment {
    VARS HERE
     */
     private String eventId;
-    private String attatchmentId;
+    private String attachmentId;
     private String title;
 
     /*
     CONSTRUCTORS HERE
      */
 
-    public Attachment(String eventId, String attatchmentId, String title){
+    public Attachment(String eventId, String attachmentId, String title){
         this.eventId = eventId;
-        this.attatchmentId = attatchmentId;
+        this.attachmentId = attachmentId;
         this.title = title;
     }
 
     public Attachment(String eventId, String title){
         this.eventId = eventId;
-        this.attatchmentId = UUID.randomUUID().toString();
+        this.attachmentId = UUID.randomUUID().toString();
         this.title = title;
     }
 
     public Attachment(){
         this.eventId = "";
-        this.attatchmentId = "";
+        this.attachmentId = "";
         this.title = "";
     }
 
@@ -66,14 +66,14 @@ public class Attachment {
         this.eventId = eventId;
     }
 
-    //get attatchmentId
-    public String getAttatchmentId(){
-        return this.attatchmentId;
+    //get attachmentId
+    public String getAttachmentId(){
+        return this.attachmentId;
     }
 
-    //set attatchmentId
-    public void setAttatchmentId(String attatchmentId){
-        this.attatchmentId = attatchmentId;
+    //set attachmentId
+    public void setAttachmentId(String attachmentId){
+        this.attachmentId = attachmentId;
     }
 
     //get title
@@ -86,7 +86,7 @@ public class Attachment {
         this.title = title;
     }
 
-    public Map attatchmentPut() throws UnsupportedEncodingException {
+    public Map attachmentPut() throws UnsupportedEncodingException {
 
         //create hashmap of key-value pairs
         Map<String, String> parameters = new LinkedHashMap<>();
@@ -94,27 +94,30 @@ public class Attachment {
         parameters.put("TenantId", "Team8");
         parameters.put("AuthToken", "28dfb21a-8dbd-47cb-a6a2-96fb225cb138");
         //below are the variables you may need to add to/change depending on the method you're implementing;
-        parameters.put("AttachmentId" , this.attatchmentId);
+        parameters.put("AttachmentId" , this.attachmentId);
 
         return parameters;
         //When this is returned to the calling method it is then free to add to the bottom of the map
 
     }
 
-    public void createAndUploadAttatchment(String filename) throws IOException {
+    public void createAndUploadAttachment(String filepath) throws IOException {
         //Generate the URL to upload to from the filename
+        String filename = (new File(filepath)).getName();
         String urlString = generateUploadPresignedURL(filename);
         URL url = new URL(urlString);
         try {
             //Passes the url and file to be uploaded
-            uploadObject(url, filename);
+            uploadObject(url, filename, filepath);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void downloadAttatchment(String filename, String newFilePath) throws UnsupportedEncodingException, MalformedURLException {
+    public void downloadAttachment(String filename, String newFilePath) throws UnsupportedEncodingException, MalformedURLException {
         //Generate the URL to download from using the filename
+        //Figure out what will be passed in here assuming it will come from a list of attachments therefore the id will
+        //be given so no filepath stripping to do
         String urlString = generateDownloadPresignedURL(filename);
         URL url = new URL(urlString);
         try {
@@ -129,14 +132,14 @@ public class Attachment {
     API METHODS HERE
      */
 
-    public void createAttatchment() throws UnsupportedEncodingException {
-        Map<String, String> createAttatchmentMap = attatchmentPut();
+    public void createAttachment(String attachmentId) throws UnsupportedEncodingException {
+        Map<String, String> createAttachmentMap = attachmentPut();
 
-        createAttatchmentMap.put("TimelineEventId", this.eventId);
-        createAttatchmentMap.put("AttachmentId", this.attatchmentId);
-        createAttatchmentMap.put("Title", this.title);
+        createAttachmentMap.put("TimelineEventId", this.eventId);
+        createAttachmentMap.put("AttachmentId", this.attachmentId);
+        createAttachmentMap.put("Title", this.title);
 
-        String postData = ParameterStringBuilder.getParamsString(createAttatchmentMap);
+        String postData = ParameterStringBuilder.getParamsString(createAttachmentMap);
         //call the Put class method which requires the path (which api call you're executing and the postData itself
         Put.put("/TimelineEventAttachment/Create",postData);
     }
@@ -155,7 +158,7 @@ public class Attachment {
         return website;
     }
 
-    public static void uploadObject(URL url,String filename) throws IOException {
+    public static void uploadObject(URL url,String filename, String filepath) throws IOException {
         HttpURLConnection connection=(HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("PUT");
@@ -165,7 +168,7 @@ public class Attachment {
         //Checks for the filetype and then uploads based on that, only accepts the three filetypes Ideagen gave
         try {
             if (filename.contains(".doc")) {
-                FileInputStream fin = new FileInputStream(filename);
+                FileInputStream fin = new FileInputStream(filepath);
                 int i = 0;
                 while ((i = fin.read()) != -1) {
                     out.write(i);
@@ -173,12 +176,12 @@ public class Attachment {
                 fin.close();
         }else if (filename.contains(".png") ){
                 //Creates a bufferedimage from the filename and then writes to the URL(fuck this bit was annoying)
-            BufferedImage image = ImageIO.read(new File(filename));
+            BufferedImage image = ImageIO.read(new File(filepath));
                 ImageIO.write(image, "png", out);
         }
-        else if(filename.contains(".jpeg")){
-                BufferedImage image = ImageIO.read(new File(filename));
-                ImageIO.write(image, "jpeg", out);
+        else if(filename.contains(".jpg")){
+                BufferedImage image = ImageIO.read(new File(filepath));
+                ImageIO.write(image, "jpg", out);
             }
             //int[] temp = new int[fSize];
         }catch (Exception e ){System.out.println(e);}
@@ -208,9 +211,9 @@ public class Attachment {
             BufferedImage image = ImageIO.read(connection.getInputStream());
             ImageIO.write(image, "png", new File(filePath));
         }
-        else if(filePath.contains(".jpeg")){
+        else if(filePath.contains(".jpg")){
             BufferedImage image = ImageIO.read(connection.getInputStream());
-            ImageIO.write(image, "png", new File(filePath));
+            ImageIO.write(image, "jpg", new File(filePath));
         }
 
     }

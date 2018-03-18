@@ -14,8 +14,8 @@ public class AttatchmentTest
     public void setUp() throws Exception {
     }
 
-    @Test
-    public void t10testCreateAttatchment() throws Exception {
+    /*@Test
+    public void t10testCreateAttachment() throws Exception {
         Attachment test = new Attachment(
                 "testingId",
                 "b8147090-f83a-492c-a230-9a2fba426e26",
@@ -23,9 +23,9 @@ public class AttatchmentTest
 
         System.out.println("Test: Create an Event");
         System.out.println("------------------------");
-        test.createAttatchment();
+        test.createAttachment();
 
-    }
+    }*/
 
     @Test
     public void t11uploadFile() throws Exception{
@@ -33,7 +33,7 @@ public class AttatchmentTest
 
         System.out.println("Test: Get Linked Events");
         System.out.println("------------------------");
-        test.createAndUploadAttatchment("Place the path of the file you want to upload here!");
+        test.createAndUploadAttachment("Place the path of the file you want to upload here!");
     }
 
     @Test
@@ -42,7 +42,7 @@ public class AttatchmentTest
 
         System.out.println("Test: Get Linked Events");
         System.out.println("------------------------");
-        test.downloadAttatchment("Place the name of the file that has been uploaded you want to get",
+        test.downloadAttachment("Place the name of the file that has been uploaded you want to get",
                 "Place the path for the file to go to");
     }
 

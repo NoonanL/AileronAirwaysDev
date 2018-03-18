@@ -5,6 +5,7 @@ import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class Timeline {
     */
     private String id;
     private String title;
-
+    private ArrayList<Event> events;
 
 
 
@@ -86,7 +87,13 @@ public class Timeline {
 
     }
 
+    public String getEvents(){
+    return this.events.toString();
+    }
 
+    public void setEvents(Event newEvent){
+        this.events.add(newEvent);
+    }
 
 
     /*

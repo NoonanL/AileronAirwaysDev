@@ -5,6 +5,7 @@ import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -20,6 +21,7 @@ public class Event {
     private String description;
     private String eventDateTime;
     private String location;
+    private ArrayList<String> linkedEvents;
 
 
     /*
@@ -104,7 +106,13 @@ public class Event {
         this.location = location;
     }
 
+    public void setLinkedEvents(String linkedEvent){
+        this.linkedEvents.add(linkedEvent);
+    }
 
+    public String getLinkedEvents(){
+    return this.linkedEvents.toString();
+    }
 
 
     public Map eventPut() throws UnsupportedEncodingException{
