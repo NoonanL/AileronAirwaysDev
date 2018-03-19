@@ -1,7 +1,5 @@
 package application.servlet;
 
-import application.model.Timeline;
-import application.repositories.TimelineRepository;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
