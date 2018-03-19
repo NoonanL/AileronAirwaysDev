@@ -34,7 +34,7 @@ public class EventDetailsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello I am a get method");
+        //System.out.println("Hello I am a get method");
 
         /*
         Fetch something from front end to specify which event to send

@@ -28,7 +28,7 @@ public class TimelineRegisterServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello I am a get method");
+        //System.out.println("Hello I am a get method");
 
         String json = new Gson().toJson(application.Runner.timelineRepository.getTimelines());
 
