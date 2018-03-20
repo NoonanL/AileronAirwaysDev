@@ -60,15 +60,6 @@ public class TimelineTest {
 
     }
 
-//    @Test
-//    public void t5testGetOneTimeline() throws Exception{
-//        Timeline test = new Timeline("150","testTitle2");
-//        System.out.println("Testing: Get Specific Timeline");
-//        System.out.println("------------------------");
-//        test.getTimeline("1234567");
-//        System.out.println(Runner.timelineRepository.toString());
-//
-//    }
 
     @Test
     public void t6testGetLinkedEvents() throws Exception{
@@ -88,24 +79,6 @@ public class TimelineTest {
         test.deleteTimeline();
 
     }
-
-    /*
-    This is hella broke.
-     */
-//    @Test
-//    public void t8testGetAllTimelinesAndEvents() throws Exception{
-//        Timeline test = new Timeline("150","testTitle2");
-//        System.out.println("Testing: Get all Linked Events with Timelines");
-//        System.out.println("------------------------");
-//        test.getAllTimelinesAndEvents();
-//        System.out.println(Runner.timelineRepository);
-//        System.out.println("------------------------");
-//        System.out.println("------------------------");
-//        System.out.println("------------------------");
-//        System.out.println(Runner.eventRepository);
-//        System.out.println("------------------------");
-//
-//    }
 
 
     @After

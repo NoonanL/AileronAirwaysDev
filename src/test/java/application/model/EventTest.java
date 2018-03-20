@@ -132,6 +132,7 @@ public class EventTest {
         test.unlinkEvents("1111");;
     }*/
 
+
     @Test
     public void t17testGetLinkedEvents() throws Exception {
         //eventDateTime in the form of YYYY-MM-dd-HH-mm-SS this is due to an inability to use : and , within the string
@@ -148,14 +149,6 @@ public class EventTest {
 
     }
 
-//    @Test
-//    public void t18testGetAllevents() throws Exception{
-//        Event test = new Event();
-//
-//        System.out.println("Test: Get Linked Events");
-//        System.out.println("------------------------");
-//        test.getAllEvents();
-//    }
 
     /*@Test
     public void t19testDeleteEvent() throws Exception {
