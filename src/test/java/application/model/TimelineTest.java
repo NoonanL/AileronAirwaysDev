@@ -92,20 +92,20 @@ public class TimelineTest {
     /*
     This is hella broke.
      */
-//    @Test
-//    public void t8testGetAllTimelinesAndEvents() throws Exception{
-//        Timeline test = new Timeline("150","testTitle2");
-//        System.out.println("Testing: Get all Linked Events with Timelines");
-//        System.out.println("------------------------");
-//        test.getTimelinesAndEvents();
-//        System.out.println(Runner.timelineRepository.toString());
-//        System.out.println("------------------------");
-//        System.out.println("------------------------");
-//        System.out.println("------------------------");
-//        System.out.println(Runner.eventRepository.toString());
-//        System.out.println("------------------------");
-//
-//    }
+    @Test
+    public void t8testGetAllTimelinesAndEvents() throws Exception{
+        Timeline test = new Timeline("150","testTitle2");
+        System.out.println("Testing: Get all Linked Events with Timelines");
+        System.out.println("------------------------");
+        test.getTimelinesAndEvents();
+        System.out.println(Runner.timelineRepository);
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println(Runner.eventRepository);
+        System.out.println("------------------------");
+
+    }
 
 
     @After

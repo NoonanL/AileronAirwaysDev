@@ -41,5 +41,11 @@ public class EventRepository {
 
     }
 
+    @Override
+    public String toString(){
+        String str = this.objects.toString();
+        return str;
+    }
+
 
 }

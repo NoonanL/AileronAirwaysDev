@@ -38,6 +38,11 @@ public class AttachmentRepository {
         this.objects.removeIf(predicate);
 
     }
-
+    
+    @Override
+    public String toString(){
+        String str = this.objects.toString();
+        return str;
+    }
 
 }
