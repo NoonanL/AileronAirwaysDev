@@ -148,14 +148,14 @@ public class EventTest {
 
     }
 
-    @Test
-    public void t18testGetAllevents() throws Exception{
-        Event test = new Event();
-
-        System.out.println("Test: Get Linked Events");
-        System.out.println("------------------------");
-        test.getAllEvents();
-    }
+//    @Test
+//    public void t18testGetAllevents() throws Exception{
+//        Event test = new Event();
+//
+//        System.out.println("Test: Get Linked Events");
+//        System.out.println("------------------------");
+//        test.getAllEvents();
+//    }
 
     /*@Test
     public void t19testDeleteEvent() throws Exception {

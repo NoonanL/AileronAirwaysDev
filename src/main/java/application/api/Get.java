@@ -14,7 +14,6 @@ import java.net.*;
 
 public class Get {
 
-
     public void get(String path, String key, String value) {
 
 

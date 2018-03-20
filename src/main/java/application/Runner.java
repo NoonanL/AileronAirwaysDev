@@ -1,7 +1,5 @@
 package application;
 
-
-import application.api.Get;
 import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
@@ -42,8 +40,9 @@ public class Runner {
 
 
         //Run get Timelines and Events to populate repository. Pure hack atm.
-        Get getTimelinesAndEvents = new Get();
-        getTimelinesAndEvents.get("/Timeline/GetAllTimelinesAndEvent", "", "");
+        timelineRepository.getAPITimelines();
+        eventRepository.getAPIEvents();
+
 
         //Print all Timelines fetched from API
         System.out.println(timelineRepository.getTimelines());

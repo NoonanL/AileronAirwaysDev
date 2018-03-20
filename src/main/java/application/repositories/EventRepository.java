@@ -1,8 +1,10 @@
 package application.repositories;
 
 
+import application.api.Get;
 import application.model.Event;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -40,6 +42,13 @@ public class EventRepository {
         this.objects.removeIf(predicate);
 
     }
+
+    public void getAPIEvents() throws UnsupportedEncodingException {
+        Get getEvent = new Get();
+
+        getEvent.get("/TimelineEvent/GetAllEvents", "", "");
+    }
+
 
     @Override
     public String toString(){

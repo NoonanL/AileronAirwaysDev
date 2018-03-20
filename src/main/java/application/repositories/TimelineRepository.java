@@ -1,7 +1,9 @@
 package application.repositories;
 
+import application.api.Get;
 import application.model.Timeline;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -37,6 +39,27 @@ public class TimelineRepository {
     public void remove(String id) {
         Predicate<Timeline> predicate = e->e.getId().equals(id);
         this.objects.removeIf(predicate);
+
+    }
+
+    public void getAPITimelines() throws UnsupportedEncodingException{
+        Get getTimeline = new Get();
+        getTimeline.get("/Timeline/GetTimelines", "", "");
+
+    }
+
+    /*
+    DONT USE ME, I FILL EVENTS TOO
+     */
+    public void getAllTimelinesAndEvents() throws UnsupportedEncodingException {
+        Get getTimeline = new Get();
+        getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
+
+    }
+
+    public void getTimeline(String id) throws UnsupportedEncodingException{
+        Get getTimeline = new Get();
+        getTimeline.get("/Timeline/GetTimeline", "TimelineId", id);
 
     }
 

@@ -25,14 +25,19 @@ import java.util.UUID;
 public class Attachment {
 
     /*
-   VARS HERE
-    */
+    ----------------------------------------------------------------------------------------
+    Variables:
+    ----------------------------------------------------------------------------------------
+     */
+
     private String eventId;
     private String attachmentId;
     private String title;
 
     /*
-    CONSTRUCTORS HERE
+    ----------------------------------------------------------------------------------------
+    Constructors:
+    ----------------------------------------------------------------------------------------
      */
 
     public Attachment(String eventId, String attachmentId, String title){
@@ -53,40 +58,6 @@ public class Attachment {
         this.title = "";
     }
 
-    /*
-    GETTERS/SETTERS HERE
-     */
-
-    //get eventId
-    public String getId(){
-        return this.eventId;
-    }
-
-    //set id
-    public void seteventId(String eventId){
-        this.eventId = eventId;
-    }
-
-    //get attachmentId
-    public String getAttachmentId(){
-        return this.attachmentId;
-    }
-
-    //set attachmentId
-    public void setAttachmentId(String attachmentId){
-        this.attachmentId = attachmentId;
-    }
-
-    //get title
-    public String getTitle(){
-        return this.title;
-    }
-
-    //set title
-    public void setTitle(String title){
-        this.title = title;
-    }
-
 
     /*
     Function to build the map object specific to the Attachment class.
@@ -95,6 +66,13 @@ public class Attachment {
         CallBuilder callBuilder = new CallBuilder("AttachmentId", attachmentId);
         return callBuilder.buildHeader();
     }
+
+
+    /*
+    ----------------------------------------------------------------------------------------
+    API Methods:
+    ----------------------------------------------------------------------------------------
+     */
 
 
     public void createAndUploadAttachment(String filepath) throws IOException {
@@ -123,10 +101,6 @@ public class Attachment {
             e.printStackTrace();
         }
     }
-
-    /*
-    API METHODS HERE
-     */
 
     public void createAttachment(String attachmentId) throws UnsupportedEncodingException {
         Map<String, String> createAttachmentMap = buildMap();
@@ -212,6 +186,55 @@ public class Attachment {
             ImageIO.write(image, "jpg", new File(filePath));
         }
 
+    }
+
+
+    /*
+    ----------------------------------------------------------------------------------------
+    Getters and Setters:
+    ----------------------------------------------------------------------------------------
+     */
+
+    //get eventId
+    public String getId(){
+        return this.eventId;
+    }
+
+    //set id
+    public void seteventId(String eventId){
+        this.eventId = eventId;
+    }
+
+    //get attachmentId
+    public String getAttachmentId(){
+        return this.attachmentId;
+    }
+
+    //set attachmentId
+    public void setAttachmentId(String attachmentId){
+        this.attachmentId = attachmentId;
+    }
+
+    //get title
+    public String getTitle(){
+        return this.title;
+    }
+
+    //set title
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    /*
+    ----------------------------------------------------------------------------------------
+    Overrides
+    ----------------------------------------------------------------------------------------
+     */
+
+    @Override
+    public String toString(){
+        String str = this.attachmentId + ", " + this.title;
+        return str;
     }
 
 }

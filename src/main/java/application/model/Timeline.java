@@ -13,8 +13,11 @@ public class Timeline {
 
 
     /*
-   VARS HERE
-    */
+    ----------------------------------------------------------------------------------------
+    Variables:
+    ----------------------------------------------------------------------------------------
+     */
+
     private String id;
     private String title;
     private String eventDateTime;
@@ -27,8 +30,11 @@ public class Timeline {
 
 
     /*
-    CONSTRUCTORS HERE
+    ----------------------------------------------------------------------------------------
+    Constructors:
+    ----------------------------------------------------------------------------------------
      */
+
     public Timeline(String id, String title){
         this.id = id;
         this.title = title;
@@ -46,6 +52,7 @@ public class Timeline {
         this.linkedTimelineEventIds = null;
     }
 
+
     /*
     Function to build the Map object specific to the Timeline class.
      */
@@ -56,16 +63,11 @@ public class Timeline {
 
 
     /*
-    API METHODS HERE
+    ----------------------------------------------------------------------------------------
+    API Methods:
+    ----------------------------------------------------------------------------------------
      */
 
-
-    /*
-    Example of a method calling the API. Things you'll need to change are pretty much just the last few
-    parameters.put() values depending on what values you need to send. The first two are hardcoded so should stay
-    as they are.
-     */
-    //send this timeline object to the API for persistence
     public void createTimeline() throws UnsupportedEncodingException {
         //CallBuilder callBuilder = new CallBuilder("TimelineId", this.id);
         //create hashmap of key-value pairs
@@ -126,30 +128,6 @@ public class Timeline {
         Put.put("/Timeline/Delete",postData);
     }
 
-    public void getTimelines() throws UnsupportedEncodingException{
-        Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetTimelines", "", "");
-
-
-    }
-
-    /*
-    This should probably be refactored elsewhere because it fetches both timelines and events
-    Probably should happen on server start to populate the arrays. Potentially where offline mode will come in.
-     */
-    public void getTimelinesAndEvents() throws UnsupportedEncodingException{
-        Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
-
-    }
-
-    public void getTimeline(String id) throws UnsupportedEncodingException{
-        Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetTimeline", "TimelineId", id);
-
-
-    }
-
     public void getLinkedEvents(String id) throws UnsupportedEncodingException{
         Get getTimeline = new Get();
 
@@ -157,7 +135,11 @@ public class Timeline {
     }
 
 
-
+    /*
+    ----------------------------------------------------------------------------------------
+    Getters and Setters:
+    ----------------------------------------------------------------------------------------
+     */
 
     public void setTitle(String title) {
         this.title = title;
@@ -230,6 +212,12 @@ public class Timeline {
     public void setTimelineEvents(ArrayList timelineEvents) {
         this.timelineEvents = timelineEvents;
     }
+
+     /*
+    ----------------------------------------------------------------------------------------
+    Overrides
+    ----------------------------------------------------------------------------------------
+     */
 
     @Override
     public String toString(){

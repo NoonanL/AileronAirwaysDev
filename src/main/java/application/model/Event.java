@@ -15,8 +15,11 @@ public class Event {
 
 
     /*
-   VARS HERE
-    */
+    ----------------------------------------------------------------------------------------
+    Variables:
+    ----------------------------------------------------------------------------------------
+     */
+
     private String id;
     private String title;
     private String description;
@@ -27,8 +30,11 @@ public class Event {
 
 
     /*
-    CONSTRUCTORS HERE
+    ----------------------------------------------------------------------------------------
+    Constructors:
+    ----------------------------------------------------------------------------------------
      */
+
     public Event(String id, String title, String description, String eventDateTime, String location){
         this.id = id;
         this.title = title;
@@ -64,15 +70,13 @@ public class Event {
 
 
     /*
-    API METHODS HERE
+    ----------------------------------------------------------------------------------------
+    API Methods:
+    ----------------------------------------------------------------------------------------
      */
 
-    /*
-    Example of a method calling the API. Things you'll need to change are pretty much just the last few
-    parameters.put() values depending on what values you need to send. The first two are hardcoded so should stay
-    as they are.
-     */
-    //send this timeline object to the API for persistence
+
+
     public void createEvent() throws UnsupportedEncodingException {
         //create hashmap of key-value pairs
         Map<String, String> createEventMap = buildMap();
@@ -165,15 +169,11 @@ public class Event {
         getEvent.get("/TimelineEvent/GetTimelineEvent", "TimelineEventId", id);
     }
 
-    public void getAllEvents() throws UnsupportedEncodingException {
-        Get getEvent = new Get();
-
-        getEvent.get("/TimelineEvent/GetAllEvents", "", "");
-    }
-
 
     /*
-    GETTERS/SETTERS HERE
+    ----------------------------------------------------------------------------------------
+    Getters and Setters:
+    ----------------------------------------------------------------------------------------
      */
 
     //get id
@@ -242,6 +242,11 @@ public class Event {
         this.attachments = attachments;
     }
 
+     /*
+    ----------------------------------------------------------------------------------------
+    Overrides
+    ----------------------------------------------------------------------------------------
+     */
 
     @Override
     public String toString(){
