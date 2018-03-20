@@ -2,6 +2,7 @@ package application;
 
 
 import application.api.Get;
+import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
 import application.servlet.EventDetailsServlet;
@@ -29,6 +30,11 @@ public class Runner {
      */
     public static EventRepository eventRepository = new EventRepository();
 
+    /*
+    Declare repository for Event objects for persistence
+     */
+    public static AttachmentRepository attachmentRepository = new AttachmentRepository();
+
 
 
     private void start() throws Exception {
@@ -36,12 +42,13 @@ public class Runner {
 
 
         //Run get Timelines and Events to populate repository. Pure hack atm.
-        Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
+        Get getTimelinesAndEvents = new Get();
+        getTimelinesAndEvents.get("/Timeline/GetAllTimelinesAndEvent", "", "");
 
         //Print all Timelines fetched from API
         System.out.println(timelineRepository.getTimelines());
         System.out.println(eventRepository.getEvents());
+        System.out.println(attachmentRepository.getAttachments());
 
 
         /*

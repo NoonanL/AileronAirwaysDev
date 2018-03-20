@@ -149,7 +149,6 @@ public class Timeline {
         Get getTimeline = new Get();
         getTimeline.get("/Timeline/GetAllTimelinesAndEvent", "", "");
 
-
     }
 
     public void getTimeline(String id) throws UnsupportedEncodingException{
