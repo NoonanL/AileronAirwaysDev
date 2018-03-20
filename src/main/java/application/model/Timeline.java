@@ -1,12 +1,12 @@
 package application.model;
 
 import application.api.Get;
+import application.api.CallBuilder;
 import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Timeline {
@@ -23,7 +23,6 @@ public class Timeline {
     private String location;
     private String creationTimeStamp;
     private String linkedTimelineEventIds;
-    private String attachments;
     private ArrayList<Event> timelineEvents;
 
 
@@ -33,6 +32,8 @@ public class Timeline {
     public Timeline(String id, String title){
         this.id = id;
         this.title = title;
+
+
     }
 
     public Timeline(){
@@ -43,26 +44,16 @@ public class Timeline {
         this.isDeleted = null;
         this.location = null;
         this.linkedTimelineEventIds = null;
-        this.attachments = null;
     }
 
     /*
-    API METHODS HERE
+    Function to build the Map object specific to the Timeline class.
      */
-
-    public Map timelinePut() throws UnsupportedEncodingException {
-
-        //create hashmap of key-value pairs
-        Map<String, String> parameters = new LinkedHashMap<>();
-        //hardcoded body parameters allowing access to API
-        parameters.put("TenantId", "Team8");
-        parameters.put("AuthToken", "28dfb21a-8dbd-47cb-a6a2-96fb225cb138");
-        //below are the variables you may need to add to/change depending on the method you're implementing
-        parameters.put("TimelineId", this.id);
-
-        return parameters;
-        //When this is returned to the calling method it is then free to add to the bottom of the map
+    private Map <String, String> buildMap(){
+        CallBuilder callBuilder = new CallBuilder("TimelineId", id);
+        return callBuilder.buildHeader();
     }
+
 
     /*
     API METHODS HERE
@@ -76,12 +67,13 @@ public class Timeline {
      */
     //send this timeline object to the API for persistence
     public void createTimeline() throws UnsupportedEncodingException {
+        //CallBuilder callBuilder = new CallBuilder("TimelineId", this.id);
         //create hashmap of key-value pairs
-        Map<String, String> createMap = timelinePut();
-
-        createMap.put("title", this.title);
+        Map<String, String> map = buildMap();
+        map.put("title", this.title);
+        System.out.println(map.toString());
         //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(createMap);
+        String postData = ParameterStringBuilder.getParamsString(map);
         //call the Put class method which requires the path (which api call you're executing and the postData itself
         Put.put("/Timeline/Create",postData);
     }
@@ -90,7 +82,7 @@ public class Timeline {
         //Will this method need input validation or will this be handled on the front end?
 
         this.title = editTitle;
-        Map<String, String> editMap = timelinePut();
+        Map<String, String> editMap = buildMap();
         editMap.put("title", this.title);
 
         String postData = ParameterStringBuilder.getParamsString(editMap);
@@ -102,7 +94,7 @@ public class Timeline {
         //Will this method need input validation or will this be handled on the front end?
 
 
-        Map<String, String> linkMap = timelinePut();
+        Map<String, String> linkMap = buildMap();
         linkMap.put("EventId", eventId);
 
         String postData = ParameterStringBuilder.getParamsString(linkMap);
@@ -114,7 +106,7 @@ public class Timeline {
         //Will this method need input validation or will this be handled on the front end?
 
 
-        Map<String, String> linkMap = timelinePut();
+        Map<String, String> linkMap = buildMap();
         linkMap.put("EventId", eventId);
 
         String postData = ParameterStringBuilder.getParamsString(linkMap);
@@ -126,7 +118,7 @@ public class Timeline {
 
         //Currently gives an error if passed an id that doesnt exist
 
-        Map<String, String> deleteMap = timelinePut();
+        Map<String, String> deleteMap = buildMap();
 
 
         String postData = ParameterStringBuilder.getParamsString(deleteMap);
@@ -221,14 +213,6 @@ public class Timeline {
 
     public void setLinkedTimelineEventIds(String linkedTimelineEventIds) {
         this.linkedTimelineEventIds = linkedTimelineEventIds;
-    }
-
-    public String getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(String attachments) {
-        this.attachments = attachments;
     }
 
     public String getCreationTimeStamp() {

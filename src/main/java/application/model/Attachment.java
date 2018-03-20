@@ -1,6 +1,7 @@
 package application.model;
 
 
+import application.api.CallBuilder;
 import application.api.Get;
 import application.api.Put;
 import util.ParameterStringBuilder;
@@ -86,20 +87,15 @@ public class Attachment {
         this.title = title;
     }
 
-    public Map attachmentPut() throws UnsupportedEncodingException {
 
-        //create hashmap of key-value pairs
-        Map<String, String> parameters = new LinkedHashMap<>();
-        //hardcoded body parameters allowing access to API
-        parameters.put("TenantId", "Team8");
-        parameters.put("AuthToken", "28dfb21a-8dbd-47cb-a6a2-96fb225cb138");
-        //below are the variables you may need to add to/change depending on the method you're implementing;
-        parameters.put("AttachmentId" , this.attachmentId);
-
-        return parameters;
-        //When this is returned to the calling method it is then free to add to the bottom of the map
-
+    /*
+    Function to build the map object specific to the Attachment class.
+     */
+    private Map <String, String> buildMap(){
+        CallBuilder callBuilder = new CallBuilder("AttachmentId", attachmentId);
+        return callBuilder.buildHeader();
     }
+
 
     public void createAndUploadAttachment(String filepath) throws IOException {
         //Generate the URL to upload to from the filename
@@ -133,7 +129,7 @@ public class Attachment {
      */
 
     public void createAttachment(String attachmentId) throws UnsupportedEncodingException {
-        Map<String, String> createAttachmentMap = attachmentPut();
+        Map<String, String> createAttachmentMap = buildMap();
 
         createAttachmentMap.put("TimelineEventId", this.eventId);
         createAttachmentMap.put("AttachmentId", this.attachmentId);
