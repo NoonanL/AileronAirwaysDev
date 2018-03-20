@@ -25,7 +25,7 @@ public class Timeline {
     private String isDeleted;
     private String location;
     private String creationTimeStamp;
-    private String linkedTimelineEventIds;
+    private ArrayList<String> linkedTimelineEventIds;
     private ArrayList<Event> timelineEvents;
 
 
@@ -38,8 +38,6 @@ public class Timeline {
     public Timeline(String id, String title){
         this.id = id;
         this.title = title;
-
-
     }
 
     public Timeline(){
@@ -50,6 +48,7 @@ public class Timeline {
         this.isDeleted = null;
         this.location = null;
         this.linkedTimelineEventIds = null;
+        this.timelineEvents = null;
     }
 
 
@@ -130,7 +129,6 @@ public class Timeline {
 
     public void getLinkedEvents(String id) throws UnsupportedEncodingException{
         Get getTimeline = new Get();
-
         getTimeline.get("/Timeline/GetEvents", "TimelineId", id);
     }
 
@@ -173,14 +171,6 @@ public class Timeline {
         this.description = description;
     }
 
-    public String getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -189,11 +179,11 @@ public class Timeline {
         this.location = location;
     }
 
-    public String getLinkedTimelineEventIds() {
+    public ArrayList<String> getLinkedTimelineEventIds() {
         return linkedTimelineEventIds;
     }
 
-    public void setLinkedTimelineEventIds(String linkedTimelineEventIds) {
+    public void setLinkedTimelineEventIds(ArrayList linkedTimelineEventIds) {
         this.linkedTimelineEventIds = linkedTimelineEventIds;
     }
 
@@ -205,12 +195,18 @@ public class Timeline {
         this.creationTimeStamp = creationTimeStamp;
     }
 
-    public ArrayList getTimelineEvents() {
+    public ArrayList<Event> getTimelineEvents() {
         return timelineEvents;
     }
 
     public void setTimelineEvents(ArrayList timelineEvents) {
         this.timelineEvents = timelineEvents;
+    }
+
+    public void addTimelineEvent(Event event){
+        System.out.println(event.toString());
+        timelineEvents.add(event);
+        System.out.println(event.toString());
     }
 
      /*
@@ -221,7 +217,7 @@ public class Timeline {
 
     @Override
     public String toString(){
-        String str = this.id + ", " + this.title;
+        String str = this.id + ", " + this.title + ", " + this.timelineEvents;
         return str;
     }
 }

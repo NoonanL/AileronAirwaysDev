@@ -3,13 +3,12 @@ package application.api;
 import application.Runner;
 import application.model.Event;
 import application.model.Timeline;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 
 
 public class Get {
@@ -99,9 +98,10 @@ public class Get {
                                     Timeline timeline = new Timeline();
                                     timeline.setTitle(timelinesFromJson.get("Title").toString());
                                     timeline.setId(timelinesFromJson.get("Id").toString());
+                                    //Gson googleJson = new Gson();
+                                    //System.out.println(googleJson.fromJson(timelinesFromJson.get("LinkedTimelineEventIds"),ArrayList.class));
+                                    //timeline.setLinkedTimelineEventIds(googleJson.fromJson(timelinesFromJson.get("LinkedTimelineEventIds"),ArrayList.class));
                                     JsonArray temp1 = (JsonArray) timelinesFromJson.get("TimelineEvents");
-                                    Runner.timelineRepository.add(timeline);
-
                                     for (int x = 0; x < temp1.size(); x++) {
                                         Event event = new Event();
                                         JsonObject jsonObject2 = (JsonObject) temp1.get(x);
@@ -110,7 +110,9 @@ public class Get {
                                         event.setDescription(jsonObject2.get("Description").toString());
                                         event.setLocation(jsonObject2.get("Location").toString());
                                         event.setId(jsonObject2.get("Id").toString());
-                                        Runner.eventRepository.add(event);
+                                        System.out.println(event.toString());
+                                        //timeline.addTimelineEvent(event);
+                                        //Runner.eventRepository.add(event);
 
                                         /*
                                         This needs looked at - Timeline objects store an array of events (is this necessary if we can
@@ -125,6 +127,7 @@ public class Get {
                                         JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
                                     }
+                                    Runner.timelineRepository.add(timeline);
                                 }
                             }
 

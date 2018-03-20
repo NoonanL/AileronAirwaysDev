@@ -250,7 +250,11 @@ public class Event {
 
     @Override
     public String toString(){
-        String str = this.id + ", " + this.title;
+        String str = "{" +  this.id + ", "
+                + this.title + ", "
+                + this.description + ", "
+                + this.eventDateTime + ", "
+                + this.location + "}";
         return str;
     }
 
