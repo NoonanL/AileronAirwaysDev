@@ -15,6 +15,7 @@ Class that carries out PUT api calls
 
 public class Put {
 
+    @SuppressWarnings("Duplicates")
     public static void put(String path, String postData){
 
     /*

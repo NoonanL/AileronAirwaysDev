@@ -10,7 +10,7 @@ public class ParameterStringBuilder {
     This class is a utility function to build a formatted output string that will be accepted by the API.
     It uses a Stringbuilder working off a hashmap of key-value pairs and then returns the formatted String.
      */
-
+    @SuppressWarnings("Duplicates")
     public static String getParamsString(Map<String, String> params)
             throws UnsupportedEncodingException {
 
