@@ -1,6 +1,7 @@
 package application.servlet;
 
 import application.Runner;
+import application.model.Event;
 import application.model.Timeline;
 import org.junit.After;
 import org.junit.Before;
@@ -28,10 +29,11 @@ public class LinkedEventsServletTest {
     @Test
     public void doGet() throws UnsupportedEncodingException {
         Runner.timelineRepository.getAllTimelinesAndEvents();
-        Timeline testTimeline = Runner.timelineRepository.get("\"032934\"");
-        System.out.println(testTimeline.toString());
-       // ArrayList<String> testData = testTimeline.getLinkedTimelineEventIds();
-        //System.out.println(testData.toString());
+        //System.out.println(Runner.timelineRepository.toString());
+        Timeline testTimeline = Runner.timelineRepository.get("\"032943\"");
+        //System.out.println(testTimeline.toString());
+        ArrayList<Event> testData = testTimeline.getTimelineEvents();
+        System.out.println(testData.toString());
 
     }
 }

@@ -12,7 +12,7 @@ public class TimelineRepository {
     private ArrayList<Timeline> objects;
 
     public TimelineRepository(){
-        this.objects = new ArrayList<>();
+        this.objects = new ArrayList<Timeline>();
     }
 
     public ArrayList<Timeline> getTimelines(){

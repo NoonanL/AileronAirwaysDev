@@ -7,6 +7,7 @@ import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Timeline {
@@ -38,6 +39,7 @@ public class Timeline {
     public Timeline(String id, String title){
         this.id = id;
         this.title = title;
+        this.timelineEvents = new ArrayList<Event>();
     }
 
     public Timeline(){
@@ -48,7 +50,7 @@ public class Timeline {
         this.isDeleted = null;
         this.location = null;
         this.linkedTimelineEventIds = null;
-        this.timelineEvents = null;
+        this.timelineEvents = new ArrayList<Event>();
     }
 
 
@@ -199,14 +201,14 @@ public class Timeline {
         return timelineEvents;
     }
 
-    public void setTimelineEvents(ArrayList timelineEvents) {
+    public void setTimelineEvents(ArrayList<Event> timelineEvents) {
         this.timelineEvents = timelineEvents;
     }
 
     public void addTimelineEvent(Event event){
-        System.out.println(event.toString());
+        //System.out.println(event.toString());
         timelineEvents.add(event);
-        System.out.println(event.toString());
+        //System.out.println(event.toString());
     }
 
      /*

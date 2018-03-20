@@ -13,7 +13,7 @@ public class EventRepository {
     private ArrayList<Event> objects;
 
     public EventRepository(){
-        this.objects = new ArrayList<>();
+        this.objects = new ArrayList<Event>();
     }
 
     public ArrayList<Event> getEvents(){

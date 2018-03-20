@@ -36,11 +36,13 @@ public class LinkedEventsServlet extends HttpServlet{
         /*
         For the sake of testing I'm going to assume that the timeline we're looking at is ID 032934
          */
-        Timeline testTimeline = new Timeline();
-        testTimeline = Runner.timelineRepository.get("032934");
+        Timeline testTimeline = Runner.timelineRepository.get("\"032943\"");
+        //System.out.println(testTimeline.toString());
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
-        System.out.println(testData.toString());
-        String json = new Gson().toJson("Hello, I am a Get Method");
+        //System.out.println(testData.toString());
+
+
+        String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

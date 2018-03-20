@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Get {
@@ -110,17 +111,11 @@ public class Get {
                                         event.setDescription(jsonObject2.get("Description").toString());
                                         event.setLocation(jsonObject2.get("Location").toString());
                                         event.setId(jsonObject2.get("Id").toString());
-                                        System.out.println(event.toString());
-                                        //timeline.addTimelineEvent(event);
-                                        //Runner.eventRepository.add(event);
+                                        //System.out.println(event.toString());
 
-                                        /*
-                                        This needs looked at - Timeline objects store an array of events (is this necessary if we can
-                                        link them by Ids anyway? Anyways - this code tries to just pass one event at a time.
-                                        It would need to either use an add() method or create the full array and then pass that.
-                                         */
-                                        //timeline.setEvents(event);
-
+                                        //add event to timeline object
+                                        timeline.addTimelineEvent(event);
+                                        Runner.eventRepository.add(event);
                                         /*
                                         Are these no longer used?
                                          */
