@@ -1,55 +1,36 @@
-<!-- HTML page -->
-
+<!DOCTYPE HTML>
 <html>
 <head>
-  <title>Test Page</title>
-
-    <!--function to read json array from servlet-->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-        // $(document).on("click", "#getData", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-        //     $.get("/timelineRegisterServlet", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-        //         var $ul = $("<ul>").appendTo($("#gimmeData")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
-        //         $.each(responseJson, function(index, item) { // Iterate over the JSON array.
-        //             $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
-        //         });
-        //     });
-        // });
-
-        $(document).on("click", "#getData", function() {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-            $.get("/eventDetailsServlet", function(responseJson) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-                var $table = $("<table>").appendTo($("#gimmeData")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
-                $.each(responseJson, function(index, product) {    // Iterate over the JSON array.
-                    $("<tr>").appendTo($table)                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
-                        .append($("<td>").text(product.id))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
-                        .append($("<td>").text(product.title))      // Create HTML <td> element, set its text content with name of currently iterated product and append it to the <tr>.
-                });
-            });
-        });
-
-    </script>
-
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
+<title>Aileron ETT - Home</title>
 
 </head>
-
 <body>
-
-
-Click me to fetch json objects array from servlet: <button id="getData">Press Here</button>
-<form action = "Timelines.html">
-  <input type = "submit" value = "Go to Timline Register"/>
-</form>
-
-<div id="gimmeData">
-
-</div>
-
-<form action = "/indexServlet" method = "post">
-  Timeline Id: <input type = "text" name = "timeline_id">
-  <br />
-  Timeline Title: <input type = "text" name = "timeline_title" />
-  <input type = "submit" value = "Create new timeline." />
-</form>
+<!-- Span element to open the sidenav -->
+<span onclick="openNav()" style="font-size: 40px; color: white">&#9776;</span>
+            <div id="main">
+                <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron <img src="images/AileronIcon.png"> Airways</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="button" style="float: right">Create Event </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="button" style="float: left">View Timelines</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7" style="float:right;">
+                        <form action="">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 </html>

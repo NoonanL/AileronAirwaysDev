@@ -5,36 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aileron Airways ETT</title>
 <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <style>
-        .accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
 
-.active, .accordion:hover {
-    background-color: #ccc; 
-}
-
-.panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-}
-    </style>
 </head>
-
 <body>
+<!-- Span element to open the sidenav -->
+<span onclick="openNav()" style="Top:0px; Left:0; font-size: 40px; color: white">&#9776;</span>
+<div class="main">
     <header>
+
         <div class="aboutUsBanner">
             <img src="images/Banner.jpeg" style="width:100%;">
             <div class="top-left">
@@ -42,106 +22,97 @@
             </div>
             <div class="bottom-right">
 	                   <img src="images/AileronLogoThumb.png" style="width:100%;">
-                
             </div>
-        </div>      
-        
+        </div>
+
+
+
     </header>
 
- 
     <div class="row">
-  
         <div class="col-12">
-      
-            <nav>
-                <ul>
-                    <li><a href="gettingHere.html"><img class="pic" src="images/navThumbs/AddNew.png"/> Create New Timeline </a></li>
-                </ul>    
-
-            </nav>
+            <button id="myBtn" class="button">Create new event</button>
+                    <div id="myModal" class="modal">
+                        <div id="boxshadow" style ="card container centre" class="modal-content">
+                            <div style ="height:50px;" class="modal-header">
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                    <form action = "/timelineRegisterServlet" method = "post">
+                                        Timeline Id: <input type = "text" name = "timeline_id">
+                                        <br />
+                                        Timeline Title: <input type = "text" name = "timeline_title" />
+                                        <br />
+                                        <input type = "submit" value = "Create new timeline" />
+                                    </form>
+                                    <br>
+                            </div>
+                            <div style ="height:50px;" class="modal-footer"></div>
+                        </div>
+                    </div>
+            <br>
         </div>    
-    </div>    
+    </div>
+    <br>
 
-        <div class="row">
-
-            <div class="col-12">
-                <div id="tableDiv">
-<!--                <div style="overflow-x:auto; color:black; text-align: center;">
-			       <button class="accordion">Timeline 1</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <button><a href="Timeline.html">Go to timeline</a></button>
-</div>
-
-<button class="accordion">Timeline 2</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <button><a href="Timeline.html">Go to timeline</a></button>
-</div>
-
-<button class="accordion">Timeline 3</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <button><a href="Timeline.html">Go to timeline</a></button>-->
-</div>
-            </div>
-            <script>
-                    //function to build a timelines accordion with timeline data from the backend
-                    buildTable();
-                function buildTable() {
-                    console.log("Building a timeline table");
-                    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-                    $.get("/timelineRegisterServlet", function (responseJson) {
-                        // Create HTML <ul> element and append it to HTML DOM element with ID "tableDiv".
-                        var $tableDiv = $("<dl>").appendTo($("#tableDiv"));
-                        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-                        $.each(responseJson, function (index, product) {
-                            //this is the object builder
-                                var timelineID = $("<h2 />", {
-                                    text: "Title: " + product.title,
-                                    "class": "timelineID"
-                                });
-                                var timelineTitle = $("<h3 />", {
-                                    text: "ID: " + product.id,
-                                    "class": "timelineTitle"
-                                });
-
-                                var listItem = $("<dt />", {
-                                    text: ""
-                                });
-                                listItem.append(timelineID);
-                                listItem.append(timelineTitle);
-                                $("#tableDiv").append(listItem);
-
-                        });
-                    })
-                }
-
-
-                var acc = document.getElementsByClassName("accordion");
-                var i;
-
-                for (i = 0; i < acc.length; i++) {
-                    acc[i].addEventListener("click", function () {
-                        this.classList.toggle("active");
-                        var panel = this.nextElementSibling;
-                        if (panel.style.display === "block") {
-                            panel.style.display = "none";
-                        } else {
-                            panel.style.display = "block";
-                        }
-                    });
-                }
-            </script>
-
+    <div class="row">
+        <div class="col-12">
+            <div id="tableDiv"> </div>
         </div>
-                
-            </div>
-    
-        </div>        
-	
+    </div>
+</div>
 </body>
 </html>
+
+<script>
+    //function to build a timelines accordion with timeline data from the backend
+    buildTable();
+    function buildTable() {
+        console.log("Building a timeline table");
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/timelineRegisterServlet", function (responseJson) {
+            // Create HTML <ul> element and append it to HTML DOM element with ID "tableDiv".
+            var $tableDiv = $("<dl>").appendTo($("#tableDiv"));
+            //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+            $.each(responseJson, function (index, product) {
+                //this is the object builder
+                var timelineID = $("<h2 />", {
+                    text: "Title: " + product.title,
+                    "class": "timelineID"
+                });
+                var timelineTitle = $("<h3 />", {
+                    text: "ID: " + product.id,
+                    "class": "timelineTitle"
+                });
+                var listItem = $("<dt />", {
+                    text: ""
+                });
+                listItem.append(timelineID);
+                listItem.append(timelineTitle);
+                $("#tableDiv").append(listItem);
+            });
+        })
+    }
+
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
+<script src="nav.js"> </script>
+<script src="modal.js"> </script>
+
 
 
 
