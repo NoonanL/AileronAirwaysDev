@@ -534,10 +534,12 @@ dt{
     margin-left: 50px;
 }
 
-.openbutton{
+.openbtn{
     position:absolute;
-    top:500px;
-    left:5px;
+    top:10px;
+    left:15px;
 }
 
-
+.buttoncontainer{
+    text-align:center;
+}
