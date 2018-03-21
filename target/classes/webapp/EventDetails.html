@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aileron Airways ETT</title>
 <link href="StyleSheet.css" rel="styleSheet" type="text/css">
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel=stylesheet type="text/css" href="stylesheet.css">
+    <link rel=stylesheet type="text/css" href="StyleSheet.css">
+
+
 
 </head>
 <body>
@@ -69,7 +70,15 @@
 </div> 
 <!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->	
 <script>
-      function initMap() {
+    //construct variables used to set the information for the event details
+    //This is NOT to do with linkedevents
+    var sampleEventTitle="Sample Event Title"
+    var sampleEventDate="26/11/2017";
+    var sampleEventTime="09:00";
+    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
+
+
+    function initMap() {
           
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
@@ -135,71 +144,35 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap">
     </script>
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- the following is a script to create a description list of events and drop it inside the modal box-->
-    <script>    
-    var descriptionList= $("<dl /;>",{
-        "id": "linkedEvents" 
-    });
-   //construct variables used to set the information for the event details
-   //This is NOT to do with linkedevents
-    var sampleEventTitle="Sample Event Title"    
-    var sampleEventDate="25/11/2017";
-    var sampleEventTime="09:00";  
-    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
-    
-    
-    //eventsNum is the number of linked events. This must be retrieved from the API. Currently this is hardcoded to 4
-    var eventsNum=4;
-    //now construct arrays of event information for the linkedEvents Object builder
-    var linkedEventTitle=new Array(eventsNum);
-    var linkedEventDate=new Array(eventsNum);
-    var linkedEventTime=new Array(eventsNum);
-    var linkedEventDescription=new Array(eventsNum);
-   
-    
-        //Here is where the arrays of information would be filled by data from the API
-        //in the mean time I have added a for loop to fill them with sample data
-        console.log("---ARRAY FILLER START---");
-    for(var i=0; i<eventsNum; i++){
-        linkedEventTitle[i]="Sample "+ (i+1);
-        linkedEventDate[i]="25/11/2017";
-        linkedEventTime[i]="09:00";
-        linkedEventDescription[i]="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.";
-        //log everything you build in the console
-        console.log("Pass: "+(i+1));
-        console.log("TITLE: " + linkedEventTitle[i]);
-        console.log("DATE: " + linkedEventDate[i]);
-        console.log("TIME: " + linkedEventTime[i]);
-        console.log("DESCRIPTION: " + linkedEventDescription[i]);
-    }    
-        console.log("---ARRAY FILLER COMPLETE---");
-        
-    //this is the object builder - this takes the values of linkedEventTitle[], linkedEventDate[], linkedEventTime[] and linkedEventDescription[] and builds a list on the page out of listItem objects. This is done an amount of times based on the value of eventsNum i.e the number of linkedevents
-    for(var i=0; i<eventsNum; i++){
-        var eventTitle = $("<h2 />", {
-			text: linkedEventTitle[i] + " - Date:" + linkedEventDate[i],
-            "class": "eventTitle"
-		});  
-        var eventTime = $("<h3 />", {
-			text: "Event time: " + linkedEventTime[i],
-            "class": "eventTime"
-		});
-        var eventDescription = $("<p />", {
-			text: linkedEventDescription[i],
-            "class": "eventTime"
-		});
-        var listItem = $("<dt />", {
-        text: ""
-        });
-        
-        listItem.append(eventTitle);
-        listItem.append(eventTime);
-        listItem.append(eventDescription);
-        
-        $("#linkedEvents").append(listItem);
-    }
-        
+    <script>
+        $.get("/linkedEventsServlet", function (responseJson) {
+            console.log("hello");
+        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+        $.each(responseJson, function (index, product) {
+            //this is the object builder
+            var eventTitle = $("<h2 />", {
+                text: product.title + " - Date:" + product.DateTime,
+                "class": "eventTitle"
+            });
+            var eventDateTime = $("<h3 />", {
+                text: "Event date time: " + product.eventDateTime,
+                "class": "eventDateTime"
+            });
+            var eventDescription = $("<p />", {
+                text: product.description   ,
+                "class": "eventDescription"
+            });
+            var listItem = $("<dt />", {
+                text: ""
+            });
+            listItem.append(eventTitle);
+            listItem.append(eventDateTime);
+            listItem.append(eventDescription);
+            $("#linkedEvents").append(listItem);
+            });
+        })
     </script>
     <script src="modal.js"></script>
     
