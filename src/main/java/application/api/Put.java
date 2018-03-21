@@ -70,7 +70,7 @@ public class Put {
             while ((inputLine = in.readLine()) != null) {
                 //content.append(inputLine);
                 //print output for now
-                System.out.println(inputLine);
+                //System.out.println(inputLine);
             }
             //close input
             in.close();
@@ -111,7 +111,7 @@ Handy buffered reader override:
         BufferedReader in;
         if (200 <= responseCode && responseCode <= 299) {
             in = new BufferedReader(new InputStreamReader(inputStream));
-            System.out.println("CODE 200");
+            //System.out.println("CODE 200");
 
         } else { //if response is bad then get the server messages
             in = new BufferedReader(new InputStreamReader(errorStream));

@@ -45,9 +45,9 @@ public class Runner {
 
 
         //Print all Timelines fetched from API
-        System.out.println(timelineRepository.getTimelines());
-        System.out.println(eventRepository.getEvents());
-        System.out.println(attachmentRepository.getAttachments());
+        //System.out.println(timelineRepository.getTimelines());
+        //System.out.println(eventRepository.getEvents());
+        //System.out.println(attachmentRepository.getAttachments());
 
 
         /*
