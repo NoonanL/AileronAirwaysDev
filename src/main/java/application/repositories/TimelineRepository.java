@@ -20,8 +20,9 @@ public class TimelineRepository {
     }
 
 
-    public void add(Timeline object) {
+    public void add(Timeline object) throws UnsupportedEncodingException {
         this.objects.add(object);
+        object.createTimeline();
 
     }
 

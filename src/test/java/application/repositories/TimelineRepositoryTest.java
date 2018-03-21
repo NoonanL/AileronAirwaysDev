@@ -27,7 +27,7 @@ public class TimelineRepositoryTest {
     }
 
     @Test
-    public void add() {
+    public void add() throws UnsupportedEncodingException {
         Timeline timeline03 = new Timeline("testId 03", "Test Title 03");
         timelineRepository.add(timeline03);
         System.out.println(timelineRepository.getTimelines());
@@ -39,7 +39,7 @@ public class TimelineRepositoryTest {
     }
 
     @Test
-    public void remove() {
+    public void remove() throws UnsupportedEncodingException {
         Timeline timeline03 = new Timeline("testId 03", "Test Title 03");
         timelineRepository.add(timeline03);
         System.out.println(timelineRepository.getTimelines());
