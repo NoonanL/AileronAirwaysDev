@@ -1,5 +1,6 @@
 package application.model;
 
+import application.Runner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -59,14 +60,6 @@ public class TimelineTest {
 
     }
 
-    @Test
-    public void t5testGetOneTimeline() throws Exception{
-        Timeline test = new Timeline("150","testTitle2");
-        System.out.println("Testing: Get Specific Timeline");
-        System.out.println("------------------------");
-        test.getTimeline("1234567");
-
-    }
 
     @Test
     public void t6testGetLinkedEvents() throws Exception{
@@ -87,17 +80,9 @@ public class TimelineTest {
 
     }
 
-    @Test
-    public void t8testGetAllTimelinesAndEvents() throws Exception{
-        Timeline test = new Timeline("150","testTitle2");
-        System.out.println("Testing: Get all Linked Events with Timelines");
-        System.out.println("------------------------");
-        test.getTimelinesAndEvents();
-
-    }
-
 
     @After
     public void tearDown() throws Exception {
+
     }
 }

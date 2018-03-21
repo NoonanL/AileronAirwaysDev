@@ -14,4 +14,40 @@
         <url-pattern>/indexServlet</url-pattern>
     </servlet-mapping>
 
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>TimelineRegisterServlet</servlet-name>
+        <servlet-class>application.servlet.TimelineRegisterServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>TimelineRegisterServlet</servlet-name>
+        <url-pattern>/timelineRegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>EventDetailsServlet</servlet-name>
+        <servlet-class>application.servlet.EventDetailsServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>EventDetailsServlet</servlet-name>
+        <url-pattern>/eventDetailsServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>LinkedEventsServlet</servlet-name>
+        <servlet-class>application.servlet.LinkedEventsServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>LinkedEventsServlet</servlet-name>
+        <url-pattern>/linkedEventsServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

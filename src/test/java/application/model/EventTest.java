@@ -132,16 +132,23 @@ public class EventTest {
         test.unlinkEvents("1111");;
     }*/
 
+
     @Test
     public void t17testGetLinkedEvents() throws Exception {
         //eventDateTime in the form of YYYY-MM-dd-HH-mm-SS this is due to an inability to use : and , within the string
-        Event test = new Event();
+        Event test = new Event(
+                "testId",
+                "testTitle",
+                "testDescription",
+                "2018-12-26-11-05-20",
+                "3.5994309341289004-29.939200781250065" );
 
         System.out.println("Test: Get Linked Events");
         System.out.println("------------------------");
         test.getLinkEvents("testId");
 
     }
+
 
     /*@Test
     public void t19testDeleteEvent() throws Exception {
@@ -158,7 +165,6 @@ public class EventTest {
         test.deleteEvent();
 
     }*/
-
 
     @After
     public void tearDown() throws Exception {

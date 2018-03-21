@@ -1,17 +1,36 @@
-<!-- HTML page -->
-
+<!DOCTYPE HTML>
 <html>
 <head>
-  <title>Test Page</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
+<title>Aileron ETT - Home</title>
+
 </head>
-
 <body>
-
-<!-- Template for a form. The action="/test" refers to the java servlet class to be called on action -->
-<form action="/indexServlet"  method="POST">
-  Click me to redirect to servlet: <input type = "submit" value = "Start"/>
-</form>
-
+<!-- Span element to open the sidenav -->
+<span onclick="openNav()" style="font-size: 40px; color: white">&#9776;</span>
+            <div id="main">
+                <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron <img src="images/AileronIcon.png"> Airways</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="button" style="float: right">Create Event </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="button" style="float: left">View Timelines</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7" style="float:right;">
+                        <form action="">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 </html>

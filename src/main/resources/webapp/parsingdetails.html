@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUCK JAVASCRIPT</title>
+<link href="StyleSheet.css" rel="styleSheet" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ 
+    <link rel=stylesheet type="text/css" href="Stylesheet.css">
+
+</head>
+
+<body>
+<h1>JAVASCRIPT IS ASS CANCER</h1>
+<h2> Dont nest objects inside arrays if you like your sanity kiddos</h2>
+<!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->
+<script>
+    var jsonDetails=grabDetails();
+    console.log("call the method and log the details outside the method")
+    console.log(jsonDetails);
+    //grab the API data about event details
+    //This is currently set to do with the first item in the API. IN the next scrum we will make it pick an object
+    function grabDetails() {
+    var jsonHolder = new Array();
+        console.log("Grabbing Event Details from API");
+        $.get("/eventDetailsServlet", function(responseJson) {
+            console.log(responseJson);
+            //jsonHolder=responseJson; this should work?!?!
+            $.each(responseJson, function(index, product) {
+                // Iterate over the JSON array.
+                jsonHolder[index]=responseJson[index];
+               // jsonHolder.push(product);
+                //document.getElementById("TestDiv").innerHTML += product.id;
+                //document.getElementById("TestDiv").innerHTML += product;
+                });
+
+
+
+
+            /*
+            FAO Scott: don't need to convert the json array into a regular javascript array, they seem to work the same way.
+            So all I'm doing is setting the innerHTML of the TestDiv i've created to the String value of the id value
+            of the responseJson(positionInArray) The below should all work. 
+            */
+            document.getElementById("TestDiv").innerHTML += responseJson[0].id.toString();
+            //document.getElementById("TestDiv").innerHTML += responseJson[1].id.toString();
+            //document.getElementById("TestDiv").innerHTML += responseJson[2].id.toString();
+            console.log("logging the details before I return them");
+            console.log(jsonHolder[1]);
+
+
+
+            /*
+            I dont know that returning anything from a JS function is of any use other than to pass it to another
+            JS function? If you want to populate divs etc i think it needs done within the script.
+             */
+            //Creating a new var and using the json stringify (basically just toString) because the internet said so.
+            var eventName = JSON.stringify(responseJson[1].id);
+            console.log(JSON.stringify(responseJson[1].id));
+            //console.log(eventName);
+            //return (jsonHolder[1]);
+            return eventName;
+        });
+
+        //I want this method to return the JSON object so that it can be called from wherever
+        //i.e it would allow me to set the innerHTML of the title tag to contain "grabDetails().whatevernumber.title"
+        //when I do this it breaks in various weird and wonderful ways
+        //is something similar to the following commented line a solution??? currently uncommenting that line breaks the map i.e breaks the whole script by having
+        //incorrect syntax or similar
+        // var responseJson[]=responseJson;
+    }
+
+
+
+    /*
+    Okay so heres the weird bit. When you try to use the function to return the value to a different function you're back to "undefined"
+    Hopefully this is easier to fix at least.
+     */
+    function testReturnFromFunction(){
+        //console.log(grabDetails());
+        document.getElementById("TestDiv").innerHTML += "<p>" + grabDetails() + "</p>";
+
+    }
+    </script>
+
+<div id = "TestDiv">
+</div>
+
+<div id = "TestingReturn">
+    <input type = "button" value = "click me" onclick = "testReturnFromFunction()">
+
+</div>
+
+<div></div>
+</body>
+</html>
+
+
+
+
+
