@@ -98,7 +98,7 @@ public class Runner {
             System.out.println("starting");
             new Runner().start();
         } catch (Exception e) {
-            System.out.println("Unexpected error running shop: " + e.getMessage());
+            System.out.println("Unexpected error: " + e.getMessage());
         }
     }
 
