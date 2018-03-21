@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <title>Aileron ETT - Home</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
                 <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron <img src="images/AileronIcon.png"> Airways</h1>
                 <div class="row">
                     <div class="buttoncontainer">
-                        <button class="button" >Create Event </button>
+                        <button class="button" id="myBtn" >Create Event</button>
                         <button class="button" >View Timelines</button>
                     </div>
                 </div>
@@ -24,7 +25,20 @@
                     </div>
                 </div>
             </div>
+            <div id="myModal" class="modal">
+                <div id="boxshadow" style ="card container centre" class="modal-content">
+                    <div style ="height:50px;" class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+
+                        <br>
+                    </div>
+                    <div style ="height:50px;" class="modal-footer"></div>
+                </div>
+            </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="nav.js"></script>
+    <script src="modal.js"></script>
 </body>
 </html>
