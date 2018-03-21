@@ -11,12 +11,12 @@
 </head>
 <body>
 <!-- Span element to open the sidenav -->
-<span onclick="openNav()" style="Top:0px; Left:0; font-size: 40px; color: white">&#9776;</span>
+<span onclick="openNav()" class="openbtn" style="Top:0px; Left:0; font-size: 40px; color: white">&#9776;</span>
 <div class="main">
     <header>
 
         <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
+            <img src="Images/Banner.jpeg" style="width:100%;">
             <div class="top-left">
                       <h2> Event Timeline Tool - All Timelines</h2> 
             </div>
@@ -31,7 +31,7 @@
 
     <div class="row">
         <div class="col-12">
-            <button id="myBtn" class="button">Create new event</button>
+            <button id="myBtn" class="button">Create New Timeline</button>
                     <div id="myModal" class="modal">
                         <div id="boxshadow" style ="card container centre" class="modal-content">
                             <div style ="height:50px;" class="modal-header">
@@ -78,11 +78,11 @@
                 //this is the object builder
                 var timelineID = $("<h2 />", {
                     text: "Title: " + product.title,
-                    "class": "timelineID"
+                    "class": timelineID
                 });
                 var timelineTitle = $("<h3 />", {
                     text: "ID: " + product.id,
-                    "class": "timelineTitle"
+                    "class": timelineTitle
                 });
                 var listItem = $("<dt />", {
                     text: ""

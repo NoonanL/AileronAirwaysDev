@@ -534,6 +534,17 @@ dt{
     margin-left: 50px;
 }
 
+.btncontainer{
+    text-align: center;
+
+}
+
+.openbtn{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
 
 
 
