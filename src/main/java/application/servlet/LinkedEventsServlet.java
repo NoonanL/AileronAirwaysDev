@@ -40,8 +40,6 @@ public class LinkedEventsServlet extends HttpServlet{
         //System.out.println(testTimeline.toString());
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
         //System.out.println(testData.toString());
-
-
         String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
