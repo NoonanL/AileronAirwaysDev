@@ -14,7 +14,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 public class Runner {
 
-    private static final int PORT = 8080;
+    private static final int PORT = 9000;
 
     private Runner() {}
 

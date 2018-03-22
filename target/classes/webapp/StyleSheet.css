@@ -543,3 +543,9 @@ dt{
 .buttoncontainer{
     text-align:center;
 }
+
+.imgcontainer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
