@@ -73,6 +73,7 @@
                     text: "Title: " + product.title,
                     "class": "timelineID"
                 });
+                //This link passes a variable in the URL called timelineID which can be used to query the api on events.html
                 var timelineLink=$("<a/>",{
                     href:"Events.html" + "?timelineID=" + product.id,
                     text:"View Timeline"
