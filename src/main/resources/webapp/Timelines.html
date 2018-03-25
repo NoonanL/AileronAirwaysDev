@@ -10,10 +10,14 @@
 
 </head>
 <body>
+
+<!-- Span element to open the sidenav -->
+<!--<span onclick="openNav()" class="openbtn" style="Top:0px; Left:0; font-size: 40px; color: white">&#9776;</span>-->
+
 <div class="main">
     <header>
         <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
+            <img src="Images/Banner.jpeg" style="width:100%;">
             <div class="top-left">
                       <h2> Event Timeline Tool - All Timelines</h2> 
             </div>
@@ -24,7 +28,9 @@
     </header>
     <div class="row">
         <div class="col-12">
-            <button id="myBtn" class="button">Create new timeline</button>
+
+            <button id="myBtn" class="button">Create New Timeline</button>
+
                     <div id="myModal" class="modal">
                         <div id="boxshadow" style ="card container centre" class="modal-content">
                             <div style ="height:50px;" class="modal-header">
@@ -83,7 +89,7 @@
                     "class": "timelineTitle"
                 });
                 var listItem = $("<dt />", {
-                    text: ""
+                    text:""
                 });
                 listItem.append(timelineID);
                 listItem.append(timelineTitle);
@@ -94,20 +100,6 @@
     }
 
 
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        });
-    }
 </script>
 <script src="nav.js"> </script>
 <script src="modal.js"> </script>
