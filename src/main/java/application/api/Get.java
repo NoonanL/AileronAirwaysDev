@@ -1,13 +1,16 @@
 package application.api;
 
 import application.Runner;
+import application.model.Attachment;
 import application.model.Event;
 import application.model.Timeline;
+import application.repositories.EventRepository;
 import com.google.gson.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
+import java.util.Iterator;
 
 public class Get {
 
@@ -69,24 +72,26 @@ public class Get {
                 /*
                 WARNING: John wizardry below. We <3 John.
                  */
-                if (path.contains("/TimelineEventAttachment/GenerateUploadPresignedUrl")){
-                    String jsonString = content.toString();
-
-                }else {
                     JsonElement jelement = new JsonParser().parse(content.toString());
 
                     //For timelines and events
                     if (jelement instanceof JsonObject) {
                         JsonObject timelineFromGson = jelement.getAsJsonObject();
 
-                        if (path.contains("/TimelineEvent")) {
+                        if (path.contains("/TimelineEventAttachment")){
+                            Attachment attachment = new Attachment();
+                            attachment.setTitle(timelineFromGson.get("Title").toString());
+                            attachment.setAttachmentId(timelineFromGson.get("Id").toString());
+                            attachment.seteventId(timelineFromGson.get("TimelineEventId").toString());
+                            //Repository part here
+                    }else if (path.contains("/TimelineEvent")) {
                             Event event = new Event();
                             event.setTitle(timelineFromGson.get("Title").toString());
                             event.setEventDateTime(timelineFromGson.get("EventDateTime").toString());
                             event.setDescription(timelineFromGson.get("Description").toString());
                             event.setLocation(timelineFromGson.get("Location").toString());
                             event.setId(timelineFromGson.get("Id").toString());
-
+                            //Repository part here
                         } else if (path.contains("/Timeline")) {
                             if (path.contains("/GetAllTimelinesAndEvent")) {
                                 //turn timeline element into a JsonObject
@@ -140,20 +145,15 @@ public class Get {
                      */
                     } else if (jelement instanceof JsonArray) {
                         JsonArray timelineFromGson = jelement.getAsJsonArray();
-                        if (path.contains("/TimelineEvent")) {
-                            if (path.contains("/GetLinkedTimelineEvents")) {
-                                Event event = new Event();
-                                event.setId(value);
-                                for (int i = 0; i < timelineFromGson.size(); i++) {
-                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                    event.setLinkedEvents(temp.get("LinkedToTimelineEventId").toString());
-                                    //System.out.println(temp.get("TimelineEventId"));
-                                    //System.out.println(temp.get("LinkedToTimelineEventId"));
-                                    //System.out.println(temp.get("Id"));
-                                    //System.out.println("");
-                                }
-                                Runner.eventRepository.add(event);
+                        if (path.contains("/TimelineEventAttachment")) {
+                            for (int i = 0; i < timelineFromGson.size(); i++) {
+                                JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                Attachment attachment = new Attachment();
+                                attachment.setTitle(temp.get("Title").toString());
+                                attachment.setAttachmentId(temp.get("Id").toString());
+                                attachment.seteventId(temp.get("TimelineEventId").toString());
                             }
+                        }else if (path.contains("/TimelineEvent")){
                             if (path.contains("/GetAllEvents")) {
                                 for (int i = 0; i < timelineFromGson.size(); i++) {
                                     JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
@@ -168,30 +168,15 @@ public class Get {
                                 }
                             }
                         } else if (path.contains("/Timeline")) {
-                            if (path.contains("/GetTimelines")) {
                                 for (int i = 0; i < timelineFromGson.size(); i++) {
                                     Timeline timeline = new Timeline();
                                     JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
                                     timeline.setTitle(temp.get("Title").toString());
                                     timeline.setId(temp.get("Id").toString());
                                     Runner.timelineRepository.add(timeline);
-                                }
-                            }
-                            if (path.contains("/GetEvents")) {
-                                Timeline timeline = new Timeline();
-                                timeline.setId(value);
-                                Event event = new Event();
-                                for (int i = 0; i < timelineFromGson.size(); i++) {
-                                    JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-                                    event.setId(temp.get("TimelineEventId").toString());
-                                    //timeline.setEvents(event);
-                                    Runner.eventRepository.add(event);
-
-                                }
                             }
                         }
                     }
-                }
 
 
                 //close input buffer
@@ -282,5 +267,89 @@ public class Get {
             }
         }
         return "failed";
+    }
+
+    public void getWithObject(String path, String key, String value, Object object) {
+
+
+        /*
+        Java url library isn't great so the following code block converts the hardcoded url to URI and then back
+        to url which deals with any of the issues with java parsing.
+         */
+        URI uri = null;
+        {
+            try {
+                uri = new URI("https", "gcu.ideagen-development.com", path, null); //MAKE ME GENERIC - PASS ME A VAR
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+        URL url = null;
+        {
+            try {
+                url = uri.toURL();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        /*
+        The following code block does most of the hard work:
+        -opens a url connection
+        -sends appropriate headers as per the passed variables
+        -prints out the result from the server
+         */
+        {
+            try {
+                //open url connection
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                //set header*s
+                con.setRequestProperty("TenantId", "Team8");
+                con.setRequestProperty("AuthToken", "28dfb21a-8dbd-47cb-a6a2-96fb225cb138");
+                con.setRequestProperty(key, value);
+                //set connection type
+                con.setRequestMethod("GET");
+                con.setDoOutput(true);
+
+                //create buffered reader for appropriate server response
+                BufferedReader in = Put.getBufferedReader(con.getResponseCode(), con.getInputStream(), con.getErrorStream());
+
+                //get reply from server
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while (((inputLine = in.readLine()) != null)) {
+
+                    content.append(inputLine);
+
+                }
+
+                /*
+                WARNING: John wizardry below. We <3 John.
+                 */
+                JsonElement jelement = new JsonParser().parse(content.toString());
+                JsonArray timelineFromGson = jelement.getAsJsonArray();
+                if (path.contains("/TimelineEventAttachment")) {
+
+                }else if(path.contains("/TimelineEvent")){
+                    Event event = (Event) object;
+                    for (int i = 0; i < timelineFromGson.size(); i++) {
+                        JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                        event.setLinkedEvents(temp.get("LinkedToTimelineEventId").toString());
+                    }
+                    //Insert Repository part here
+                }else if(path.contains("/Timeline")){
+                        Timeline timeline = (Timeline) object;
+                        for (int i = 0; i < timelineFromGson.size(); i++) {
+                            JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                            timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
+                        }
+                    }
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

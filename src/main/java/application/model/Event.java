@@ -6,10 +6,8 @@ import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Event {
 
@@ -41,6 +39,7 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+        linkedEvents = new ArrayList<>();
     }
 
     public Event(String title, String description, String eventDateTime, String location){
@@ -49,6 +48,7 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+        linkedEvents = new ArrayList<>();
     }
 
     public Event(){
@@ -58,6 +58,7 @@ public class Event {
         this.eventDateTime = "";
         this.linkedEvents= null;
         this.location = "";
+        linkedEvents = new ArrayList<>();
     }
 
     /*
@@ -160,7 +161,7 @@ public class Event {
     public void getLinkEvents(String id) throws UnsupportedEncodingException {
         Get getEvent = new Get();
 
-        getEvent.get("/TimelineEvent/GetLinkedTimelineEvents", "TimelineEventId", id);
+        getEvent.getWithObject("/TimelineEvent/GetLinkedTimelineEvents", "TimelineEventId", id,this);
     }
 
     public void getEvent(String id) throws UnsupportedEncodingException {
@@ -230,8 +231,8 @@ public class Event {
         this.linkedEvents.add(linkedEvent);
     }
 
-    public String getLinkedEvents(){
-        return this.linkedEvents.toString();
+    public ArrayList getLinkedEvents(){
+        return this.linkedEvents;
     }
 
     public ArrayList<Attachment> getAttachments() {

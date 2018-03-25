@@ -40,6 +40,7 @@ public class Timeline {
         this.id = id;
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
+        this.linkedTimelineEventIds = new ArrayList<>();
     }
 
     public Timeline(){
@@ -49,7 +50,7 @@ public class Timeline {
         this.description = null;
         this.isDeleted = null;
         this.location = null;
-        this.linkedTimelineEventIds = null;
+        this.linkedTimelineEventIds = new ArrayList<>();
         this.timelineEvents = new ArrayList<Event>();
     }
 
@@ -131,7 +132,7 @@ public class Timeline {
 
     public void getLinkedEvents(String id) throws UnsupportedEncodingException{
         Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetEvents", "TimelineId", id);
+        getTimeline.getWithObject("/Timeline/GetEvents", "TimelineId", id, this);
     }
 
 
@@ -185,8 +186,8 @@ public class Timeline {
         return linkedTimelineEventIds;
     }
 
-    public void setLinkedTimelineEventIds(ArrayList linkedTimelineEventIds) {
-        this.linkedTimelineEventIds = linkedTimelineEventIds;
+    public void setLinkedTimelineEventIds(String linkedTimelineEvent) {
+        this.linkedTimelineEventIds.add(linkedTimelineEvent);
     }
 
     public String getCreationTimeStamp() {

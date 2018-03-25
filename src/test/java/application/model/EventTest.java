@@ -1,10 +1,14 @@
 package application.model;
 
+import application.Runner;
+import application.repositories.EventRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.Iterator;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EventTest {
@@ -101,6 +105,7 @@ public class EventTest {
         System.out.println("Test: Get An Event");
         System.out.println("------------------------");
         test.getEvent("777");
+        System.out.println(test.toString());
 
     }
 
@@ -146,7 +151,11 @@ public class EventTest {
         System.out.println("Test: Get Linked Events");
         System.out.println("------------------------");
         test.getLinkEvents("testId");
-
+        Iterator<String> iterator = test.getLinkedEvents().iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+        //System.out.println(test.getLinkedEvents());
     }
 
 
