@@ -16,7 +16,7 @@
     <div class="row">
 
            <!--Quick add event form. Location not working yet. -->
-	   <form id="newEventForm" action="/addEventServlet" method="post">
+	   <form id="newEventForm" action="processInput.php" method="post">
            <div class="col-5">
                 <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                 <!--Title of the event-->
@@ -34,16 +34,16 @@
                 <label for="attachments" class="textLabel" autofocus><h3>Attachments:</h3></label>
                 <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
                <!-- Submit the form-->
+                <input class="button" type="submit" name="submit" id="submit" value="Submit" />
            </div>
            <div class="col-7">
            <h3 id>Event Location:</h3>
            <!--Location of the event - not user input, value is appended by map on click-->
-
-           <input  name="latlng" id="latlng" readonly required>
+           <input  id="lat" readonly required>
+               <input  id="lng" readonly required>
            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
            <!--this div tag holds the map-->
-           <div id="boxshadow">
-
+           <div id="mapboxshadow">
            <div id="map"> </div>
            </div>
            </div>
