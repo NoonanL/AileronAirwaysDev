@@ -119,7 +119,7 @@
         var lat = marker.getPosition().lat();
         var lng = marker.getPosition().lng();
         //latlng is a concatenation of the lat and long
-        var latlng=(lat+", "+lng);
+        // var latlng=(lat+", "+lng);
         //log this value in the console for testing
         console.log(lat);
         console.log(lng);

@@ -19,14 +19,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-7" style="float:right;">
-                        <form action="">
+
+                        <form style="text-align: center" action="">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                    </div>
+
                 </div>
-            </div>
+
             <div id="myModal" class="modal">
                 <div id="boxshadow" style ="card container centre" class="modal-content">
                     <div style ="height:50px;" class="modal-header">
@@ -45,7 +45,8 @@
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
                             <h3 id>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
-                            <input  id="latlng" readonly required>
+                            <input  id="lat" readonly required>
+                            <input id="lng" readonly required>
                             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             <!--this div tag holds the map-->
                             <div id="mapboxshadow">
@@ -60,6 +61,7 @@
                     </div>
                     <div style ="height:50px;" class="modal-footer"></div>
                 </div>
+            </div>
             </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="nav.js"> </script>
