@@ -43,7 +43,7 @@ public class LinkedEventsServlet extends HttpServlet{
         //get the events on that timeline
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
         System.out.println(testData.toString());
-        
+
         //prepare json array of events and return it to html
         String json = new Gson().toJson(testData);
         response.setContentType("application/json");

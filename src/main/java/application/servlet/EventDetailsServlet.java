@@ -2,6 +2,7 @@ package application.servlet;
 
 import application.Runner;
 import application.model.Event;
+import application.model.Timeline;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EventDetailsServlet extends HttpServlet{
 
@@ -36,13 +38,15 @@ public class EventDetailsServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
 
-        /*
-        Fetch something from front end to specify which event to send
-        send event details as json
-         */
+        //get the event id the user wants the details from
+        String var = request.getParameter("eventId");
+        System.out.println(var);
 
-        String json = new Gson().toJson(Runner.eventRepository.getEvents());
+        //get the event that the id points to
+        Event event = Runner.eventRepository.get(var);
 
+        //prepare json array of events and return it to html
+        String json = new Gson().toJson(event);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
