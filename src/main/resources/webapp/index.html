@@ -33,16 +33,16 @@
                         <span class="close">&times;</span>
                     </div>
                     <div class="modal-body">
-                        <form id="newEventForm" action="processInput.php" method="post">
+                        <form id="newEventForm" action="/addEventServlet" method="post">
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
-                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text" name="title" id="title" required/>
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
                             <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
                             <!--Date of the event-->
-                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required />
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
                             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
                             <!--Time of the event-->
-                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
                             <h3 id>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
                             <input  id="lat" readonly required>

@@ -99,16 +99,22 @@ public class Runner {
         handler.addServlet(new ServletHolder(addEventServlet), "/addEventServlet");
 
          /*
-        Servlet to handle Timelines Search
+        Servlet to handle Linked Events
          */
         LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
         handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
 
         /*
-        Servlet to handle Timelines Search
+        Servlet to handle Attachments
          */
         AttachmentServlet attachmentServlet = new AttachmentServlet();
         handler.addServlet(new ServletHolder(attachmentServlet), "/attachmentServlet");
+
+        /*
+        Servlet to handle deleting attachments
+         */
+        DeleteAttachmentServlet deleteAttachmentServlet = new DeleteAttachmentServlet();
+        handler.addServlet(new ServletHolder(deleteAttachmentServlet), "/deleteAttachmentServlet");
 
 
         /*
