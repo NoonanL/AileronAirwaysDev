@@ -19,17 +19,19 @@
         <div class="col-12">
             <button id="myBtn" class="button">Create new timeline</button>
                     <div id="myModal" class="modal">
-                        <div style ="card container centre" class="modal-content">
-                            <div style ="height:50px;" class="modal-header">
+                        <div style ="width:45%" class="modal-content">
+                            <div style ="   height:50px;" class="modal-header">
                                 <span class="close">&times;</span>
                             </div>
-                            <div class="modal-body">
-                                    <form action = "/timelineRegisterServlet" method = "post">
-                                        Timeline Id: <input type = "text" name = "timeline_id" required>
-                                        <br />
-                                        Timeline Title: <input type = "text" name = "timeline_title" required/>
-                                        <br />
-                                        <input type = "submit" value = "Create new timeline" />
+                            <div class="modal-body"">
+                                    <form action = "/timelineRegisterServlet" method = "post" style="text-align: center">
+                                        Timeline Id: <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type = "text" name = "timeline_id" required>
+                                        <br>
+                                        <br>
+                                        Timeline Title: <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type = "text" name = "timeline_title" required/>
+                                        <br>
+                                        <br>
+                                        <input class="button" type = "submit" value = "Create new timeline" />
                                     </form>
                                     <br>
                             </div>
