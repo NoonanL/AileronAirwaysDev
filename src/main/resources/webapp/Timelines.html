@@ -38,7 +38,15 @@
                         </div>
                     </div>
             <br>
-        </div>    
+        </div>
+        <div class="row">
+
+            <form style="text-align: center" action="/searchTimelinesServlet">
+                <input type="text" placeholder="Search.." name="searchBox">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+        </div>
     </div>
     <br>
 
@@ -63,24 +71,24 @@
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
                 //this is the object builder
-                var timelineID = $("<h2 />", {
+                var timelineTitle = $("<h2 />", {
                     text: "Title: " + product.title,
-                    "class": "timelineID"
+                    "class": "timelineTitle"
                 });
                 //This link passes a variable in the URL called timelineID which can be used to query the api on events.html
                 var timelineLink=$("<a/>",{
                     href:"Events.html" + "?timelineID=" + product.id,
                     text:"View Timeline"
                 });
-                var timelineTitle = $("<h3 />", {
-                    text: "ID: " + product.id,
-                    "class": "timelineTitle"
+                var timelineDateTime = $("<h3 />", {
+                    text: "Date: " + product.dateTime,
+                    "class": "timelineDateTIme"
                 });
                 var listItem = $("<dt />", {
                     text:""
                 });
-                listItem.append(timelineID);
                 listItem.append(timelineTitle);
+                listItem.append(timelineDateTime);
                 listItem.append(timelineLink);
                 $("#tableDiv").append(listItem);
             });

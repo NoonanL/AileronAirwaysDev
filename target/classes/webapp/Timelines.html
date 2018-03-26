@@ -38,7 +38,15 @@
                         </div>
                     </div>
             <br>
-        </div>    
+        </div>
+        <div class="row">
+
+            <form id="search" style="text-align: center" action="/searchTimelinesServlet">
+                <input type="text" placeholder="Search.." name="searchBox" id="searchBox">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+        </div>
     </div>
     <br>
 
@@ -54,37 +62,43 @@
 <script>
     //function to build a timelines accordion with timeline data from the backend
     buildTable();
+    var servlet = "/timelineRegisterServlet"
+
     function buildTable() {
         console.log("Building a timeline table");
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-        $.get("/timelineRegisterServlet", function (responseJson) {
+
+        $.get(servlet, function (responseJson) {
             // Create HTML <ul> element and append it to HTML DOM element with ID "tableDiv".
             var $tableDiv = $("<dl>").appendTo($("#tableDiv"));
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
                 //this is the object builder
-                var timelineID = $("<h2 />", {
+                var timelineTitle = $("<h2 />", {
                     text: "Title: " + product.title,
-                    "class": "timelineID"
+                    "class": "timelineTitle"
                 });
                 //This link passes a variable in the URL called timelineID which can be used to query the api on events.html
                 var timelineLink=$("<a/>",{
                     href:"Events.html" + "?timelineID=" + product.id,
                     text:"View Timeline"
                 });
-                var timelineTitle = $("<h3 />", {
-                    text: "ID: " + product.id,
-                    "class": "timelineTitle"
+                var timelineDateTime = $("<h3 />", {
+                    text: "Date Created: " + product.dateTime,
+                    "class": "timelineDateTIme"
                 });
                 var listItem = $("<dt />", {
                     text:""
                 });
-                listItem.append(timelineID);
                 listItem.append(timelineTitle);
+                listItem.append(timelineDateTime);
                 listItem.append(timelineLink);
                 $("#tableDiv").append(listItem);
             });
         })
+    }
+    function search(){
+        servlet = "searchTimelinesServlet"
     }
 
 
