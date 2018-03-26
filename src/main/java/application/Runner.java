@@ -1,5 +1,6 @@
 package application;
 
+import application.model.Attachment;
 import application.model.Event;
 import application.model.Timeline;
 import application.repositories.AttachmentRepository;
@@ -103,6 +104,13 @@ public class Runner {
          */
         LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
         handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
+
+        /*
+        Servlet to handle Timelines Search
+         */
+        AttachmentServlet attachmentServlet = new AttachmentServlet();
+        handler.addServlet(new ServletHolder(attachmentServlet), "/attachmentServlet");
+
 
         /*
         sets default servlet path.

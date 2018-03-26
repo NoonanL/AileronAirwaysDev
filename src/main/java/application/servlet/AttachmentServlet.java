@@ -1,6 +1,7 @@
 package application.servlet;
 
 import application.Runner;
+import application.model.Attachment;
 import application.model.Event;
 import application.model.Timeline;
 import com.google.gson.Gson;
@@ -12,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LinkedEventsServlet extends HttpServlet{
+public class AttachmentServlet extends HttpServlet {
 
     /*
     constructor for servlet
      */
-    public LinkedEventsServlet(){    }
+    public AttachmentServlet(){    }
 
     /*
     Override function for html POST methods.
@@ -36,12 +37,12 @@ public class LinkedEventsServlet extends HttpServlet{
         /*
         For the sake of testing I'm going to assume that the timeline we're looking at is ID 032934
          */
-        String var = request.getParameter("timelineID");
+        String var = request.getParameter("eventId");
         System.out.println(var);
 
-        Timeline testTimeline = Runner.timelineRepository.get(var);
+        Event event = Runner.eventRepository.get(var);
         //System.out.println(testTimeline.toString());
-        ArrayList<Event> testData = testTimeline.getTimelineEvents();
+        ArrayList<Attachment> testData = event.getAttachments();
         System.out.println(testData.toString());
         String json = new Gson().toJson(testData);
         response.setContentType("application/json");
