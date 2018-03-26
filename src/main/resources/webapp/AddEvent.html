@@ -28,17 +28,18 @@
            <!--Time of the event-->
            <input name="time" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
                <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
-
                <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%" name="description" rows="10" cols="100" required></textarea>
                <input class="button" type="submit" name="submit" id="submit" value="Submit" />
            </div>
            <div class="col-7">
            <h3 id>Event Location:</h3>
            <!--Location of the event - not user input, value is appended by map on click-->
+
            <input  name="latlng" id="latlng" readonly required>
            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
            <!--this div tag holds the map-->
            <div id="boxshadow">
+
            <div id="map"> </div>
            </div>
            </div>

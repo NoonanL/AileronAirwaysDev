@@ -6,6 +6,9 @@ function openNav() {
 /* Set the width of the side navigation to 0 */
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+
+    //add the sidenav button to the page
+    document.body.innerHTML += '<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: white">Please open </span>';
 }
 
 //add the sidenav button to the page
