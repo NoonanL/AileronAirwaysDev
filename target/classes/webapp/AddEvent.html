@@ -9,44 +9,41 @@
 </head>
 
 <body>
-    <header>
-        <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
-            <div class="top-left">
-                      <h2> Event Timeline Tool - Create a New event</h2> 
-            </div>
-            <div class="bottom-right">
-	                   <img src="images/AileronLogoThumb.png" class="pic" style="width:100%;">
-                
-            </div>
-        </div>      
-        
-    </header>
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> Add Event</h1>
 
 
     <div class="row">
-	   <div class="col-12">
+
            <!--Quick add event form. Location not working yet. -->
 	   <form id="newEventForm" action="processInput.php" method="post">
+           <div class="col-5">
           <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
            <!--Title of the event-->
-          <input type="text" name="title" id="title" required/>
+          <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text" name="title" id="title" required/>
            <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
            <!--Date of the event-->
-           <input type="date" data-date-inline-picker="true" required />
+           <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required />
            <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
            <!--Time of the event-->
-           <input id="time" data-time-inline-picker="true" type="time">
+           <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
+               <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
+
+               <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%" name="desc" rows="10" cols="100" required></textarea>
+               <input class="button" type="submit" name="submit" id="submit" value="Submit" />
+           </div>
+           <div class="col-7">
            <h3 id>Event Location:</h3>
            <!--Location of the event - not user input, value is appended by map on click-->
            <input  id="latlng" readonly required>
            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
            <!--this div tag holds the map-->
+           <div id="boxshadow">
            <div id="map"> </div>
-           <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
-		   <textarea name="desc" rows="10" cols="100" required></textarea>
-       </br>
-        <input type="submit" name="submit" id="submit" value="Submit" />
+           </div>
+           </div>
+
+
     </form>
 
 

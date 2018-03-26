@@ -82,21 +82,11 @@
   
 </head>
 <body>
-    <header>
-        <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
-            <div class="top-left">
-                      <h1> Event Timeline Tool - Timeline</h1> 
-            </div>
-            <div class="bottom-right">
-	                   <img src="images/AileronLogoThumb.png" style="width:100%;">
-                
-            </div>
-        </div>      
-        
-    </header>
-<div  style="width:1000px; height:auto; margin:0 auto;" id="visualization"></div>
-
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
+    <div id="boxshadow">
+<div  style=" height:auto; text-align: center" id="visualization"></div>
+    </div>
 <script type="text/javascript">
     var text = location.search.substring(1);
     console.log("the timeline is " +text);
@@ -159,6 +149,8 @@
   // Create a Timeline
   var timeline = new vis.Timeline(container, items, groups, options);
 </script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
+<script src="modal.js"> </script>
 </body>
 </html>
