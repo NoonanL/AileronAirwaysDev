@@ -119,11 +119,13 @@
         var lat = marker.getPosition().lat();
         var lng = marker.getPosition().lng();
         //latlng is a concatenation of the lat and long
-        var latlng=(lat+", "+lng);
+        // var latlng=(lat+", "+lng);
         //log this value in the console for testing
-        console.log(latlng);
+        console.log(lat);
+        console.log(lng);
         //set the value of the hidden form element to hold latlng
-        $("#latlng").val(latlng);
+        $("#lat").val(lat);
+        $("#lng").val(lng);
         //set the center of the map to be the location of the new marker
         map.setCenter(location);
     }

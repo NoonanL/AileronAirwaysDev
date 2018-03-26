@@ -13,52 +13,52 @@
 <body>
     <header>
 
-        <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
-            <div class="top-left">
-                <h2> Event Timeline Tool - View Event</h2>
-            </div>
-            <div class="bottom-right">
-	                   <img src="images/AileronLogoThumb.png">
-                
-            </div>
-        </div>      
+        <img src="images/AileronIcon.png" class="imgcontainer">
+        <h1 style="font-size: 32px; text-decoration: none; text-align: center";> Event Details</h1>
         
     </header>
     <div class="row">
-	   <div class="col-12">
+	   <div class="col-4">
           <label for="title" id="title" autofocus><h2>Wings fell off plane!</h2></label>
            <label for="date" id="date" autofocus><h3>Event Date: 25/11/2017</h3></label>
            <label for="time" id="time" autofocus><h3>Event Time: 09:00</h3></label>
-           <h3 id="location">Event Location:</h3>
+
 <!--
            <input id="latlng" type="text" value="55.869074, -4.435053">
            <input id="submit" type="button" value="Reverse Geocode">
 -->
-           <div id="map"></div>
+
+           <br>
+           <label id="details" class="textLabel" autofocus><h3>Event details:</h3></label>
+           <div id="descboxshadow" style="width:90%">
+               <div style="width:100%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
+                   The wings fell off the plane!
+               </div>
+           </div>
            <br>
            <!-- modal box goes in here -->
            <button id="myBtn" class="button">View Linked Events </button>
            <!-- Modal content -->
            <div id="myModal" class="modal">
-                <div id="boxshadow" style ="card container centre" class="modal-content">
-                     <div style ="height:50px;" class="modal-header">
-                        <span class="close">&times;</span>
-                     </div>
-                    <div class="modal-body">
-                        <div>
-                            <dl id="linkedEvents"></dl>
-                            <br>
-                        </div>
-        
-                    </div>
-                    <div style ="height:50px;" class="modal-footer"></div>
-                </div>
-            </div>
-            <br>
-           <label id="details" class="textLabel" autofocus><h2>Event details:</h2></label>
-           <div style="width: 25%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
-            The wings fell off the plane!
+               <div style ="card container centre" class="modal-content">
+                   <div style ="height:50px;" class="modal-header">
+                       <span class="close">&times;</span>
+                   </div>
+                   <div class="modal-body">
+                       <div>
+                           <dl id="linkedEvents"></dl>
+                           <br>
+                       </div>
+                   </div>
+                   <div style ="height:50px;" class="modal-footer"></div>
+               </div>
+           </div>
+        </div>
+
+        <div class="col-8">
+            <p id="location">Event Location:</p>
+            <div id="mapboxshadow" style="float:left">
+                <div  id="map"></div>
             </div>
         </div>
   

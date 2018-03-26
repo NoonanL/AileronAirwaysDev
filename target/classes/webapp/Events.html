@@ -82,21 +82,21 @@
   
 </head>
 <body>
-    <header>
-        <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
-            <div class="top-left">
-                      <h1> Event Timeline Tool - Timeline</h1> 
-            </div>
-            <div class="bottom-right">
-	                   <img src="images/AileronLogoThumb.png" style="width:100%;">
-                
-            </div>
-        </div>      
-        
-    </header>
-<div  style="width:1000px; height:auto; margin:0 auto;" id="visualization"></div>
-
+<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 40px">&times;</a>
+    <a href="index.html">Home</a>
+    <a href ="Timelines.html">Timelines</a>
+    <a href="Events.html">Events</a>
+    <a href="EventDetails.html">Event Details</a>
+    <a href="AddEvent.html">Add Event</a>
+</div>
+<div class="main">
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
+    <div id="boxshadow" style="margin-left: 20%">
+<div  style=" height:auto;" id="visualization"></div>
+    </div>
 <script type="text/javascript">
     var text = location.search.substring(1);
     console.log("the timeline is " +text);
@@ -159,6 +159,20 @@
   // Create a Timeline
   var timeline = new vis.Timeline(container, items, groups, options);
 </script>
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "20%";
+        }
 
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script src="modal.js"> </script>
+</div>
 </body>
 </html>

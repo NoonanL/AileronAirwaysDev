@@ -58,8 +58,8 @@ body {
 		padding:50px;
 		border:10px;
 		font-family:'Trebuchet MS';
-		color:white;
-		background:#1A90C7;
+		color:#1a90c7;
+		background:white;
 		background-size:100%;
 		background-repeat: no-repeat;
 		margin: 0 auto;
@@ -75,10 +75,11 @@ h1{
 		font-size:32px;
 		text-align:left;
 		margin-top: 40px;
+        color:#1a90c7;
 }
 #map {
         height: 600px;
-		width:800px;
+		width:80%;
         max-width: 100%;
         max-height: 100%;
         color:black;
@@ -280,31 +281,41 @@ h1{
     width:100%;
 }
 
-#boxshadow {
+#mapboxshadow {
     position: relative;
-    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
-    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-    padding: 10px;
-    background: white;
+    -moz-box-shadow: 1px 2px 4px rgba(16, 171, 150,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    padding: 2.5px;
+    background: rgb(16,171,150);
+    width:80%;
+
 }
 
-/* Make the image fit the box */
-#boxshadow img {
-    width: 100%;
-    border: 1px solid #8a4419;
-    border-style: inset;
-    height:100%;
-}
-
-#boxshadow::after {
+#mapboxshadow::after {
     content: '';
     position: absolute;
     z-index: -1; /* hide shadow behind image */
-    -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);                
-    width: 70%; 
+    -webkit-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    -moz-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    width: 70%;
+    left: 15%; /* one half of the remaining 30% */
+    height: 100px;
+    bottom: 0;
+}
+
+#descboxshadow {
+    position: relative;
+    padding: 2.5px;
+    background: rgb(16,171,150);
+
+}
+
+#descboxshadow::after {
+    content: '';
+    position: absolute;
+    width: 70%;
     left: 15%; /* one half of the remaining 30% */
     height: 100px;
     bottom: 0;
@@ -314,28 +325,6 @@ h1{
     text-align: center!important;
 }
 
-.button {
-    background-color:#f4511e ;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius:5px;
-    
-}
-
-.button:hover{
-     background-color: white; 
-    color: black; 
-    border: 2px solid #f4511e;
-}
 
 dt{
     

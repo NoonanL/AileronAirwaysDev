@@ -19,14 +19,14 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-7" style="float:right;">
-                        <form action="">
+
+                        <form style="text-align: center" action="">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                    </div>
+
                 </div>
-            </div>
+
             <div id="myModal" class="modal">
                 <div id="boxshadow" style ="card container centre" class="modal-content">
                     <div style ="height:50px;" class="modal-header">
@@ -36,6 +36,7 @@
                         <form id="newEventForm" action="processInput.php" method="post">
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
+<<<<<<< HEAD
                             <input type="text" name="title" id="title" required/>
                             <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
                             <!--Date of the event-->
@@ -52,12 +53,34 @@
                             <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
                             <textarea name="desc" rows="10" cols="100" required></textarea>
                             <input type="submit" name="submit" id="submit" value="Submit" />
+=======
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text" name="title" id="title" required/>
+                            <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
+                            <!--Date of the event-->
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required />
+                            <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
+                            <!--Time of the event-->
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
+                            <h3 id>Event Location:</h3>
+                            <!--Location of the event - not user input, value is appended by map on click-->
+                            <input  id="lat" readonly required>
+                            <input id="lng" readonly required>
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <!--this div tag holds the map-->
+                            <div id="mapboxshadow">
+                                <div id="map"> </div>
+                            </div>
+                            <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
+                            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" name="desc" rows="10" cols="100" required></textarea>
+                            <input class="button" type="submit" name="submit" id="submit" value="Submit" />
+>>>>>>> 2252897e8c41eabba4958760672185dffd34fb96
                             </form>
 
                         <br>
                     </div>
                     <div style ="height:50px;" class="modal-footer"></div>
                 </div>
+            </div>
             </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="nav.js"> </script>
