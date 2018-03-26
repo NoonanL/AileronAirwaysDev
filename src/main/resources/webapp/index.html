@@ -43,9 +43,6 @@
                             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
                             <!--Time of the event-->
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time">
-                            <!--attachment(s) upload (if any)-->
-                            <label for="attachments" class="textLabel" autofocus><h2>Attachments:</h2></label>
-                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
                             <h3 id>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
                             <input  id="lat" readonly required>
@@ -57,8 +54,12 @@
                             </div>
                             <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
                             <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" name="desc" rows="10" cols="100" required></textarea>
+                            <br>
+                            <!--attachment(s) upload (if any)-->
+                            <label for="attachments" class="textLabel" autofocus><h2>Attachments:</h2></label>
+                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
                             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
-                            </form>
+                        </form>
 
                         <br>
                     </div>
