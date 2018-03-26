@@ -33,6 +33,26 @@
                         <span class="close">&times;</span>
                     </div>
                     <div class="modal-body">
+                        <form id="newEventForm" action="processInput.php" method="post">
+                            <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
+                            <!--Title of the event-->
+                            <input type="text" name="title" id="title" required/>
+                            <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
+                            <!--Date of the event-->
+                            <input type="date" data-date-inline-picker="true" required />
+                            <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
+                            <!--Time of the event-->
+                            <input id="time" data-time-inline-picker="true" type="time">
+                            <h3 id>Event Location:</h3>
+                            <!--Location of the event - not user input, value is appended by map on click-->
+                            <input  id="latlng" readonly required>
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <!--this div tag holds the map-->
+                            <div id="map"> </div>
+                            <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
+                            <textarea name="desc" rows="10" cols="100" required></textarea>
+                            <input type="submit" name="submit" id="submit" value="Submit" />
+                            </form>
 
                         <br>
                     </div>
@@ -40,7 +60,14 @@
                 </div>
             </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="nav.js"></script>
-    <script src="modal.js"></script>
+    <script src="nav.js"> </script>
+    <script src="modal.js"> </script>
 </body>
 </html>
+<script src="locationSelector.js"> </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
+</script>
+<script async defer
+        src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
+</script>

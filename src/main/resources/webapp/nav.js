@@ -9,7 +9,7 @@ function closeNav() {
 }
 
 //add the sidenav button to the page
-document.body.innerHTML += '<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: white">&#9776;</span>';
+document.body.innerHTML += '<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>';
 //add the sidenav div to the body of the page
 document.body.innerHTML += '<div id="mySidenav" class="sidenav">\n' +
     '        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 40px">&times;</a>\n' +
