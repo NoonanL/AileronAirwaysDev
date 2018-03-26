@@ -1,0 +1,546 @@
+@charset "utf-8";
+.banner {
+    width:100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.aboutUsBanner{
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+
+.top-left {
+    font-size:1.5vw;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    
+}
+.bottom-right {
+    font-size:1.5vw;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    
+}
+.db{
+    overflow-x:auto;
+    background-color: #19B6FF;
+    text-align:center;
+}
+
+td{
+    width:100px;
+}
+td.desc{
+    width:3000px;
+}
+td.emailAddress{
+    width:400px;
+}
+thead{
+    text-decoration:underline;
+}
+
+.pic {
+	
+    max-width: 100%;
+    max-height: 100%;
+	
+}
+
+body {
+		border-style: solid;
+		padding:50px;
+		border:10px;
+		font-family:'Trebuchet MS';
+		color:#1a90c7;
+		background:white;
+		background-size:100%;
+		background-repeat: no-repeat;
+		margin: 0 auto;
+		
+		
+		
+			
+}
+
+h1{
+		text-decoration: underline;
+		font-weight:bold;
+		font-size:32px;
+		text-align:left;
+		margin-top: 40px;
+        color:#1a90c7;
+}
+#map {
+        height: 600px;
+		width:80%;
+        max-width: 100%;
+        max-height: 100%;
+        color:black;
+}
+* {
+    box-sizing: border-box;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    
+}
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (orientation: landscape) {
+    [class*="col-"] {
+    width: 50%;
+    } 
+}
+@media only screen and (min-width: 700px) {
+    /* This style is used when the screen is tablet sized: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+    /* When displaying on a screen large enough the system will use a responsive column based system: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+@media only screen and (max-width: 768px) {
+    /* This changes the columns to fill the screen on low resolution screens (phones and tablets) */    
+    /* also the sizing of the navbar changes to look more appropriate on small screens */
+    [class*="col-"] {
+        width: 100%;
+    }
+    body{
+        font-size: 7px;
+        word-wrap: break-word;
+    }
+    .emailAddress{
+        
+        word-wrap: break-word;
+    }
+
+    nav ul {
+        
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			margin-bottom: 1cm;
+			font-family:'Arial Bold', 'Arial';
+        position:absolute;
+			
+			
+			
+}
+
+
+        nav li {
+			display: inline-block;
+			
+        }
+
+		nav a {
+			
+			color: white;
+			text-align: center;
+			padding: 2px 3px;
+			text-decoration: none;
+        }
+
+		nav a{ 	font-family: 'Arial';
+		font-size: 8px;
+	
+        }	
+
+		nav a {
+			background-color: #66A5AD;
+        }
+        
+        h1{
+        font-size:15px;
+        }
+    
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+        ;  
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+    
+}
+
+.card{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    width:100%;
+}
+
+.display-container{
+    position:relative;
+}
+
+.container{
+    padding: 0.01em 16px;
+    width:100%;
+}
+
+#mapboxshadow {
+    position: relative;
+    -moz-box-shadow: 1px 2px 4px rgba(16, 171, 150,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    padding: 2.5px;
+    background: rgb(16,171,150);
+    width:80%;
+
+}
+
+#mapboxshadow::after {
+    content: '';
+    position: absolute;
+    z-index: -1; /* hide shadow behind image */
+    -webkit-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    -moz-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    width: 70%;
+    left: 15%; /* one half of the remaining 30% */
+    height: 100px;
+    bottom: 0;
+}
+
+#descboxshadow {
+    position: relative;
+    padding: 2.5px;
+    background: rgb(16,171,150);
+
+}
+
+#descboxshadow::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    left: 15%; /* one half of the remaining 30% */
+    height: 100px;
+    bottom: 0;
+}
+
+.centre{
+    text-align: center!important;
+}
+
+
+dt{
+    
+    border-style:solid;
+    border-color:#C4DFE6;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #1A90C7;
+    color:white;
+    
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-x:  auto ;/* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color:black;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #1a90c7;
+    color:white;
+}
+
+.modal-body {padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #1a90c7;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+
+}
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (orientation: landscape) {
+    [class*="col-"] {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 700px) {
+    /* This style is used when the screen is tablet sized: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+    /* When displaying on a screen large enough the system will use a responsive column based system: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.button {
+    background-color:RGB(16,171,150) ;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius:5px;
+}
+
+.button:hover{
+    background-color: white;
+    color: black;
+    border: 2px solid #1a90c7;
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: RGB(16,171,150); /*Aileron Green*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: yellow;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+.btncontainer{
+    text-align: center;
+
+}
+
+.openbtn{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.buttoncontainer{
+    text-align:center;
+}
+
+.imgcontainer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

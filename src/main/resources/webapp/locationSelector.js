@@ -94,8 +94,6 @@
 
 
 
-
-
         //Functionality allows user to add their own markers
         google.maps.event.addListener(map, 'click', function(event) {
             placeMarker(event.latLng);

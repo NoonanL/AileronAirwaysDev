@@ -101,7 +101,7 @@ public class Get {
                                 for (int i = 0; i < temp.size(); i++) {
                                     JsonObject timelinesFromJson = (JsonObject) temp.get(i);
                                     Timeline timeline = new Timeline();
-
+                                    timeline.setCreationTimeStamp(timelinesFromJson.get("CreationTimeStamp").toString());
                                     timeline.setTitle(timelinesFromJson.get("Title").toString());
                                     timeline.setId(timelinesFromJson.get("Id").toString());
                                     JsonArray temp1 = (JsonArray) timelinesFromJson.get("TimelineEvents");
@@ -172,6 +172,7 @@ public class Get {
                                 for (int i = 0; i < timelineFromGson.size(); i++) {
                                     Timeline timeline = new Timeline();
                                     JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                                    timeline.setCreationTimeStamp((temp.get("CreationTimeStamp").toString()));
                                     timeline.setTitle(temp.get("Title").toString());
                                     timeline.setId(temp.get("Id").toString());
                                     Runner.timelineRepository.add(timeline);
