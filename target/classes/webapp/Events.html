@@ -82,80 +82,111 @@
   
 </head>
 <body>
-    <header>
-        <div class="aboutUsBanner">
-            <img src="images/Banner.jpeg" style="width:100%;">
-            <div class="top-left">
-                      <h1> Event Timeline Tool - Timeline</h1> 
-            </div>
-            <div class="bottom-right">
-	                   <img src="images/AileronLogoThumb.png" style="width:100%;">
-                
-            </div>
-        </div>      
-        
-    </header>
-<div  style="width:1000px; height:auto; margin:0 auto;" id="visualization"></div>
+<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 40px">&times;</a>
+    <a href="index.html">Home</a>
+    <a href ="Timelines.html">Timelines</a>
+    <a href="Events.html">Events</a>
+    <a href="EventDetails.html">Event Details</a>
+    <a href="AddEvent.html">Add Event</a>
+</div>
+<div class="main">
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
+    <div id="boxshadow" style="margin-left: 20%">
+<div  style=" height:auto;" id="visualization"></div>
+    </div>
+<script>
 
-<script type="text/javascript">
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
-    
-     var groups = new vis.DataSet([
-	{"content": "First", "id": "First", "value": 1, className:'first'},
-	{"content": "Second", "id": "Second", "value": 2, className:'second'},
-	{"content": "Third", "id": "Third", "value": 3, className:'third'},
-  ]);
-    
-     var items = new vis.DataSet([
-	{start: new Date(2018, 0, 10), group:"First", className:"first", content:"item 0"},
-	{start: new Date(2018, 0, 22), group:"Second", className:"second", content:"item 1"},
-	{start: new Date(2018, 1, 4), group:"First", className:"first", content:"item 2"},
-	{start: new Date(2018, 1, 12), group:"Third", className:"third", content:"item 3"},
-	{start: new Date(2018, 1, 20), group:"Second", className:"second", content:"item 4"},
-	{start: new Date(2018, 1, 23), group:"First", className:"first", content:"item 5"},
-	{start: new Date(2018, 1, 26), group:"Third", className:"third", content:"item 6"},
-  ])
-
- 
-  // Configuration for the Timeline
-  var options = {
-    // option groupOrder can be a property name or a sort function
-    // the sort function must compare two groups and return a value
-    //     > 0 when a > b
-    //     < 0 when a < b
-    //       0 when a == b
-    groupOrder: function (a, b) {
-      return a.value - b.value;
-    },
-    groupOrderSwap: function (a, b, groups) {
-    	var v = a.value;
-    	a.value = b.value;
-    	b.value = v;
-    },
-    groupTemplate: function(group){
-      var container = document.createElement('div');
-      var label = document.createElement('span');
-      label.innerHTML = group.content + ' ';
-      container.insertAdjacentElement('afterBegin',label);
-      var hide = document.createElement('button');
-      hide.innerHTML = 'hide';
-      hide.style.fontSize = 'small';
-      hide.addEventListener('click',function(){
-        groups.update({id: group.id, visible: false});
-      });
-      container.insertAdjacentElement('beforeEnd',hide);
-      return container;
-    },
-    orientation: 'both',
-    editable: true,
-    groupEditable: true,
-    start: new Date(2018, 1, 1),
-    end: new Date(2018, 12, 1)
-  };
+    //function to build a timelines accordion with timeline data from the backend
+    testFunc();
+    function testFunc() {
+        console.log("Getting Events by id");
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/linkedEventsServlet", function (responseJson) {
+            //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+            $.each(responseJson, function (index, product) {
+                console.log(product.title + "<br>");
+            });
+        })
+    }
+  //   var text = location.search.substring(1);
+  //   console.log("the timeline is " +text);
+  // // DOM element where the Timeline will be attached
+  // var container = document.getElementById('visualization');
+  //
+  //    var groups = new vis.DataSet([
+	// {"content": "First", "id": "First", "value": 1, className:'first'},
+	// {"content": "Second", "id": "Second", "value": 2, className:'second'},
+	// {"content": "Third", "id": "Third", "value": 3, className:'third'},
+  // ]);
+  //
+  //    var items = new vis.DataSet([
+	// {start: new Date(2018, 0, 10), group:"First", className:"first", content:"item 0"},
+	// {start: new Date(2018, 0, 22), group:"Second", className:"second", content:"item 1"},
+	// {start: new Date(2018, 1, 4), group:"First", className:"first", content:"item 2"},
+	// {start: new Date(2018, 1, 12), group:"Third", className:"third", content:"item 3"},
+	// {start: new Date(2018, 1, 20), group:"Second", className:"second", content:"item 4"},
+	// {start: new Date(2018, 1, 23), group:"First", className:"first", content:"item 5"},
+	// {start: new Date(2018, 1, 26), group:"Third", className:"third", content:"item 6"},
+  // ])
+  //
+  //
+  // // Configuration for the Timeline
+  // var options = {
+  //   // option groupOrder can be a property name or a sort function
+  //   // the sort function must compare two groups and return a value
+  //   //     > 0 when a > b
+  //   //     < 0 when a < b
+  //   //       0 when a == b
+  //   groupOrder: function (a, b) {
+  //     return a.value - b.value;
+  //   },
+  //   groupOrderSwap: function (a, b, groups) {
+  //   	var v = a.value;
+  //   	a.value = b.value;
+  //   	b.value = v;
+  //   },
+  //   groupTemplate: function(group){
+  //     var container = document.createElement('div');
+  //     var label = document.createElement('span');
+  //     label.innerHTML = group.content + ' ';
+  //     container.insertAdjacentElement('afterBegin',label);
+  //     var hide = document.createElement('button');
+  //     hide.innerHTML = 'hide';
+  //     hide.style.fontSize = 'small';
+  //     hide.addEventListener('click',function(){
+  //       groups.update({id: group.id, visible: false});
+  //     });
+  //     container.insertAdjacentElement('beforeEnd',hide);
+  //     return container;
+  //   },
+  //   orientation: 'both',
+  //   editable: true,
+  //   groupEditable: true,
+  //   start: new Date(2018, 1, 1),
+  //   end: new Date(2018, 12, 1)
+  // };
 
   // Create a Timeline
-  var timeline = new vis.Timeline(container, items, groups, options);
+  //var timeline = new vis.Timeline(container, items, groups, options);
 </script>
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "20%";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script src="modal.js"> </script>
+</div>
 </body>
 </html>

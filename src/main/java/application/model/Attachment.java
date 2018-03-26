@@ -9,6 +9,7 @@ import util.ParameterStringBuilder;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
+import javax.print.DocFlavor;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -102,7 +103,7 @@ public class Attachment {
         }
     }
 
-    public void createAttachment(String attachmentId) throws UnsupportedEncodingException {
+    public void createAttachment(String filepath) throws IOException {
         Map<String, String> createAttachmentMap = buildMap();
 
         createAttachmentMap.put("TimelineEventId", this.eventId);
@@ -112,6 +113,8 @@ public class Attachment {
         String postData = ParameterStringBuilder.getParamsString(createAttachmentMap);
         //call the Put class method which requires the path (which api call you're executing and the postData itself
         Put.put("/TimelineEventAttachment/Create",postData);
+
+        createAndUploadAttachment(filepath);
     }
 
     public String generateUploadPresignedURL(String filename) throws UnsupportedEncodingException {
@@ -160,6 +163,29 @@ public class Attachment {
         System.out.println("Service returned response code " + responseCode);
     }
 
+
+    public void editAttachmentTitle(String Title) throws UnsupportedEncodingException{
+        Map<String, String> createAttachMap = buildMap();
+        createAttachMap.put("Title" , Title);
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(createAttachMap);
+        //call the Put class method which requires the path (which api call you're executing and the postData itself
+        Put.put("/TimelineEventAttachment/EditTitle", postData);
+
+    }
+
+
+    public void deleteAttachment(String Id) throws UnsupportedEncodingException {
+        this.attachmentId = Id;
+        Map<String, String> attachmap = buildMap();
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(attachmap);
+        //call the Put class method which requires the path (which api call you're executing and the postData itself
+        Put.put("/TimelineEventAttachment/Delete",postData);
+    }
+
+
+
     private static void downloadObject(URL url, String filePath)
             throws IOException {
         HttpURLConnection connection=(HttpURLConnection) url.openConnection();
@@ -202,7 +228,7 @@ public class Attachment {
 
     //set id
     public void seteventId(String eventId){
-        this.eventId = eventId;
+        this.eventId = eventId.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     //get attachmentId
@@ -212,7 +238,7 @@ public class Attachment {
 
     //set attachmentId
     public void setAttachmentId(String attachmentId){
-        this.attachmentId = attachmentId;
+        this.attachmentId = attachmentId.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     //get title
@@ -222,8 +248,10 @@ public class Attachment {
 
     //set title
     public void setTitle(String title){
-        this.title = title;
+        this.title = title.replaceAll("\"","").replaceAll("\\+", " ");
     }
+
+
 
     /*
     ----------------------------------------------------------------------------------------

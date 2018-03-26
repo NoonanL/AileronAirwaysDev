@@ -31,8 +31,6 @@ public class IndexServlet extends HttpServlet{
 //            System.out.println(timeline.getTitle());
 //            response.sendRedirect(response.encodeRedirectURL("index.html"));
 //            //send me to api or do that later in the repository?
-
-
         }
 
         /*

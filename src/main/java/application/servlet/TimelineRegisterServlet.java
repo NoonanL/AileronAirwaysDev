@@ -21,12 +21,12 @@ public class TimelineRegisterServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a post method");
-        Timeline timeline = new Timeline(request.getParameter("timeline_id"),request.getParameter("timeline_title"));
+        Timeline timeline = new Timeline();
+        timeline.setTitle(request.getParameter("timeline_title"));
+        timeline.createTimeline();
         Runner.timelineRepository.add(timeline);
-        System.out.println(timeline.getId());
-        System.out.println(timeline.getTitle());
+        System.out.println(timeline.toString());
         response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
-        //send me to api or do that later in the repository?
     }
 
     /*

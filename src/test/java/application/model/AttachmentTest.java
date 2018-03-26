@@ -42,9 +42,54 @@ public class AttachmentTest
 
         System.out.println("Test: Get Linked Events");
         System.out.println("------------------------");
-        test.downloadAttachment("Place the name of the file that has been uploaded you want to get",
-                "Place the path for the file to go to");
+        test.downloadAttachment("tokyo.png",
+                "C:\\Users\\Superleon\\Desktop\\tokyodownload.png");
     }
+
+    @Test
+    public void t13testEditTitle() throws Exception{
+        Attachment test = new Attachment("testingId", "1967", "Hello");
+        System.out.println(test);
+        System.out.println("Testing: Edit Timeline Title");
+        System.out.println("------------------------");
+        test.editAttachmentTitle("This is the changed title");
+        System.out.println(test);
+
+    }
+
+    @Test
+    public void t14testCreateAttachment() throws Exception{
+        Attachment test = new Attachment(
+                "1932",
+                "Tokyo Test",
+                "Tokyo Test Attach" );
+
+        test.createAttachment("C:\\Users\\Superleon\\Desktop\\tokyo.png");
+
+    }
+
+
+    @Test
+    public void t15testDeleteAttachment() throws Exception{
+        Attachment test = new Attachment();
+        System.out.println("Testing: Delete Timeline");
+        System.out.println("------------------------");
+        test.deleteAttachment("Enter the id you wish to delete");
+
+    }
+
+////    @Test
+////    public void t14testDeleteAttachment() throws Exception{
+////        Attachment test = new Attachment("testingId", "1967", "Hello");
+////        System.out.println(test);
+////        System.out.println("Testing: Edit Timeline Title");
+////        System.out.println("------------------------");
+////        test.editAttachmentTitle("This is the changed title");
+////        System.out.println(test);
+////
+////    }
+
+
 
     @After
     public void tearDown() throws Exception {

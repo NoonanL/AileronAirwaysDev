@@ -6,10 +6,8 @@ import application.api.Put;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Event {
 
@@ -41,6 +39,7 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+        this.linkedEvents = new ArrayList<>();
     }
 
     public Event(String title, String description, String eventDateTime, String location){
@@ -49,15 +48,19 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+        this.linkedEvents = new ArrayList<>();
+
     }
 
     public Event(){
-        this.id = "";
+        this.id = UUID.randomUUID().toString();
         this.title = "";
         this.description = "";
         this.eventDateTime = "";
-        this.linkedEvents= null;
+        this.linkedEvents = new ArrayList<>();
         this.location = "";
+        this.linkedEvents = new ArrayList<>();
+
     }
 
     /*
@@ -160,7 +163,7 @@ public class Event {
     public void getLinkEvents(String id) throws UnsupportedEncodingException {
         Get getEvent = new Get();
 
-        getEvent.get("/TimelineEvent/GetLinkedTimelineEvents", "TimelineEventId", id);
+        getEvent.getWithObject("/TimelineEvent/GetLinkedTimelineEvents", "TimelineEventId", id,this);
     }
 
     public void getEvent(String id) throws UnsupportedEncodingException {
@@ -183,7 +186,7 @@ public class Event {
 
     //set id
     public void setId(String id){
-        this.id = id;
+            this.id = id.replaceAll("\"", "").replaceAll("\\+", " ");
     }
 
     //get title
@@ -193,7 +196,7 @@ public class Event {
 
     //set title
     public void setTitle(String title){
-        this.title = title;
+        this.title = title.replaceAll("\"", "").replaceAll("\\+", " ");
     }
 
     //get description
@@ -203,7 +206,7 @@ public class Event {
 
     //set description
     public void setDescription(String description){
-        this.description = description;
+        this.description = description.replaceAll("\"", "").replaceAll("\\+", " ");
     }
 
     //get eventdatetime
@@ -213,7 +216,7 @@ public class Event {
 
     //set eventdatetime
     public void setEventDateTime(String eventDateTime){
-        this.eventDateTime = eventDateTime;
+        this.eventDateTime = eventDateTime.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     //get location
@@ -223,15 +226,15 @@ public class Event {
 
     //setlocation
     public void setLocation(String location){
-        this.location = location;
+        this.location = location.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public void setLinkedEvents(String linkedEvent){
-        this.linkedEvents.add(linkedEvent);
+        this.linkedEvents.add(linkedEvent.replaceAll("\"","").replaceAll("\\+", " "));
     }
 
-    public String getLinkedEvents(){
-        return this.linkedEvents.toString();
+    public ArrayList getLinkedEvents(){
+        return this.linkedEvents;
     }
 
     public ArrayList<Attachment> getAttachments() {

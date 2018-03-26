@@ -25,6 +25,8 @@ public class LinkedEventsServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Hello I am a post method");
+        String url = request.getParameter("url");
+        System.out.println(url);
     }
 
     /*
@@ -32,16 +34,17 @@ public class LinkedEventsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("I am a get method");
         /*
         For the sake of testing I'm going to assume that the timeline we're looking at is ID 032934
          */
-        Timeline testTimeline = Runner.timelineRepository.get("\"032943\"");
+        String var = request.getParameter("timelineID");
+        System.out.println(var);
+
+        Timeline testTimeline = Runner.timelineRepository.get(var);
         //System.out.println(testTimeline.toString());
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
-        //System.out.println(testData.toString());
-
-
+        System.out.println(testData.toString());
         String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

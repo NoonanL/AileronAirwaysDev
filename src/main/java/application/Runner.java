@@ -1,15 +1,17 @@
 package application;
 
+import application.model.Event;
+import application.model.Timeline;
 import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
-import application.servlet.EventDetailsServlet;
-import application.servlet.IndexServlet;
-import application.servlet.TimelineRegisterServlet;
+import application.servlet.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+
+import java.util.ArrayList;
 
 
 public class Runner {
@@ -43,6 +45,16 @@ public class Runner {
         timelineRepository.getAPITimelines();
         eventRepository.getAPIEvents();
 
+        Timeline testTimeline = timelineRepository.get("1234567");
+        System.out.println(testTimeline.toString());
+        ArrayList<String> ids = testTimeline.getLinkedTimelineEventIds();
+        ArrayList<Event> events = testTimeline.getTimelineEvents();
+        for(Event e : events){
+            System.out.println(e.toString());
+        }
+        for(String s : ids){
+            System.out.println(s);
+        }
 
         //Print all Timelines fetched from API
         //System.out.println(timelineRepository.getTimelines());
@@ -74,6 +86,23 @@ public class Runner {
         EventDetailsServlet eventDetailsServlet = new EventDetailsServlet();
         handler.addServlet(new ServletHolder(eventDetailsServlet), "/eventDetailsServlet");
 
+         /*
+        Servlet to handle Timelines Search
+         */
+        SearchTimelinesServlet searchTimelinesServlet = new SearchTimelinesServlet();
+        handler.addServlet(new ServletHolder(searchTimelinesServlet), "/searchTimelinesServlet");
+
+        /*
+        Servlet to handle Timelines Search
+         */
+        AddEventServlet addEventServlet = new AddEventServlet();
+        handler.addServlet(new ServletHolder(addEventServlet), "/addEventServlet");
+
+         /*
+        Servlet to handle Timelines Search
+         */
+        LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
+        handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
 
         /*
         sets default servlet path.

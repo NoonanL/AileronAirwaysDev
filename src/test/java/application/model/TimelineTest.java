@@ -7,6 +7,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 
@@ -67,7 +69,10 @@ public class TimelineTest {
         System.out.println("Testing: Get Linked Events with Timeline");
         System.out.println("------------------------");
         test.getLinkedEvents("1234567");
-
+        Iterator<String> iterator = test.getLinkedTimelineEventIds().iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
     }
 
 

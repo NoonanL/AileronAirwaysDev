@@ -4,33 +4,70 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <title>Aileron ETT - Home</title>
-
 </head>
 <body>
-<!-- Span element to open the sidenav -->
-<span onclick="openNav()" style="font-size: 40px; color: white">&#9776;</span>
             <div id="main">
-                <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron <img src="images/AileronIcon.png"> Airways</h1>
+
+                <img src="images/AileronIcon.png" class="imgcontainer">
+                <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron Airways</h1>
                 <div class="row">
-                    <div class="col-6">
-                        <button class="button" style="float: right">Create Event </button>
-                    </div>
-                    <div class="col-6">
-                        <button class="button" style="float: left">View Timelines</button>
+                    <div class="buttoncontainer">
+                        <button class="button" id="myBtn" >Create Event</button>
+                        <button class="button" onclick="window.location.href='Timelines.html'" >View Timelines</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-7" style="float:right;">
-                        <form action="">
-                            <input type="text" placeholder="Search.." name="search">
+                        <form action="/searchTimelinesServlet">
+                            <input type="text" placeholder="Search.." name="searchBox">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="nav.js"></script>
+            <div id="myModal" class="modal">
+                <div id="boxshadow" style ="card container centre" class="modal-content">
+                    <div style ="height:50px;" class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="newEventForm" action="/addEventServlet" method="post">
+                            <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
+                            <!--Title of the event-->
+                            <input name="title" type="text" name="title" id="title" required/>
+                            <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
+                            <!--Date of the event-->
+                            <input name="date" type="date" data-date-inline-picker="true" required />
+                            <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
+                            <!--Time of the event-->
+                            <input name = "time" id="time" data-time-inline-picker="true" type="time">
+                            <h3 id>Event Location:</h3>
+                            <!--Location of the event - not user input, value is appended by map on click-->
+                            <input  name="latlng" id="latlng" readonly required>
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <!--this div tag holds the map-->
+                            <div id="map"> </div>
+                            <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
+                            <textarea name="description" rows="10" cols="100" required></textarea>
+                            <input type="submit" name="submit" id="submit" value="Submit" />
+                            </form>
 
+                        <br>
+                    </div>
+                    <div style ="height:50px;" class="modal-footer"></div>
+                </div>
+            </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="nav.js"> </script>
+    <script src="modal.js"> </script>
 </body>
 </html>
+<script src="locationSelector.js"> </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
+</script>
+<script async defer
+        src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
+</script>

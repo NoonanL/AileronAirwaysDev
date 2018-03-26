@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class Timeline {
 
@@ -40,16 +41,23 @@ public class Timeline {
         this.id = id;
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
+        this.linkedTimelineEventIds = new ArrayList<>();
+    }
+
+    public Timeline(String title){
+        this.id = UUID.randomUUID().toString();
+        this.title = title;
+        this.timelineEvents = new ArrayList<Event>();
     }
 
     public Timeline(){
-        this.id = null;
+        this.id = UUID.randomUUID().toString();
         this.title = null;
         this.eventDateTime = null;
         this.description = null;
         this.isDeleted = null;
         this.location = null;
-        this.linkedTimelineEventIds = null;
+        this.linkedTimelineEventIds = new ArrayList<>();
         this.timelineEvents = new ArrayList<Event>();
     }
 
@@ -131,7 +139,7 @@ public class Timeline {
 
     public void getLinkedEvents(String id) throws UnsupportedEncodingException{
         Get getTimeline = new Get();
-        getTimeline.get("/Timeline/GetEvents", "TimelineId", id);
+        getTimeline.getWithObject("/Timeline/GetEvents", "TimelineId", id, this);
     }
 
 
@@ -142,7 +150,7 @@ public class Timeline {
      */
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public String getTitle(){
@@ -150,7 +158,7 @@ public class Timeline {
     }
 
     public void setId(String id){
-        this.id = id;
+        this.id = id.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public String getId(){
@@ -162,7 +170,7 @@ public class Timeline {
     }
 
     public void setEventDateTime(String eventDateTime) {
-        this.eventDateTime = eventDateTime;
+        this.eventDateTime = eventDateTime.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public String getDescription() {
@@ -170,7 +178,7 @@ public class Timeline {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public String getLocation() {
@@ -178,15 +186,15 @@ public class Timeline {
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        this.location = location.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public ArrayList<String> getLinkedTimelineEventIds() {
         return linkedTimelineEventIds;
     }
 
-    public void setLinkedTimelineEventIds(ArrayList linkedTimelineEventIds) {
-        this.linkedTimelineEventIds = linkedTimelineEventIds;
+    public void setLinkedTimelineEventIds(String linkedTimelineEvent) {
+        this.linkedTimelineEventIds.add(linkedTimelineEvent);
     }
 
     public String getCreationTimeStamp() {
@@ -194,7 +202,7 @@ public class Timeline {
     }
 
     public void setCreationTimeStamp(String creationTimeStamp) {
-        this.creationTimeStamp = creationTimeStamp;
+        this.creationTimeStamp = creationTimeStamp.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public ArrayList<Event> getTimelineEvents() {
@@ -219,7 +227,7 @@ public class Timeline {
 
     @Override
     public String toString(){
-        String str = this.id + ", " + this.title + ", " + this.timelineEvents;
+        String str = "{" + this.id + ", " + this.title + ", " + this.timelineEvents + "}";
         return str;
     }
 }
