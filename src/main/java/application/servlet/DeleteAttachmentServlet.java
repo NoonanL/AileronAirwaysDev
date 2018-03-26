@@ -1,10 +1,11 @@
 package application.servlet;
 
 import application.Runner;
+import application.api.Put;
 import application.model.Attachment;
 import application.model.Event;
-import application.model.Timeline;
 import com.google.gson.Gson;
+import util.ParameterStringBuilder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,13 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class AttachmentServlet extends HttpServlet {
-
-    /*
-    constructor for servlet
-     */
-    public AttachmentServlet(){    }
+public class DeleteAttachmentServlet extends HttpServlet {
 
     /*
     Override function for html POST methods.
@@ -37,19 +34,15 @@ public class AttachmentServlet extends HttpServlet {
         /*
         Get eventId parameter from html request.
          */
-        String var = request.getParameter("eventId");
-        //Get event associated with that Id from repository
-        Event event = Runner.eventRepository.get(var);
-        //get attachments associated with that event
-        ArrayList<Attachment> testData = event.getAttachments();
+        String var = request.getParameter("attachmentId");
+        Attachment attachment = Runner.attachmentRepository.get(var);
+        attachment.deleteAttachment(var);
+        Runner.attachmentRepository.remove(var);
 
         /*
-        prepare json array of attachments and return to html.
+        return to desired page
          */
-        String json = new Gson().toJson(testData);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+        response.sendRedirect(response.encodeRedirectURL("index.html"));
 
     }
 
