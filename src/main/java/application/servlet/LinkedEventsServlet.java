@@ -33,16 +33,18 @@ public class LinkedEventsServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("I am a get method");
-        /*
-        For the sake of testing I'm going to assume that the timeline we're looking at is ID 032934
-         */
+
+        //get the timeline id the user wants the events from
         String var = request.getParameter("timelineID");
         System.out.println(var);
 
+        //get the timeline that the id points to
         Timeline testTimeline = Runner.timelineRepository.get(var);
-        //System.out.println(testTimeline.toString());
+        //get the events on that timeline
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
         System.out.println(testData.toString());
+        
+        //prepare json array of events and return it to html
         String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

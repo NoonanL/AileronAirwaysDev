@@ -20,8 +20,8 @@
                 </div>
                 <div class="row">
 
-                        <form style="text-align: center" action="">
-                            <input type="text" placeholder="Search.." name="search">
+                        <form style="text-align: center" action="/searchTimelinesServlet">
+                            <input type="text" placeholder="Search.." name="searchBox">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
 
@@ -45,18 +45,18 @@
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
                             <h3 id>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
-                            <input  id="lat" readonly required>
-                            <input id="lng" readonly required>
+                            <input  id="lat" readonly required name="lat">
+                            <input id="lng" readonly required name="lng">
                             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             <!--this div tag holds the map-->
                             <div id="mapboxshadow">
                                 <div id="map"> </div>
                             </div>
                             <label for="details" class="textLabel" autofocus><h3>Event details:</h3></label>
-                            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" name="desc" rows="10" cols="100" required></textarea>
+                            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" rows="10" cols="100" required name="description"></textarea>
                             <br>
                             <!--attachment(s) upload (if any)-->
-                            <label for="attachments" class="textLabel" autofocus><h3>Attachments:</h3></label>
+                            <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
                             <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
                             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
                         </form>

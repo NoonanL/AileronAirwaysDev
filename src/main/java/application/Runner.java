@@ -45,17 +45,6 @@ public class Runner {
         timelineRepository.getAPITimelines();
         eventRepository.getAPIEvents();
 
-        Timeline testTimeline = timelineRepository.get("1234567");
-        System.out.println(testTimeline.toString());
-        ArrayList<String> ids = testTimeline.getLinkedTimelineEventIds();
-        ArrayList<Event> events = testTimeline.getTimelineEvents();
-        for(Event e : events){
-            System.out.println(e.toString());
-        }
-        for(String s : ids){
-            System.out.println(s);
-        }
-
         //Print all Timelines fetched from API
         //System.out.println(timelineRepository.getTimelines());
         //System.out.println(eventRepository.getEvents());
