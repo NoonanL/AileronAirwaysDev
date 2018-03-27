@@ -19,14 +19,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-7" style="float:right;">
-                        <form action="/searchTimelinesServlet">
+
+                        <form style="text-align: center" action="/searchTimelinesServlet">
                             <input type="text" placeholder="Search.." name="searchBox">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                    </div>
+
                 </div>
-            </div>
+
             <div id="myModal" class="modal">
                 <div id="boxshadow" style ="card container centre" class="modal-content">
                     <div style ="height:50px;" class="modal-header">
@@ -36,28 +36,36 @@
                         <form id="newEventForm" action="/addEventServlet" method="post">
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
-                            <input name="title" type="text" name="title" id="title" required/>
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
                             <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
                             <!--Date of the event-->
-                            <input name="date" type="date" data-date-inline-picker="true" required />
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
                             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
                             <!--Time of the event-->
-                            <input name = "time" id="time" data-time-inline-picker="true" type="time">
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
                             <h3 id>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
-                            <input  name="latlng" id="latlng" readonly required>
+                            <input  id="lat" readonly required name="lat">
+                            <input id="lng" readonly required name="lng">
                             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             <!--this div tag holds the map-->
-                            <div id="map"> </div>
-                            <label for="details" class="textLabel" autofocus><h2>Event details:</h2></label>
-                            <textarea name="description" rows="10" cols="100" required></textarea>
-                            <input type="submit" name="submit" id="submit" value="Submit" />
-                            </form>
+                            <div id="mapboxshadow">
+                                <div id="map" style="width:100%"> </div>
+                            </div>
+                            <label for="details" class="textLabel" autofocus><h3>Event details:</h3></label>
+                            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" rows="10" cols="100" required name="description"></textarea>
+                            <br>
+                            <!--attachment(s) upload (if any)-->
+                            <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
+                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+                            <input class="button" type="submit" name="submit" id="submit" value="Submit" />
+                        </form>
 
                         <br>
                     </div>
                     <div style ="height:50px;" class="modal-footer"></div>
                 </div>
+            </div>
             </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="nav.js"> </script>

@@ -1,5 +1,6 @@
 package application;
 
+import application.model.Attachment;
 import application.model.Event;
 import application.model.Timeline;
 import application.repositories.AttachmentRepository;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 public class Runner {
 
     private static final int PORT = 9000;
-
     private Runner() {}
 
     /*
@@ -36,31 +36,12 @@ public class Runner {
     public static AttachmentRepository attachmentRepository = new AttachmentRepository();
 
 
-
     private void start() throws Exception {
         Server server = new Server(PORT);
 
 
-        //Run get Timelines and Events to populate repository. Pure hack atm.
-        timelineRepository.getAPITimelines();
-        eventRepository.getAPIEvents();
-
-        Timeline testTimeline = timelineRepository.get("1234567");
-        System.out.println(testTimeline.toString());
-        ArrayList<String> ids = testTimeline.getLinkedTimelineEventIds();
-        ArrayList<Event> events = testTimeline.getTimelineEvents();
-        for(Event e : events){
-            System.out.println(e.toString());
-        }
-        for(String s : ids){
-            System.out.println(s);
-        }
-
-        //Print all Timelines fetched from API
-        //System.out.println(timelineRepository.getTimelines());
-        //System.out.println(eventRepository.getEvents());
-        //System.out.println(attachmentRepository.getAttachments());
-
+        //Run get Timelines and Events to populate both timeline and event repositories
+        timelineRepository.getAllTimelinesAndEvents();
 
         /*
         servlet handler controls the context, ie where web resources are located.
@@ -99,10 +80,23 @@ public class Runner {
         handler.addServlet(new ServletHolder(addEventServlet), "/addEventServlet");
 
          /*
-        Servlet to handle Timelines Search
+        Servlet to handle Linked Events
          */
         LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
-        handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
+        handler.addServlet(new ServletHolder(linkedEventsServlet), "/Events.html");
+
+        /*
+        Servlet to handle Attachments
+         */
+        AttachmentServlet attachmentServlet = new AttachmentServlet();
+        handler.addServlet(new ServletHolder(attachmentServlet), "/attachmentServlet");
+
+        /*
+        Servlet to handle deleting attachments
+         */
+        DeleteAttachmentServlet deleteAttachmentServlet = new DeleteAttachmentServlet();
+        handler.addServlet(new ServletHolder(deleteAttachmentServlet), "/deleteAttachmentServlet");
+
 
         /*
         sets default servlet path.

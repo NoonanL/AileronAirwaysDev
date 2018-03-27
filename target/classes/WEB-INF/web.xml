@@ -59,7 +59,7 @@
     <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
     <servlet-mapping>
         <servlet-name>SearchTimelinesServlet</servlet-name>
-        <url-pattern>/searchTimelinesServlet</url-pattern>
+        <url-pattern>/Events.html</url-pattern>
     </servlet-mapping>
 
     <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
@@ -72,6 +72,30 @@
     <servlet-mapping>
         <servlet-name>AddEventServlet</servlet-name>
         <url-pattern>/addEventServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>AttachmentServlet</servlet-name>
+        <servlet-class>application.servlet.AttachmentServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>AttachmentServlet</servlet-name>
+        <url-pattern>/attachmentServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>DeleteAttachmentServlet</servlet-name>
+        <servlet-class>application.servlet.DeleteAttachmentServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>DeleteAttachmentServlet</servlet-name>
+        <url-pattern>/deleteAttachmentServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

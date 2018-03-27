@@ -29,12 +29,13 @@ public class SearchTimelinesServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String searchString = request.getParameter("searchBox");
         SearchFunction s = new SearchFunction("Timeline",searchString);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(s.SearchFunction());
-        response.sendRedirect(response.encodeRedirectURL("index.html"));
+        response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
     }
 
 }

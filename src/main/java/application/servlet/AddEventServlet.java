@@ -24,19 +24,20 @@ public class AddEventServlet extends HttpServlet {
         String title = request.getParameter("title");
         String date = request.getParameter("date");
         String time = request.getParameter("time");
-        String latlng = request.getParameter("latlng");
+        String lat = request.getParameter("lat");
+        String lng = request.getParameter("lng");
         String description = request.getParameter("description");
 
         System.out.println(title);
         System.out.println(date);
         System.out.println(time);
-        System.out.println(latlng);
+        System.out.println(lat + " " + lng);
         System.out.println(description);
 
         newEvent.setTitle(title);
         newEvent.setEventDateTime(date + " " + time);
         newEvent.setDescription(description);
-        newEvent.setLocation(latlng);
+        newEvent.setLocation(lat + " " + lng);
 
         System.out.println(newEvent.toString());
         Runner.eventRepository.add(newEvent);

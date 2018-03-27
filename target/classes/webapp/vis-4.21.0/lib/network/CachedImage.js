@@ -5,7 +5,7 @@
  *
  * This technique is known as 'mipmapping'.
  *
- * NOTE: Images can also be of type 'data:svg+xml`. This code also works
+ * NOTE: images can also be of type 'data:svg+xml`. This code also works
  *       for svg, but the mipmapping may not be necessary.
  *
  * @param {Image} image

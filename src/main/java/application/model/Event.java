@@ -49,7 +49,6 @@ public class Event {
         this.eventDateTime = eventDateTime;
         this.location = location;
         this.linkedEvents = new ArrayList<>();
-
     }
 
     public Event(){
@@ -60,7 +59,6 @@ public class Event {
         this.linkedEvents = new ArrayList<>();
         this.location = "";
         this.linkedEvents = new ArrayList<>();
-
     }
 
     /*
@@ -253,11 +251,11 @@ public class Event {
 
     @Override
     public String toString(){
-        String str = "{" +  this.id + ", "
+        String str = " \n" +  this.id + ", "
                 + this.title + ", "
                 + this.description + ", "
                 + this.eventDateTime + ", "
-                + this.location + "}";
+                + this.location;
         return str;
     }
 

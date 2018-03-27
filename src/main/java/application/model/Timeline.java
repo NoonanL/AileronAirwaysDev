@@ -3,13 +3,11 @@ package application.model;
 import application.api.Get;
 import application.api.CallBuilder;
 import application.api.Put;
+import util.DateHelper;
 import util.ParameterStringBuilder;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Timeline {
 
@@ -22,9 +20,8 @@ public class Timeline {
 
     private String id;
     private String title;
-    private String eventDateTime;
+    private String dateTime;
     private String description;
-    private String isDeleted;
     private String location;
     private String creationTimeStamp;
     private ArrayList<String> linkedTimelineEventIds;
@@ -53,10 +50,10 @@ public class Timeline {
     public Timeline(){
         this.id = UUID.randomUUID().toString();
         this.title = null;
-        this.eventDateTime = null;
+        this.dateTime = null;
         this.description = null;
-        this.isDeleted = null;
         this.location = null;
+        this.creationTimeStamp = null;
         this.linkedTimelineEventIds = new ArrayList<>();
         this.timelineEvents = new ArrayList<Event>();
     }
@@ -165,12 +162,12 @@ public class Timeline {
         return this.id;
     }
 
-    public String getEventDateTime() {
-        return eventDateTime;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setEventDateTime(String eventDateTime) {
-        this.eventDateTime = eventDateTime.replaceAll("\"","").replaceAll("\\+", " ");
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
     public String getDescription() {
@@ -198,11 +195,13 @@ public class Timeline {
     }
 
     public String getCreationTimeStamp() {
-        return creationTimeStamp;
+        return this.creationTimeStamp;
     }
 
     public void setCreationTimeStamp(String creationTimeStamp) {
         this.creationTimeStamp = creationTimeStamp.replaceAll("\"","").replaceAll("\\+", " ");
+        DateHelper dateHelper = new DateHelper();
+        this.dateTime = dateHelper.parseDate(this.creationTimeStamp);
     }
 
     public ArrayList<Event> getTimelineEvents() {
@@ -227,7 +226,7 @@ public class Timeline {
 
     @Override
     public String toString(){
-        String str = "{" + this.id + ", " + this.title + ", " + this.timelineEvents + "}";
+        String str = "\n{" + this.id + ", " + this.title + ", " + this.timelineEvents + ", " + this.dateTime + "}";
         return str;
     }
 }
