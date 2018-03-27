@@ -86,7 +86,8 @@
                 //build a form tag
                 var timelineForm=$("<form/>",{
                     //fill the form with an action
-                    //action:
+                    action:"/index.html",
+                    method: "get"
                 });
                 //make an invisible input field with the value of the timeline's ID
                 var timelineIDinput=$("<input hidden/>",{
@@ -95,12 +96,12 @@
                 //make the timeline button with type submit
                 var timelineButton=$("<button/>",{
                     "class":"button",
-                    type:submit,
+                    type:"submit",
                     text:"View Timeline"
                 });
                 //append the input and button to the form tag
-                timelineForm.appendChild(timelineIDinput);
-                timelineForm.appendChild(timelineButton);
+                timelineForm.append(timelineIDinput);
+                timelineForm.append(timelineButton);
                 //create a list item variable
                 var listItem = $("<dt />", {
                     text:""
