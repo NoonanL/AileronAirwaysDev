@@ -62,7 +62,6 @@
 <script>
     //function to build a timelines accordion with timeline data from the backend
     buildTable();
-    console.log("got here yo");
     function buildTable() {
         console.log("Building a timeline table");
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
@@ -90,10 +89,10 @@
                     method: "get"
                 });
                 //make an invisible input field with the value of the timeline's ID
-                var timelineIDinput=$("<input hidden/>",{
-                    text:"timelineId",
-                    value:product.id,
-                    name:"timelineId"
+                var timelineIDinput=$("<input/>",{
+                    value:timelineId,
+                    name:"timelineId",
+                    hidden:""
                 });
                 //make the timeline button with type submit
                 var timelineButton=$("<button/>",{
