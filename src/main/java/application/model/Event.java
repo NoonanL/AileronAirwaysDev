@@ -39,7 +39,11 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+<<<<<<< HEAD
         this.linkedEvents = new ArrayList<>();
+=======
+        linkedEvents = new ArrayList<>();
+>>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
     }
 
     public Event(String title, String description, String eventDateTime, String location){
@@ -48,8 +52,12 @@ public class Event {
         this.description = description;
         this.eventDateTime = eventDateTime;
         this.location = location;
+<<<<<<< HEAD
         this.linkedEvents = new ArrayList<>();
 
+=======
+        linkedEvents = new ArrayList<>();
+>>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
     }
 
     public Event(){
@@ -59,8 +67,12 @@ public class Event {
         this.eventDateTime = "";
         this.linkedEvents = new ArrayList<>();
         this.location = "";
+<<<<<<< HEAD
         this.linkedEvents = new ArrayList<>();
 
+=======
+        linkedEvents = new ArrayList<>();
+>>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
     }
 
     /*
