@@ -76,23 +76,40 @@
                     text: "Title: " + product.title,
                     "class": "timelineTitle"
                 });
+                //instantiate variable with the timeline's ID
                 var timelineId = product.id;
-                //This link passes a variable in the URL called timelineID which can be used to query the api on events.html
-                var timelineLink=$("<a/>",{
-                    "class":"button",
-                    href:"Events.html" + "?timelineID=" + product.id,
-                    text:"View Timeline"
-                });
+                //instantiate a variable with the timeline's Date and Time of creation
                 var timelineDateTime = $("<h3 />", {
                     text: "Date: " + product.dateTime,
                     "class": "timelineDateTIme"
                 });
+                //build a form tag
+                var timelineForm=$("<form/>",{
+                    //fill the form with an action
+                    //action:
+                });
+                //make an invisible input field with the value of the timeline's ID
+                var timelineIDinput=$("<input hidden/>",{
+                    text:timelineId
+                });
+                //make the timeline button with type submit
+                var timelineButton=$("<button/>",{
+                    "class":"button",
+                    type:submit,
+                    text:"View Timeline"
+                });
+                //append the input and button to the form tag
+                timelineForm.appendChild(timelineIDinput);
+                timelineForm.appendChild(timelineButton);
+                //create a list item variable
                 var listItem = $("<dt />", {
                     text:""
                 });
+                //append each timeline's data to a list item tag
                 listItem.append(timelineTitle);
                 listItem.append(timelineDateTime);
-                listItem.append(timelineLink);
+                listItem.append(timelineForm);
+                //add each listItem instance to the table
                 $("#tableDiv").append(listItem);
             });
         })
