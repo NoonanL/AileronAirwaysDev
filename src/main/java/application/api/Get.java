@@ -341,10 +341,15 @@ public class Get {
                     //Insert Repository part here
                 }else if(path.contains("/Timeline")){
                         Timeline timeline = (Timeline) object;
+                        String eventId = "";
                         for (int i = 0; i < timelineFromGson.size(); i++) {
                             JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
                             timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
+                            eventId = temp.get("TimelineEventId").toString();
+                            Event event = Runner.eventRepository.get(eventId);
+                            timeline.addTimelineEvent(event);
                         }
+                        Runner.timelineRepository.add(timeline);
                     }
             } catch (ProtocolException e) {
                 e.printStackTrace();
