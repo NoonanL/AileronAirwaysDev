@@ -62,6 +62,7 @@
 <script>
     //function to build a timelines accordion with timeline data from the backend
     buildTable();
+    console.log("got here yo");
     function buildTable() {
         console.log("Building a timeline table");
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
@@ -75,6 +76,7 @@
                     text: "Title: " + product.title,
                     "class": "timelineTitle"
                 });
+                var timelineId = product.id;
                 //This link passes a variable in the URL called timelineID which can be used to query the api on events.html
                 var timelineLink=$("<a/>",{
                     href:"Events.html" + "?timelineID=" + product.id,

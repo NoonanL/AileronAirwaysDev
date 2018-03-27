@@ -1,8 +1,11 @@
 package application.api;
 
+import application.Runner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 
 public class getTest {
 
@@ -26,6 +29,12 @@ public class getTest {
     public void testGetEvent() throws Exception{
         Get testGet = new Get();
         testGet.get("/TimelineEvent/GetTimelineEvent","TimelineEventId","123456");
+    }
+
+    @Test
+    public void testGets() throws UnsupportedEncodingException {
+        Runner.timelineRepository.getAllTimelinesAndEvents();
+        System.out.println(Runner.eventRepository.toString());
     }
 
     @After

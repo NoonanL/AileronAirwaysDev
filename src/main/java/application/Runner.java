@@ -40,15 +40,8 @@ public class Runner {
         Server server = new Server(PORT);
 
 
-        //Run get Timelines and Events to populate repository. Pure hack atm.
-        timelineRepository.getAPITimelines();
-        eventRepository.getAPIEvents();
-
-        //Print all Timelines fetched from API
-        //System.out.println(timelineRepository.getTimelines());
-        //System.out.println(eventRepository.getEvents());
-        //System.out.println(attachmentRepository.getAttachments());
-
+        //Run get Timelines and Events to populate both timeline and event repositories
+        timelineRepository.getAllTimelinesAndEvents();
 
         /*
         servlet handler controls the context, ie where web resources are located.
@@ -90,7 +83,7 @@ public class Runner {
         Servlet to handle Linked Events
          */
         LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
-        handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
+        handler.addServlet(new ServletHolder(linkedEventsServlet), "/Events.html");
 
         /*
         Servlet to handle Attachments

@@ -59,7 +59,7 @@
     <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
     <servlet-mapping>
         <servlet-name>SearchTimelinesServlet</servlet-name>
-        <url-pattern>/searchTimelinesServlet</url-pattern>
+        <url-pattern>/Events.html</url-pattern>
     </servlet-mapping>
 
     <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->

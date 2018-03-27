@@ -97,15 +97,20 @@
     <div id="boxshadow" style="margin-left: 20%">
 <div  style=" height:auto;" id="visualization"></div>
     </div>
+</div>
+
+</body>
+</html>
 
 <script>
 
     //function to build a timelines accordion with timeline data from the backend
-    testFunc();
-    function testFunc() {
+    //buildTable();
+    function buildTable() {
         console.log("Getting Events by id");
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
         $.get("/linkedEventsServlet", function (responseJson) {
+            console.log("got here yo");
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
                 console.log(product.title + "<br>");
@@ -172,9 +177,7 @@
 
   // Create a Timeline
   //var timeline = new vis.Timeline(container, items, groups, options);
-</script>
 
-    <script>
         /* Set the width of the side navigation to 250px */
         function openNav() {
             document.getElementById("mySidenav").style.width = "20%";
@@ -188,6 +191,4 @@
 
 
 <script src="modal.js"> </script>
-</div>
-</body>
-</html>
+
