@@ -226,7 +226,7 @@ public class Timeline {
 
     @Override
     public String toString(){
-        String str = "{" + this.id + ", " + this.title + ", " + this.timelineEvents + ", " + this.dateTime + "}";
+        String str = "\n{" + this.id + ", " + this.title + ", " + this.timelineEvents + ", " + this.dateTime + "}";
         return str;
     }
 }

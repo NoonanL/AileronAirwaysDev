@@ -86,7 +86,6 @@ public class Get {
                             attachment.seteventId(timelineFromGson.get("TimelineEventId").toString());
                             //Repository part here
                     }else if (path.contains("/TimelineEvent")) {
-
                             Event event = new Event();
                             event.setTitle(timelineFromGson.get("Title").toString());
                             event.setEventDateTime(timelineFromGson.get("EventDateTime").toString());
@@ -342,10 +341,22 @@ public class Get {
                     //Insert Repository part here
                 }else if(path.contains("/Timeline")){
                         Timeline timeline = (Timeline) object;
+//<<<<<<< HEAD
+//                        String eventId = "";
+//                        for (int i = 0; i < timelineFromGson.size(); i++) {
+//                            JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+//                            timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
+//                            eventId = temp.get("TimelineEventId").toString();
+//                            Event event = Runner.eventRepository.get(eventId);
+//                            timeline.addTimelineEvent(event);
+//                        }
+//                        Runner.timelineRepository.add(timeline);
+//=======
                         for (int i = 0; i < timelineFromGson.size(); i++) {
                             JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
                             timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
                         }
+//>>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
                     }
             } catch (ProtocolException e) {
                 e.printStackTrace();
