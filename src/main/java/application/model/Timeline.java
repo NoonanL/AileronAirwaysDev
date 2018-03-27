@@ -42,15 +42,12 @@ public class Timeline {
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
         this.linkedTimelineEventIds = new ArrayList<>();
-<<<<<<< HEAD
     }
 
     public Timeline(String title){
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
-=======
->>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
     }
 
     public Timeline(){
@@ -230,7 +227,7 @@ public class Timeline {
 
     @Override
     public String toString(){
-        String str = "{" + this.id + ", " + this.title + ", " + this.timelineEvents + "}";
+        String str = "\n {" + this.id + ", " + this.title + ", " + this.timelineEvents + "}";
         return str;
     }
 }

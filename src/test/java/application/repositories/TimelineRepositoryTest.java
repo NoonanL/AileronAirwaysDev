@@ -58,7 +58,7 @@ public class TimelineRepositoryTest {
     public void getAllTimelinesAndEvents() throws UnsupportedEncodingException {
         Runner.timelineRepository.getAllTimelinesAndEvents();
         System.out.println(Runner.timelineRepository.toString());
-        System.out.println(Runner.eventRepository.toString());
+        //System.out.println(Runner.eventRepository.toString());
     }
 
     @Test
