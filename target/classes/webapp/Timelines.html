@@ -86,21 +86,41 @@
                 //build a form tag
                 var timelineForm=$("<form/>",{
                     //fill the form with an action
+<<<<<<< HEAD
                     //action:
                 });
                 //make an invisible input field with the value of the timeline's ID
                 var timelineIDinput=$("<input hidden/>",{
                     text:timelineId
+=======
+                    action:"/selectTimelineServlet",
+                    method: "get"
+                });
+                //make an invisible input field with the value of the timeline's ID
+                var timelineIDinput=$("<input hidden/>",{
+                    text:"timelineId",
+                    value:product.id,
+                    name:"timelineId"
+>>>>>>> LiamDev
                 });
                 //make the timeline button with type submit
                 var timelineButton=$("<button/>",{
                     "class":"button",
+<<<<<<< HEAD
                     type:submit,
                     text:"View Timeline"
                 });
                 //append the input and button to the form tag
                 timelineForm.appendChild(timelineIDinput);
                 timelineForm.appendChild(timelineButton);
+=======
+                    type:"submit",
+                    text:"View Timeline"
+                });
+                //append the input and button to the form tag
+                timelineForm.append(timelineIDinput);
+                timelineForm.append(timelineButton);
+>>>>>>> LiamDev
                 //create a list item variable
                 var listItem = $("<dt />", {
                     text:""
