@@ -98,4 +98,16 @@
         <url-pattern>/deleteAttachmentServlet</url-pattern>
     </servlet-mapping>
 
+    <!--Declare name of servlet and its location (application.servlet.YourNewServlet-->
+    <servlet>
+        <servlet-name>DeleteTimelineServlet</servlet-name>
+        <servlet-class>application.servlet.DeleteTimelineServlet</servlet-class>
+    </servlet>
+
+    <!--Map the servlet to a url pattern - this url pattern is what you will call in submit buttons etc. -->
+    <servlet-mapping>
+        <servlet-name>DeleteTimelineServlet</servlet-name>
+        <url-pattern>/deleteTimelineServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

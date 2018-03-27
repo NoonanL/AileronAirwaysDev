@@ -97,6 +97,11 @@ public class Runner {
         DeleteAttachmentServlet deleteAttachmentServlet = new DeleteAttachmentServlet();
         handler.addServlet(new ServletHolder(deleteAttachmentServlet), "/deleteAttachmentServlet");
 
+        /*
+        Servlet to handle deleting attachments
+         */
+        DeleteTimelineServlet deleteTimelineServlet = new DeleteTimelineServlet();
+        handler.addServlet(new ServletHolder(deleteTimelineServlet), "/deleteTimelineServlet");
 
         /*
         sets default servlet path.
