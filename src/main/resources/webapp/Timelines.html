@@ -86,12 +86,14 @@
                 //build a form tag
                 var timelineForm=$("<form/>",{
                     //fill the form with an action
-                    action:"/index.html",
+                    action:"/selectTimelineServlet",
                     method: "get"
                 });
                 //make an invisible input field with the value of the timeline's ID
                 var timelineIDinput=$("<input hidden/>",{
-                    text:timelineId
+                    text:"timelineId",
+                    value:product.id,
+                    name:"timelineId"
                 });
                 //make the timeline button with type submit
                 var timelineButton=$("<button/>",{
