@@ -35,6 +35,7 @@ public class Runner {
      */
     public static AttachmentRepository attachmentRepository = new AttachmentRepository();
 
+    public static String timelineId;
 
     private void start() throws Exception {
         Server server = new Server(PORT);
@@ -42,7 +43,7 @@ public class Runner {
 
         //Run get Timelines and Events to populate both timeline and event repositories
         timelineRepository.getAllTimelinesAndEvents();
-
+        timelineId = "";
         /*
         servlet handler controls the context, ie where web resources are located.
          */
@@ -83,7 +84,7 @@ public class Runner {
         Servlet to handle Linked Events
          */
         LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
-        handler.addServlet(new ServletHolder(linkedEventsServlet), "/Events.html");
+        handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
 
         /*
         Servlet to handle Attachments
