@@ -15,8 +15,10 @@
 
     <div class="row">
 
+
            <!--Quick add event form. Location not working yet. -->
 	   <form id="newEventForm" action="/addEventServlet" method="post">
+
            <div class="col-5">
                 <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                 <!--Title of the event-->
@@ -43,9 +45,10 @@
                <input id="lng" readonly required name="lng">
            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
            <!--this div tag holds the map-->
-           <div id="boxshadow">
 
-           <div id="map"> </div>
+           <div id="mapboxshadow">
+           <div id="map" style="width:100%"> </div>
+
            </div>
            </div>
 
