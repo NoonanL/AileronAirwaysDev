@@ -34,10 +34,10 @@ public class DeleteAttachmentServlet extends HttpServlet {
         /*
         Get eventId parameter from html request.
          */
-        String var = request.getParameter("attachmentId");
-        Attachment attachment = Runner.attachmentRepository.get(var);
-        attachment.deleteAttachment(var);
-        Runner.attachmentRepository.remove(var);
+        String attachmentId = request.getParameter("attachmentId");
+        Attachment attachment = Runner.attachmentRepository.get(attachmentId);
+        attachment.deleteAttachment(attachmentId);
+        Runner.attachmentRepository.remove(attachmentId);
 
         /*
         return to desired page
