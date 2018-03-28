@@ -22,9 +22,16 @@ public class Event {
     private String title;
     private String description;
     private String eventDateTime;
+    private String formattedDateTime;
     private String location;
     private ArrayList<String> linkedEvents;
     private ArrayList<Attachment> attachments;
+    private String yyyy;
+    private String MM;
+    private String dd;
+    private String hh;
+    private String mm;
+
 
 
     /*
@@ -56,6 +63,7 @@ public class Event {
         this.title = "";
         this.description = "";
         this.eventDateTime = "";
+        this.formattedDateTime = "";
         this.linkedEvents = new ArrayList<>();
         this.location = "";
         this.linkedEvents = new ArrayList<>();
@@ -214,7 +222,27 @@ public class Event {
 
     //set eventdatetime
     public void setEventDateTime(String eventDateTime){
-        this.eventDateTime = eventDateTime.replaceAll("\"","").replaceAll("\\+", " ");
+        //System.out.println(eventDateTime);
+        this.eventDateTime = eventDateTime
+                .replaceAll("%3A","/")
+                .replaceAll("\"","")
+                .replaceAll("-","/")
+                .replaceAll(":","/")
+                .replaceAll(", ","/")
+                .replaceAll("\\+", "/");
+        //System.out.println(this.eventDateTime);
+        String[] temp = this.eventDateTime.split("/");
+        this.dd = temp[0];
+        //System.out.println(this.dd);
+        this.MM = temp[1];
+        //System.out.println(this.MM);
+        this.yyyy = temp[2];
+        //System.out.println(this.yyyy);
+        this.hh = temp[3];
+        //System.out.println(this.hh);
+        this.mm = temp[4];
+        //System.out.println(this.mm);
+
     }
 
     //get location
