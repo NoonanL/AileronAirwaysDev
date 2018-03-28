@@ -83,6 +83,7 @@
 </head>
 <body>
 <span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>
+<!--Nav.js should really be handling this. This is a temporary fix-->
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 40px">&times;</a>
     <a href="index.html">Home</a>
@@ -92,11 +93,13 @@
     <a href="AddEvent.html">Add Event</a>
 </div>
 <div class="main">
-<img src="images/AileronIcon.png" class="imgcontainer">
-<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
-    <div id="boxshadow" style="margin-left: 20%">
-<div  style=" height:auto;" id="visualization"></div>
-    </div>
+    <img src="images/AileronIcon.png" class="imgcontainer">
+        <h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
+        <div id="boxshadow" style="margin-left: 20%">
+            <div  style=" height:auto;" id="visualization">
+
+            </div>
+        </div>
 </div>
 
 </body>
@@ -104,9 +107,9 @@
 
 <script>
 
-    //function to build a timelines accordion with timeline data from the backend
-    buildTable();
-    function buildTable() {
+    //function to fetch the timelineEvents
+    getTimelineEvents();
+    function getTimelineEvents() {
         console.log("Getting Events by id");
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
         $.get("/linkedEventsServlet", function (responseJson) {
@@ -176,9 +179,9 @@
   //   start: new Date(2018, 1, 1),
   //   end: new Date(2018, 12, 1)
   // };
-
+  //
   // Create a Timeline
-  //var timeline = new vis.Timeline(container, items, groups, options);
+  // var timeline = new vis.Timeline(container, items, groups, options);
 
         /* Set the width of the side navigation to 250px */
         function openNav() {
@@ -192,5 +195,5 @@
     </script>
 
 
-<script src="modal.js"> </script>
+
 

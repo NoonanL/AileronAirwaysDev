@@ -34,6 +34,11 @@
                     </div>
                     <div class="modal-body">
                         <form id="newEventForm" action="/addEventServlet" method="post">
+                            <!--Timeline to create event on-->
+                            <label for="title" class="textLabel" autofocus><h1 style="color:black">Choose a timeline:</h1></label>
+                            <select id="timelineSelector" name="timelineID">
+                                <!-- timeline names will be dropped in here-->
+                            </select>
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
@@ -43,7 +48,7 @@
                             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
                             <!--Time of the event-->
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
-                            <h3 id>Event Location:</h3>
+                            <h3>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
                             <input  id="lat" readonly required name="lat">
                             <input id="lng" readonly required name="lng">
@@ -76,6 +81,26 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
 </script>
-<script async defer
-        src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
+<script>
+    //function to build a timelines accordion with timeline data from the backend
+    fillSelector();
+    function fillSelector() {
+        console.log("Timelines Data Loading");
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/timelineRegisterServlet", function (responseJson) {
+            //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+            $.each(responseJson, function (index, product) {
+                //this is the object builder for timeline options - the way it works is it displays the titles to the user
+                // but then it takes the value ID!!!! HOW CLEVER IS THAT?!?!
+                var timelineOption = $("<option />", {
+                    text: product.title,
+                    value: product.ID
+                });
+                //append the input and button to the form tag
+                $("#timelineSelector").append(timelineOption);
+            })
+        })
+    }
 </script>
+
+
