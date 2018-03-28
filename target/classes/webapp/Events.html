@@ -68,7 +68,8 @@
                        },
                        "text": {
                            "headline": product.title,
-                           "text": product.description
+                           "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>",
+
                        }
                    });
 
@@ -109,14 +110,6 @@
             });
         })
     }
-<<<<<<< HEAD
-
-        /* Set the width of the side navigation to 250px */
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "20%";
-        }
-=======
->>>>>>> ScottDev
 </script>
 
 
