@@ -38,6 +38,9 @@
 <!-- 3 -->
 <script type="text/javascript">
     console.log("Getting Events by id");
+
+    var timeline_json = {
+        "events": []}
            // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
            $.get("/linkedEventsServlet", function (responseJson) {
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
@@ -47,21 +50,18 @@
                    // console.log(product.eventDateTime + "<br>");
                    // console.log(product.location + "<br>");
 
-                   var timeline_json = {
-                       "events": [
-                           {
-                               "start_date": {
-                                   "month": "3",
-                                   "day": "28",
-                                   "year": "2018"
-                               },
-                               "text": {
-                                   "headline": product.title,
-                                   "text": product.description
-                               }
-                           }
-                       ]
-                   }
+                   timeline_json.events.push({
+                       "start_date": {
+                           "month": "3",
+                           "day": "28",
+                           "year": "2018"
+                       },
+                       "text": {
+                           "headline": product.title,
+                           "text": product.description
+                       }
+                   });
+
                     console.log(timeline_json);
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
