@@ -68,7 +68,8 @@
                        },
                        "text": {
                            "headline": product.title,
-                           "text": product.description
+                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>",
+
                        }
                    });
 

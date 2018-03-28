@@ -24,8 +24,7 @@ Override function for html POST methods.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
-        //Runner.eventId = request.getParameter("eventId");
-        Runner.eventId = "1932";
+        Runner.eventId = request.getParameter("eventId");
         response.sendRedirect(response.encodeRedirectURL("/EventDetails.html"));
 
     }

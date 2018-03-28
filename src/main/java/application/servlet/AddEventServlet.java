@@ -33,6 +33,7 @@ public class AddEventServlet extends HttpServlet {
         //System.out.println(selectedTimeline);
         newEvent.setTitle(title);
         newEvent.setEventDateTime(date + " " + time);
+        System.out.println(date + " " + time);
         newEvent.setDescription(description);
         newEvent.setLocation(lat + " " + lng);
         //System.out.println(newEvent.toString());
