@@ -2,7 +2,7 @@
     //myLatLng is the variable that holds the starting location of the map - I have initialised it as glasgow
     var myLatLng = {lat: 55.86515, lng: -4.25763};
 
-    //function to get the user's position using location data
+    /*//function to get the user's position using location data
 
     //startPos is the variable that will hold the user's position data
     var startPos;
@@ -42,12 +42,11 @@
         //   3: timed out
     };
     // call the geolocation position method passing it the objects from above
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);*/
     var map;
     var marker;
     //the following creates a map
     function initMap() {
-        //this console log is a trace - this code should run after the code above but seems to run before it on occasion. I have absolutely no idea why this is the case
         console.log("This code should run after your location is taken, half the time this isnt the case. Here is the current latitude value as the map is being built.: "+myLatLng.lat)
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 7,
