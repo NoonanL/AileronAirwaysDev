@@ -29,7 +29,7 @@ public class SearchFunction{
             searchResults = new ArrayList<Timeline>();
             while (it.hasNext()){
                 Timeline n = (Timeline) it.next();
-                if (n.getId().contains(searchString) || n.getTitle().contains(searchString)){
+                if (n.getId().contains(searchString) || n.getTitle().contains(searchString) || n.getDateTime().contains(searchString)){
                     searchResults.add(n);
                 }
             }
