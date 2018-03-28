@@ -65,9 +65,11 @@
             </div>
         </div>
   
-</div> 
+</div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- This code takes in latitude and longitude values from the API and then gives the user the location  -->	
 <script>
+
     //construct variables used to set the information for the event details
     //This is NOT to do with linkedevents
     var sampleEventTitle="";
@@ -75,12 +77,16 @@
     var sampleDescription="";
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
     $.get("/eventDetailsServlet", function (responseJson) {
+        console.log("got here");
         //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-        $.each(responseJson, function (index, product) {
-            sampleEventTitle=product.title;
-            sampleEventDateTime=product.dateTime;
-            sampleDescription=product.description;
-        });
+
+            console.log(responseJson.title);
+            sampleEventTitle=responseJson.title;
+            console.log(responseJson.dateTime);
+            sampleEventDateTime=responseJson.dateTime;
+            console.log(responseJson.description);
+            sampleDescription=responseJson.description;
+
     });
 
     function initMap() {
@@ -148,34 +154,34 @@
     </script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- the following is a script to create a description list of events and drop it inside the modal box-->
-    <script>
-        $.get("/LinkedEventsServlet", function (responseJson) {
-            console.log("hello");
-        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-        $.each(responseJson, function (index, product) {
-            //this is the object builder
-            var eventTitle = $("<h2 />", {
-                text: product.title + " - Date:" + product.DateTime,
-                "class": "eventTitle"
-            });
-            var dateTime = $("<h3 />", {
-                text: "Event date time: " + product.dateTime,
-                "class": "dateTime"
-            });
-            var eventDescription = $("<p />", {
-                text: product.description   ,
-                "class": "eventDescription"
-            });
-            var listItem = $("<dt />", {
-                text: ""
-            });
-            listItem.append(eventTitle);
-            listItem.append(dateTime);
-            listItem.append(eventDescription);
-            $("#linkedEvents").append(listItem);
-            });
-        })
-    </script>
+    <!--<script>-->
+        <!--$.get("/LinkedEventsServlet", function (responseJson) {-->
+            <!--console.log("hello");-->
+        <!--//iterate over the JSON array of timeline data passed from backend for each object append this to the page-->
+        <!--$.each(responseJson, function (index, product) {-->
+            <!--//this is the object builder-->
+            <!--var eventTitle = $("<h2 />", {-->
+                <!--text: product.title + " - Date:" + product.DateTime,-->
+                <!--"class": "eventTitle"-->
+            <!--});-->
+            <!--var dateTime = $("<h3 />", {-->
+                <!--text: "Event date time: " + product.dateTime,-->
+                <!--"class": "dateTime"-->
+            <!--});-->
+            <!--var eventDescription = $("<p />", {-->
+                <!--text: product.description   ,-->
+                <!--"class": "eventDescription"-->
+            <!--});-->
+            <!--var listItem = $("<dt />", {-->
+                <!--text: ""-->
+            <!--});-->
+            <!--listItem.append(eventTitle);-->
+            <!--listItem.append(dateTime);-->
+            <!--listItem.append(eventDescription);-->
+            <!--$("#linkedEvents").append(listItem);-->
+            <!--});-->
+        <!--})-->
+    <!--</script>-->
 
     <script src="nav.js"> </script>
     <script src="modal.js"></script>

@@ -36,7 +36,7 @@ public class EventDetailsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //System.out.println("Hello I am a get method");
+        System.out.println(Runner.eventId);
 
         //get the event that the id points to
         Event event = Runner.eventRepository.get(Runner.eventId);
