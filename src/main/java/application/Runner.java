@@ -24,12 +24,10 @@ public class Runner {
     Declare repository for Timeline objects for persistence
      */
     public static TimelineRepository timelineRepository = new TimelineRepository();
-    public static TimelineRepository searchTimelinesRepository = new TimelineRepository();
     /*
     Declare repository for Event objects for persistence
      */
     public static EventRepository eventRepository = new EventRepository();
-    public static EventRepository searchEventsRepository = new EventRepository();
     /*
     Declare repository for Event objects for persistence
      */
@@ -48,7 +46,6 @@ public class Runner {
         timelineId = "";
         eventId = "";
         searchTimelines=null;
-        searchTimelinesRepository = null;
         /*
         servlet handler controls the context, ie where web resources are located.
          */
