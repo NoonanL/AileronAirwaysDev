@@ -3,6 +3,7 @@ package application.servlet;
 import application.Runner;
 import application.model.Timeline;
 import com.google.gson.Gson;
+import util.SearchFunction;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,9 +36,15 @@ public class TimelineRegisterServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
+        String json;
 
-        String json = new Gson().toJson(application.Runner.timelineRepository.getTimelines());
-
+        if(Runner.searchTimelines != null){
+            SearchFunction s = new SearchFunction("Timeline",Runner.searchTimelines);
+            json = s.SearchFunction();
+            System.out.println(json);
+        }else {
+            json = new Gson().toJson(application.Runner.timelineRepository.getTimelines());
+        }
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
