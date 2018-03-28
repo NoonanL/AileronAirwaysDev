@@ -305,6 +305,30 @@ h1{
     bottom: 0;
 }
 
+#timelineboxshadow {
+    position: relative;
+    -moz-box-shadow: 1px 2px 4px rgba(16, 171, 150,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);
+    padding: 2.5px;
+    background: rgb(16,171,150);
+    width:100%;
+
+}
+
+#timelineboxshadow::after {
+    content: '';
+    position: absolute;
+    z-index: -1; /* hide shadow behind image */
+    -webkit-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    -moz-box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
+    width: 70%;
+    left: 15%; /* one half of the remaining 30% */
+    height: 600px;
+    bottom: 0;
+}
+
 #descboxshadow {
     position: relative;
     padding: 2.5px;

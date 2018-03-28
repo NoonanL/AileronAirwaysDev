@@ -41,11 +41,17 @@
 
 <!-- 2 -->
 <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
-
+<div id="timelineboxshadow">
 <div id='timeline-embed' style="width: 100%; height: 600px;"></div>
-
+</div>
 <!-- 3 -->
 <script type="text/javascript">
+
+    var additionalOptions = {
+        default_bg_color: {r:16, g:171, b:150},
+        hash_bookmark:true,
+
+    }
     var timeline_json = {
         "events": [
             {
