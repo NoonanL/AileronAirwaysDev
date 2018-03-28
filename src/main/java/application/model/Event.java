@@ -229,7 +229,8 @@ public class Event {
                 .replaceAll(":","/")
                 .replaceAll(", ","/")
                 .replaceAll(" ","/")
-                .replaceAll("\\+", "/");
+                .replaceAll("\\+", "/")
+                .replaceAll("%2F", "/");
         System.out.println(this.eventDateTime);
         String[] temp = this.eventDateTime.split("/");
         System.out.println(Arrays.toString(temp));
