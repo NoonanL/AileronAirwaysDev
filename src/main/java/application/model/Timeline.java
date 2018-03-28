@@ -212,8 +212,9 @@ public class Timeline {
         this.timelineEvents = timelineEvents;
     }
 
-    public void addTimelineEvent(Event event){
+    public void addTimelineEvent(Event event) throws UnsupportedEncodingException {
         //System.out.println(event.toString());
+        //linkEvent(event.getId());
         timelineEvents.add(event);
         //System.out.println(event.toString());
     }

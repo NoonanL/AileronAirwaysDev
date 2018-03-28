@@ -2,6 +2,7 @@ package application.servlet;
 
 import application.Runner;
 import application.model.Event;
+import application.model.Timeline;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -21,26 +22,32 @@ public class AddEventServlet extends HttpServlet {
 
         Event newEvent = new Event();
 
+
         String title = request.getParameter("title");
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String lat = request.getParameter("lat");
         String lng = request.getParameter("lng");
         String description = request.getParameter("description");
+        String selectedTimeline = request.getParameter("selectedTimeline");
 
-        System.out.println(title);
-        System.out.println(date);
-        System.out.println(time);
-        System.out.println(lat + " " + lng);
-        System.out.println(description);
-
+        System.out.println(selectedTimeline);
         newEvent.setTitle(title);
         newEvent.setEventDateTime(date + " " + time);
         newEvent.setDescription(description);
         newEvent.setLocation(lat + " " + lng);
-
         System.out.println(newEvent.toString());
         Runner.eventRepository.add(newEvent);
+
+        if(selectedTimeline!=null) {
+            Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
+            timeline.addTimelineEvent(newEvent);
+            System.out.println(timeline.toString());
+        }
+        else{
+            System.out.println("No timeline selected");
+        }
+
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath()));
     }
 

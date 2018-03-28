@@ -33,9 +33,17 @@ public class TimelineRepository {
                 System.out.println("Found a match");
                 return object;
             }
-            return null;
+                return null;
         }
 
+    public Timeline getByTitle(String title) {
+        for (Timeline object : this.objects)
+            if(object.getTitle().equals(title)){
+                System.out.println("Found a match");
+                return object;
+            }
+        return null;
+    }
 
 
     public void remove(String id) {
