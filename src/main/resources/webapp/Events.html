@@ -52,11 +52,12 @@
                            "hour":product.hh,
                            "minute":product.mm
                        },
+                       "group":product.id,
                        "text": {
                            "headline": product.title,
-                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>",
+                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form><p>The linked id is </p>" + product.id,
 
-                       }
+                   },
                    });
 
                     console.log(timeline_json);
@@ -64,11 +65,6 @@
                });
            })
 
-    var additionalOptions = {
-        default_bg_color: {r:16, g:171, b:150},
-        hash_bookmark:true,
-
-    }
 
 </script>
 </body>
