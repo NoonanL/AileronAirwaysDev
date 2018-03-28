@@ -19,15 +19,9 @@
     </header>
     <div class="row">
 	   <div class="col-4">
-          <label for="title" id="title" autofocus><h2>Wings fell off plane!</h2></label>
-           <label for="date" id="date" autofocus><h3>Event Date: 25/11/2017</h3></label>
-           <label for="time" id="time" autofocus><h3>Event Time: 09:00</h3></label>
-
-<!--
-           <input id="latlng" type="text" value="55.869074, -4.435053">
-           <input id="submit" type="button" value="Reverse Geocode">
--->
-
+          <label for="title" id="title" autofocus><h2></h2></label>
+           <label for="date" id="date" autofocus><h3></h3></label>
+           <label for="time" id="time" autofocus><h3></h3></label>
            <br>
            <label id="details" class="textLabel" autofocus><h3>Event details:</h3></label>
            <!-- a div for the description-->
@@ -76,11 +70,18 @@
 <script>
     //construct variables used to set the information for the event details
     //This is NOT to do with linkedevents
-    var sampleEventTitle="Sample Event Title"
-    var sampleEventDate="26/11/2017";
-    var sampleEventTime="09:00";
-    var sampleDescription="The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
-
+    var sampleEventTitle="";
+    var sampleEventDateTime="";
+    var sampleDescription="";
+    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+    $.get("/eventDetailsServlet", function (responseJson) {
+        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+        $.each(responseJson, function (index, product) {
+            sampleEventTitle=product.title;
+            sampleEventDateTime=product.dateTime;
+            sampleDescription=product.description;
+        });
+    });
 
     function initMap() {
           
@@ -94,10 +95,7 @@
         window.onload = function() {
           geocodeLatLng(geocoder, map, infowindow);
         };
-          
-          
       }
-
       function geocodeLatLng(geocoder, map, infowindow) {
         var input = "55.869074, -4.435053";
         var latlngStr = input.split(',', 2);
@@ -120,7 +118,7 @@
       '<div id="bodyContent" style="font-size:20px;">'+
       '<p style="font-size:24px; strong;">' + results[3].formatted_address + '</p>' +
       '<p style="font-size:20px;"><b>' +sampleEventTitle + '</b></p>' +
-      '<p style="text-align:center;"><b>Date: </b>' + sampleEventDate + '<b>  Time: </b>' + sampleEventTime +  '</p>' +
+      '<p style="text-align:center;"><b>Date: </b>' + sampleEventDateTime   +  '</p>' +
       '</div>'+
       '</div>';
                  var infowindow = new google.maps.InfoWindow({
