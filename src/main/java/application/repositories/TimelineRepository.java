@@ -30,7 +30,7 @@ public class TimelineRepository {
     public Timeline get(String id) {
         for (Timeline object : this.objects)
             if(object.getId().equals(id)){
-                System.out.println("Found a match");
+                //System.out.println("Found a match");
                 return object;
             }
                 return null;
@@ -39,7 +39,7 @@ public class TimelineRepository {
     public Timeline getByTitle(String title) {
         for (Timeline object : this.objects)
             if(object.getTitle().equals(title)){
-                System.out.println("Found a match");
+                //System.out.println("Found a match");
                 return object;
             }
         return null;
