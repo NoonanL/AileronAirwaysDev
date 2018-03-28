@@ -74,7 +74,7 @@
     var sampleEventDateTime="";
     var sampleDescription="";
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-    $.get("/EventDetailsServlet", function (responseJson) {
+    $.get("/eventDetailsServlet", function (responseJson) {
         //iterate over the JSON array of timeline data passed from backend for each object append this to the page
         $.each(responseJson, function (index, product) {
             sampleEventTitle=product.title;
