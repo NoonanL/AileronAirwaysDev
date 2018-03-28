@@ -28,9 +28,6 @@ public class LinkedEventsServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Hello I am a post method");
-        ArrayList<Event> testData = (ArrayList<Event>)request.getAttribute("testData");
-        timelineId = request.getAttribute("testData").toString();
-        System.out.println(testData.toString());
     }
 
     /*
@@ -38,7 +35,7 @@ public class LinkedEventsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("I am a get method");
+        //System.out.println("I am a get method");
         //get the timeline that the id points to
         Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
         //get the events on that timeline
@@ -48,7 +45,7 @@ public class LinkedEventsServlet extends HttpServlet{
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
-        //response.sendRedirect(response.encodeRedirectURL("/Events.html"));
+
 
 
     }

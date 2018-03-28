@@ -5,6 +5,7 @@ import application.model.Event;
 import application.model.Timeline;
 import com.google.gson.Gson;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,7 +19,7 @@ public class SearchFunction{
         this.searchString = searchString;
     }
 
-    public String SearchFunction(){
+    public String SearchFunction() throws UnsupportedEncodingException {
 
         ArrayList searchResults = new ArrayList();
         Iterator it;
@@ -28,7 +29,7 @@ public class SearchFunction{
             searchResults = new ArrayList<Timeline>();
             while (it.hasNext()){
                 Timeline n = (Timeline) it.next();
-                if (n.getId().contains(searchString) || n.getTitle().contains(searchString)){
+                if (n.getId().contains(searchString) || n.getTitle().contains(searchString) || n.getDateTime().contains(searchString)){
                     searchResults.add(n);
                 }
             }
@@ -44,7 +45,7 @@ public class SearchFunction{
             }
         }
 
-        System.out.println(searchResults.toString());
+        //System.out.println(searchResults.toString());
         String json = new Gson().toJson(searchResults);
         return json;
     }

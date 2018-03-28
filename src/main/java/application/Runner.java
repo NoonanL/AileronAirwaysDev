@@ -24,18 +24,20 @@ public class Runner {
     Declare repository for Timeline objects for persistence
      */
     public static TimelineRepository timelineRepository = new TimelineRepository();
-
+    public static TimelineRepository searchTimelinesRepository = new TimelineRepository();
     /*
     Declare repository for Event objects for persistence
      */
     public static EventRepository eventRepository = new EventRepository();
-
+    public static EventRepository searchEventsRepository = new EventRepository();
     /*
     Declare repository for Event objects for persistence
      */
     public static AttachmentRepository attachmentRepository = new AttachmentRepository();
 
     public static String timelineId;
+    public static String eventId;
+    public static String searchTimelines;
 
     private void start() throws Exception {
         Server server = new Server(PORT);
@@ -44,6 +46,9 @@ public class Runner {
         //Run get Timelines and Events to populate both timeline and event repositories
         timelineRepository.getAllTimelinesAndEvents();
         timelineId = "";
+        eventId = "";
+        searchTimelines=null;
+        searchTimelinesRepository = null;
         /*
         servlet handler controls the context, ie where web resources are located.
          */
@@ -109,6 +114,12 @@ public class Runner {
          */
         SelectTimelineServlet selectTimelineServlet = new SelectTimelineServlet();
         handler.addServlet(new ServletHolder(selectTimelineServlet), "/selectTimelineServlet");
+
+        /*
+        Servlet to handle deleting attachments
+         */
+        SelectEventServlet selectEventServlet = new SelectEventServlet();
+        handler.addServlet(new ServletHolder(selectEventServlet), "/selectEventServlet");
 
 
         /*
