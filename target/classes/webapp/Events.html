@@ -19,6 +19,7 @@
   
 </head>
 <body>
+
 <span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>
 <!--Nav.js should really be handling this. This is a temporary fix-->
 <div id="mySidenav" class="sidenav">
@@ -29,6 +30,7 @@
     <a href="EventDetails.html">Event Details</a>
     <a href="AddEvent.html">Add Event</a>
 </div>
+
 <div class="main">
 
 <img src="images/AileronIcon.png" class="imgcontainer">
@@ -46,54 +48,47 @@
 </div>
 <!-- 3 -->
 <script type="text/javascript">
+    console.log("Getting Events by id");
+
+    var timeline_json = {
+        "events": []}
+           // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+           $.get("/linkedEventsServlet", function (responseJson) {
+               //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+               $.each(responseJson, function (index, product) {
+                   // console.log(product.title + "<br>");
+                   // console.log(product.description + "<br>");
+                   // console.log(product.eventDateTime + "<br>");
+                   // console.log(product.location + "<br>");
+
+                   timeline_json.events.push({
+                       "start_date": {
+                           "month": product.MM,
+                           "day": product.dd,
+                           "year": product.yyyy
+                       },
+                       "text": {
+                           "headline": product.title,
+                           "text": product.description
+                       }
+                   });
+
+                    console.log(timeline_json);
+                   window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+               });
+           })
 
     var additionalOptions = {
         default_bg_color: {r:16, g:171, b:150},
         hash_bookmark:true,
 
     }
-    var timeline_json = {
-        "events": [
-            {
-                "start_date": {
-                    "month": "3",
-                    "day": "28",
-                    "year": "2018"
-                },
-                "text": {
-                    "headline": "Test",
-                    "text": "<p>This is a test event description</p>"
-                }
-            },
-            {
-                "start_date": {
-                    "month": "3",
-                    "day": "29",
-                    "year": "2018"
-                },
-                "text": {
-                    "headline": "Test2",
-                    "text": "<p>This is a test event description</p>"
-                }
-            },
-            {
-                "start_date": {
-                    "month": "3",
-                    "day": "30",
-                    "year": "2018"
-                },
-                "text": {
-                    "headline": "Test3",
-                    "text": "<p>This is a test event description</p>"
-                }
-            },
-        ]
-    }
-    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+
 </script>
 </body>
 </html>
 
+<<<<<<< HEAD
 <script>
 
     //function to fetch the timelineEvents
@@ -121,12 +116,27 @@
         function openNav() {
             document.getElementById("mySidenav").style.width = "20%";
         }
+=======
+<!--<script>-->
+>>>>>>> NewTimelineBranch
 
-        /* Set the width of the side navigation to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
+<!--//    //function to build a timelines accordion with timeline data from the backend-->
+<!--//    buildTable();-->
+<!--//    function buildTable() {-->
+<!--//        console.log("Getting Events by id");-->
+<!--//        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...-->
+<!--//        $.get("/linkedEventsServlet", function (responseJson) {-->
+<!--//            //iterate over the JSON array of timeline data passed from backend for each object append this to the page-->
+<!--//            $.each(responseJson, function (index, product) {-->
+<!--//                console.log(product.title + "<br>");-->
+<!--//                console.log(product.description + "<br>");-->
+<!--//                console.log(product.eventDateTime + "<br>");-->
+<!--//                console.log(product.location + "<br>");-->
+<!--//            });-->
+<!--//        })-->
+<!--//    }-->
+    <!---->
+    <!--</script>-->
 
 
 
