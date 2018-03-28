@@ -22,7 +22,6 @@ public class Event {
     private String title;
     private String description;
     private String eventDateTime;
-    private String formattedDateTime;
     private String location;
     private ArrayList<String> linkedEvents;
     private ArrayList<Attachment> attachments;
@@ -63,7 +62,7 @@ public class Event {
         this.title = "";
         this.description = "";
         this.eventDateTime = "";
-        this.formattedDateTime = "";
+
         this.linkedEvents = new ArrayList<>();
         this.location = "";
         this.linkedEvents = new ArrayList<>();
