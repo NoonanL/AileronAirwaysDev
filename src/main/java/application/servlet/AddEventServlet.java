@@ -30,24 +30,27 @@ public class AddEventServlet extends HttpServlet {
         String description = request.getParameter("description");
         String selectedTimeline = request.getParameter("selectedTimeline");
 
-        System.out.println(selectedTimeline);
+        //System.out.println(selectedTimeline);
         newEvent.setTitle(title);
         newEvent.setEventDateTime(date + " " + time);
         newEvent.setDescription(description);
         newEvent.setLocation(lat + " " + lng);
-        System.out.println(newEvent.toString());
+        //System.out.println(newEvent.toString());
         Runner.eventRepository.add(newEvent);
+        newEvent.createEvent();
 
         if(selectedTimeline!=null) {
             Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
             timeline.addTimelineEvent(newEvent);
-            System.out.println(timeline.toString());
+            timeline.linkEvent(newEvent.getId());
+            //System.out.println(timeline.toString());
         }
         else{
             System.out.println("No timeline selected");
         }
 
-        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()));
+        Runner.timelineId = request.getParameter("timelineId");
+        response.sendRedirect(response.encodeRedirectURL("/Events.html"));
     }
 
     /*
@@ -57,8 +60,8 @@ public class AddEventServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Hello I am a get method");
         //String json = null;
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("application/json");
+//        response.setCharacterEncoding("UTF-8");
        // response.getWriter().write(json);
 
     }

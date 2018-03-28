@@ -26,7 +26,7 @@ public class TimelineRegisterServlet extends HttpServlet{
         timeline.setTitle(request.getParameter("timeline_title"));
         timeline.createTimeline();
         Runner.timelineRepository.add(timeline);
-        System.out.println(timeline.toString());
+        //System.out.println(timeline.toString());
         response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
     }
 
@@ -38,6 +38,7 @@ public class TimelineRegisterServlet extends HttpServlet{
         //System.out.println("Hello I am a get method");
         String json;
 
+
         if(Runner.searchTimelines != null){
             SearchFunction s = new SearchFunction("Timeline",Runner.searchTimelines);
             json = s.SearchFunction();
@@ -48,6 +49,8 @@ public class TimelineRegisterServlet extends HttpServlet{
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
+
+        Runner.searchTimelines = null;
 
     }
 }

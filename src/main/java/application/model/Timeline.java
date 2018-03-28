@@ -103,6 +103,7 @@ public class Timeline {
 
 
         Map<String, String> linkMap = buildMap();
+        linkMap.put("TimelineId", this.id);
         linkMap.put("EventId", eventId);
 
         String postData = ParameterStringBuilder.getParamsString(linkMap);

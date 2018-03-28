@@ -32,8 +32,7 @@ public class TimelineTest {
     @Test
     public void t2testLinkTimelineAndEvent() throws Exception {
 
-        Timeline test = new Timeline("150","testTitle2");
-
+        Timeline test = new Timeline("testId","testTitle");
         System.out.println("Testing: Create Timeline");
         System.out.println("------------------------");
         test.linkEvent("123654");
