@@ -228,9 +228,12 @@ public class Event {
                 .replaceAll("-","/")
                 .replaceAll(":","/")
                 .replaceAll(", ","/")
-                .replaceAll("\\+", "/");
-        //System.out.println(this.eventDateTime);
+                .replaceAll(" ","/")
+                .replaceAll("\\+", "/")
+                .replaceAll("%2F", "/");
+        System.out.println(this.eventDateTime);
         String[] temp = this.eventDateTime.split("/");
+        System.out.println(Arrays.toString(temp));
         this.dd = temp[0];
         //System.out.println(this.dd);
         this.MM = temp[1];
