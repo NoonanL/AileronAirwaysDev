@@ -1,83 +1,23 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    
-  <title>Timeline | Group example</title>
-
+    <title>Events</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
   <style>
     body, html {
       font-family: arial, sans-serif;
       font-size: 11pt;
     }
 
-    #visualization {
-      box-sizing: border-box;
-      width: 100%;
-      height: 300px;
-    }
-    
-        .vis-timeline {
-      border: 2px solid purple;
-      font-size: 12pt;
-      background: white;
-    }
 
-    .vis-item {
-      border-color: #F991A3;
-      background-color: pink;
-      font-size: 15pt;
-      color: purple;
-      box-shadow: 5px 5px 20px rgba(128,128,128, 0.5);
-    }
-
-    .vis-item,
-    .vis-item.vis-line {
-      border-width: 3px;
-    }
-
-    .vis-item.vis-dot {
-      border-width: 10px;
-      border-radius: 10px;
-    }
-
-    .vis-item.vis-selected {
-      border-color: green;
-      background-color: lightgreen;
-    }
-
-    .vis-time-axis .vis-text {
-      color: purple;
-      padding-top: 10px;
-      padding-left: 10px;
-    }
-
-    .vis-time-axis .vis-text.vis-major {
-      font-weight: bold;
-    }
-
-    .vis-time-axis .vis-grid.vis-minor {
-      border-width: 2px;
-      border-color: pink;
-    }
-
-    .vis-time-axis .vis-grid.vis-major {
-      border-width: 2px;
-      border-color: #F991A3;
-    }
-
-      
- .vis-item.first  { background-color: #B0E2FF; }
-    .vis-item.second     { background-color: #EAEAEA; }
-    .vis-item.third { background-color: #FA8072; }
       
       
   </style>
 
-  <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="vis-4.21.0/dist/vis.js"></script>
-  <link href="vis-4.21.0/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
     <link href="StyleSheet.css" rel="stylesheet" type="text/css">
   
 </head>
@@ -93,15 +33,75 @@
     <a href="AddEvent.html">Add Event</a>
 </div>
 <div class="main">
-    <img src="images/AileronIcon.png" class="imgcontainer">
-        <h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>
-        <div id="boxshadow" style="margin-left: 20%">
-            <div  style=" height:auto;" id="visualization">
+<!--<<<<<<< HEAD-->
+    <!--<img src="images/AileronIcon.png" class="imgcontainer">-->
+        <!--<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Timeline</h1>-->
+        <!--<div id="boxshadow" style="margin-left: 20%">-->
+            <!--<div  style=" height:auto;" id="visualization">-->
 
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
+<!--=======-->
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Events</h1>
+
+<!--&gt;>>>>>> 92bbd1157ab03ccaf8953798ee8de2fe831f447f-->
 </div>
+<!-- 1 -->
+<link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
 
+<!-- 2 -->
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+<div id="timelineboxshadow">
+<div id='timeline-embed' style="width: 100%; height: 600px;"></div>
+</div>
+<!-- 3 -->
+<script type="text/javascript">
+
+    var additionalOptions = {
+        default_bg_color: {r:16, g:171, b:150},
+        hash_bookmark:true,
+
+    }
+    var timeline_json = {
+        "events": [
+            {
+                "start_date": {
+                    "month": "3",
+                    "day": "28",
+                    "year": "2018"
+                },
+                "text": {
+                    "headline": "Test",
+                    "text": "<p>This is a test event description</p>"
+                }
+            },
+            {
+                "start_date": {
+                    "month": "3",
+                    "day": "29",
+                    "year": "2018"
+                },
+                "text": {
+                    "headline": "Test2",
+                    "text": "<p>This is a test event description</p>"
+                }
+            },
+            {
+                "start_date": {
+                    "month": "3",
+                    "day": "30",
+                    "year": "2018"
+                },
+                "text": {
+                    "headline": "Test3",
+                    "text": "<p>This is a test event description</p>"
+                }
+            },
+        ]
+    }
+    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+</script>
 </body>
 </html>
 
@@ -122,66 +122,69 @@
             });
         })
     }
-  //   var text = location.search.substring(1);
-  //   console.log("the timeline is " +text);
-  // // DOM element where the Timeline will be attached
-  // var container = document.getElementById('visualization');
-  //
-  //    var groups = new vis.DataSet([
-	// {"content": "First", "id": "First", "value": 1, className:'first'},
-	// {"content": "Second", "id": "Second", "value": 2, className:'second'},
-	// {"content": "Third", "id": "Third", "value": 3, className:'third'},
-  // ]);
-  //
-  //    var items = new vis.DataSet([
-	// {start: new Date(2018, 0, 10), group:"First", className:"first", content:"item 0"},
-	// {start: new Date(2018, 0, 22), group:"Second", className:"second", content:"item 1"},
-	// {start: new Date(2018, 1, 4), group:"First", className:"first", content:"item 2"},
-	// {start: new Date(2018, 1, 12), group:"Third", className:"third", content:"item 3"},
-	// {start: new Date(2018, 1, 20), group:"Second", className:"second", content:"item 4"},
-	// {start: new Date(2018, 1, 23), group:"First", className:"first", content:"item 5"},
-	// {start: new Date(2018, 1, 26), group:"Third", className:"third", content:"item 6"},
-  // ])
-  //
-  //
-  // // Configuration for the Timeline
-  // var options = {
-  //   // option groupOrder can be a property name or a sort function
-  //   // the sort function must compare two groups and return a value
-  //   //     > 0 when a > b
-  //   //     < 0 when a < b
-  //   //       0 when a == b
-  //   groupOrder: function (a, b) {
-  //     return a.value - b.value;
-  //   },
-  //   groupOrderSwap: function (a, b, groups) {
-  //   	var v = a.value;
-  //   	a.value = b.value;
-  //   	b.value = v;
-  //   },
-  //   groupTemplate: function(group){
-  //     var container = document.createElement('div');
-  //     var label = document.createElement('span');
-  //     label.innerHTML = group.content + ' ';
-  //     container.insertAdjacentElement('afterBegin',label);
-  //     var hide = document.createElement('button');
-  //     hide.innerHTML = 'hide';
-  //     hide.style.fontSize = 'small';
-  //     hide.addEventListener('click',function(){
-  //       groups.update({id: group.id, visible: false});
-  //     });
-  //     container.insertAdjacentElement('beforeEnd',hide);
-  //     return container;
-  //   },
-  //   orientation: 'both',
-  //   editable: true,
-  //   groupEditable: true,
-  //   start: new Date(2018, 1, 1),
-  //   end: new Date(2018, 12, 1)
-  // };
-  //
-  // Create a Timeline
-  // var timeline = new vis.Timeline(container, items, groups, options);
+// <<<<<<< HEAD
+//   //   var text = location.search.substring(1);
+//   //   console.log("the timeline is " +text);
+//   // // DOM element where the Timeline will be attached
+//   // var container = document.getElementById('visualization');
+//   //
+//   //    var groups = new vis.DataSet([
+// 	// {"content": "First", "id": "First", "value": 1, className:'first'},
+// 	// {"content": "Second", "id": "Second", "value": 2, className:'second'},
+// 	// {"content": "Third", "id": "Third", "value": 3, className:'third'},
+//   // ]);
+//   //
+//   //    var items = new vis.DataSet([
+// 	// {start: new Date(2018, 0, 10), group:"First", className:"first", content:"item 0"},
+// 	// {start: new Date(2018, 0, 22), group:"Second", className:"second", content:"item 1"},
+// 	// {start: new Date(2018, 1, 4), group:"First", className:"first", content:"item 2"},
+// 	// {start: new Date(2018, 1, 12), group:"Third", className:"third", content:"item 3"},
+// 	// {start: new Date(2018, 1, 20), group:"Second", className:"second", content:"item 4"},
+// 	// {start: new Date(2018, 1, 23), group:"First", className:"first", content:"item 5"},
+// 	// {start: new Date(2018, 1, 26), group:"Third", className:"third", content:"item 6"},
+//   // ])
+//   //
+//   //
+//   // // Configuration for the Timeline
+//   // var options = {
+//   //   // option groupOrder can be a property name or a sort function
+//   //   // the sort function must compare two groups and return a value
+//   //   //     > 0 when a > b
+//   //   //     < 0 when a < b
+//   //   //       0 when a == b
+//   //   groupOrder: function (a, b) {
+//   //     return a.value - b.value;
+//   //   },
+//   //   groupOrderSwap: function (a, b, groups) {
+//   //   	var v = a.value;
+//   //   	a.value = b.value;
+//   //   	b.value = v;
+//   //   },
+//   //   groupTemplate: function(group){
+//   //     var container = document.createElement('div');
+//   //     var label = document.createElement('span');
+//   //     label.innerHTML = group.content + ' ';
+//   //     container.insertAdjacentElement('afterBegin',label);
+//   //     var hide = document.createElement('button');
+//   //     hide.innerHTML = 'hide';
+//   //     hide.style.fontSize = 'small';
+//   //     hide.addEventListener('click',function(){
+//   //       groups.update({id: group.id, visible: false});
+//   //     });
+//   //     container.insertAdjacentElement('beforeEnd',hide);
+//   //     return container;
+//   //   },
+//   //   orientation: 'both',
+//   //   editable: true,
+//   //   groupEditable: true,
+//   //   start: new Date(2018, 1, 1),
+//   //   end: new Date(2018, 12, 1)
+//   // };
+//   //
+//   // Create a Timeline
+//   // var timeline = new vis.Timeline(container, items, groups, options);
+// =======
+// >>>>>>> 92bbd1157ab03ccaf8953798ee8de2fe831f447f
 
         /* Set the width of the side navigation to 250px */
         function openNav() {

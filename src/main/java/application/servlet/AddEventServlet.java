@@ -22,7 +22,6 @@ public class AddEventServlet extends HttpServlet {
 
         Event newEvent = new Event();
 
-
         String title = request.getParameter("title");
         String date = request.getParameter("date");
         String time = request.getParameter("time");
