@@ -19,14 +19,14 @@
     </header>
     <div class="row">
 	   <div class="col-4">
-          <label for="title" id="title" autofocus><h2></h2></label>
-           <label for="date" id="date" autofocus><h3></h3></label>
-           <label for="time" id="time" autofocus><h3></h3></label>
+          <h2 id="title">set me</h2>
+           <h3 id="date"></h3>
+           <h3></h3>
            <br>
            <label id="details" class="textLabel" autofocus><h3>Event details:</h3></label>
            <!-- a div for the description-->
            <div id="descboxshadow" style="width:90%">
-               <div style="width:100%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
+               <div id="description" style="width:100%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
                    The wings fell off the plane!
                </div>
            </div>
@@ -86,8 +86,11 @@
             sampleEventDateTime=responseJson.dateTime;
             console.log(responseJson.description);
             sampleDescription=responseJson.description;
-
+            $("#title").text(sampleEventTitle);
+            $("#date").text(sampleEventDateTime);
+            $("#description").text(sampleDescription);
     });
+
 
     function initMap() {
           
