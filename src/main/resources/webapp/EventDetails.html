@@ -21,7 +21,7 @@
 	   <div class="col-4">
           <h2 id="title">set me</h2>
            <h3 id="date"></h3>
-           <!--<h3 id="locationHolder"></h3>-->
+           
            <h3></h3>
            <br>
            <label id="details" class="textLabel" autofocus><h3>Event details:</h3></label>
@@ -94,7 +94,7 @@
             $("#title").text(sampleEventTitle);
             $("#date").text(sampleEventDateTime);
             $("#description").text(sampleDescription);
-            //$("#locationHolder").text(sampleLocation);
+
 
     });
 
@@ -115,7 +115,7 @@
       function geocodeLatLng(geocoder, map, infowindow) {
         //plug the location from the server response into the map
         var input = sampleLocation;
-        
+
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
