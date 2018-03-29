@@ -42,15 +42,12 @@ public class Timeline {
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
         this.linkedTimelineEventIds = new ArrayList<>();
-<<<<<<< HEAD
     }
 
     public Timeline(String title){
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.timelineEvents = new ArrayList<Event>();
-=======
->>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
     }
 
     public Timeline(){
