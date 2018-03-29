@@ -7,6 +7,7 @@ import application.model.Timeline;
 import application.repositories.EventRepository;
 import com.google.gson.*;
 
+import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
@@ -111,16 +112,23 @@ public class Get {
                                         event.setDescription(jsonObject2.get("Description").toString());
                                         event.setLocation(jsonObject2.get("Location").toString());
                                         event.setId(jsonObject2.get("Id").toString());
-                                        timeline.addTimelineEvent(event);
                                         JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
+                                        String eventId;
                                         for (int events = 0; events < temp2.size(); events++) {
-                                            JsonObject jsonObjectEvents = (JsonObject) temp2.get(events);
-                                            System.out.println(jsonObjectEvents.getAsString());
+                                            eventId = temp2.get(events).toString();
+                                            event.setLinkedEvents(eventId);
                                         }
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
                                         for (int attach = 0; attach < temp3.size(); attach++) {
-
+                                            Attachment attachment = new Attachment();
+                                            JsonObject attachmentObject = (JsonObject) temp3.get(attach);
+                                            attachment.setAttachmentId(attachmentObject.get("Id").toString());
+                                            attachment.seteventId(attachmentObject.get("TimelineEventId").toString());
+                                            attachment.setTitle(attachmentObject.get("Title").toString());
+                                            event.addAttachment(attachment);
+                                            Runner.attachmentRepository.add(attachment);
                                         }
+                                        timeline.addTimelineEvent(event);
                                         Runner.eventRepository.add(event);
                                     }
                                     Runner.timelineRepository.add(timeline);

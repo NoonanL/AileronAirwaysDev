@@ -40,7 +40,8 @@ public class Event {
         this.eventDateTime = eventDateTime;
         this.location = location;
         this.linkedEvents = new ArrayList<>();
-        linkedEvents = new ArrayList<>();
+        this.attachments = new ArrayList<>();
+        attachments = new ArrayList<>();
     }
 
     public Event(String title, String description, String eventDateTime, String location) {
@@ -50,7 +51,7 @@ public class Event {
         this.eventDateTime = eventDateTime;
         this.location = location;
         this.linkedEvents = new ArrayList<>();
-
+        this.attachments = new ArrayList<>();
         linkedEvents = new ArrayList<>();
     }
 
@@ -62,7 +63,7 @@ public class Event {
         this.linkedEvents = new ArrayList<>();
         this.location = "";
         this.linkedEvents = new ArrayList<>();
-
+        this.attachments = new ArrayList<>();
         linkedEvents = new ArrayList<>();
     }
 
@@ -244,6 +245,10 @@ public class Event {
         return attachments;
     }
 
+    public void addAttachment(Attachment attachment){
+        this.attachments.add(attachment);
+    }
+
     public void setAttachments(ArrayList<Attachment> attachments) {
         this.attachments = attachments;
     }
@@ -260,7 +265,9 @@ public class Event {
                 + this.title + ", "
                 + this.description + ", "
                 + this.eventDateTime + ", "
-                + this.location + "}";
+                + this.location + " , "
+                + this.linkedEvents + " , "
+                + this.attachments + "}";
         return str;
     }
 
