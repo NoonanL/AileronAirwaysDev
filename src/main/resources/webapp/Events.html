@@ -100,13 +100,13 @@
             $.each(responseJson, function (index, product) {
                 console.log(product.title + "<br>");
                 console.log(product.description + "<br>");
-                console.log(product.eventDateTime + "<br>");
+                console.log("Event DateTime"product.eventDateTime + "<br>");
                 console.log(product.location + "<br>");
-                console.log(product.dd + "<br>");
-                console.log(product.MM + "<br>");
-                console.log(product.yyyy + "<br>");
-                console.log(product.hh + "<br>");
-                console.log(product.mm + "<br>");
+                console.log("day " + product.dd + "<br>");
+                console.log("month " + product.MM + "<br>");
+                console.log("year " + product.yyyy + "<br>");
+                console.log("hour" +product.hh + "<br>");
+                console.log("minute" +product.mm + "<br>");
             });
         })
     }

@@ -19,14 +19,15 @@
     </header>
     <div class="row">
 	   <div class="col-4">
-          <label for="title" id="title" autofocus><h2></h2></label>
-           <label for="date" id="date" autofocus><h3></h3></label>
-           <label for="time" id="time" autofocus><h3></h3></label>
+          <h2 id="title">set me</h2>
+           <h3 id="date"></h3>
+           
+           <h3></h3>
            <br>
            <label id="details" class="textLabel" autofocus><h3>Event details:</h3></label>
            <!-- a div for the description-->
            <div id="descboxshadow" style="width:90%">
-               <div style="width:100%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
+               <div id="description" style="width:100%; height: 100px; color:black; background-color:white; overflow-y: scroll;">
                    The wings fell off the plane!
                </div>
            </div>
@@ -75,19 +76,28 @@
     var sampleEventTitle="";
     var sampleEventDateTime="";
     var sampleDescription="";
+    var sampleLocation="";
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
     $.get("/eventDetailsServlet", function (responseJson) {
         console.log("got here");
         //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-
             console.log(responseJson.title);
             sampleEventTitle=responseJson.title;
             console.log(responseJson.dateTime);
             sampleEventDateTime=responseJson.dateTime;
             console.log(responseJson.description);
             sampleDescription=responseJson.description;
+            console.log("here the the response from the servlet"+ responseJson.location);
+            sampleLocation=responseJson.location;
+            //replace the space in the response with a comma so that the map can use it
+            sampleLocation = sampleLocation.replace(" ",",");
+            $("#title").text(sampleEventTitle);
+            $("#date").text(sampleEventDateTime);
+            $("#description").text(sampleDescription);
+
 
     });
+
 
     function initMap() {
           
@@ -103,7 +113,9 @@
         };
       }
       function geocodeLatLng(geocoder, map, infowindow) {
-        var input = "55.869074, -4.435053";
+        //plug the location from the server response into the map
+        var input = sampleLocation;
+
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
