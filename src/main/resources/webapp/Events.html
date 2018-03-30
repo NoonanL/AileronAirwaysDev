@@ -11,7 +11,28 @@
       font-family: arial, sans-serif;
       font-size: 11pt;
     }
-      
+
+    .deleteEventButton{
+        background-color: #ff1000;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius:5px;
+    }
+
+    .deleteEventButton:hover{
+        background-color: white;
+        color: black;
+        border: 2px solid #ff1000;
+    }
   </style>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -104,9 +125,11 @@
                            " </input> " +
                            "<input class='button' type = 'submit' value = 'view event details' />" +
                            " </form>" +
-                           "<p>The linked id is </p>"
-                               + product.linkedEvents,
-
+                           "<form action='/deleteEventServlet' method = 'post'>" +
+                           " <input value="+product.id+ " name='eventId' hidden>" +
+                           " </input> " +
+                           "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
+                           " </form>"
                    },
                    });
 
