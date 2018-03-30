@@ -52,21 +52,11 @@
                            "hour":product.hh,
                            "minute":product.mm
                        },
-                       "group":product.id,
+                       "group":product.linkedEvents,
                        "text": {
                            "headline": product.title,
-<<<<<<< HEAD
-                           "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>",
-
-                       }
-=======
-                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form><p>The linked id is </p>" + product.id,
-
-                   },
->>>>>>> MichaelDev
+                           "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>"}
                    });
-
-                    console.log(timeline_json);
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
            })
@@ -86,15 +76,15 @@
         $.get("/linkedEventsServlet", function (responseJson) {
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
-                console.log(product.title + "<br>");
-                console.log(product.description + "<br>");
-                console.log("Event DateTime" + product.eventDateTime + "<br>");
-                console.log(product.location + "<br>");
-                console.log("day " + product.dd + "<br>");
-                console.log("month " + product.MM + "<br>");
-                console.log("year " + product.yyyy + "<br>");
-                console.log("hour" +product.hh + "<br>");
-                console.log("minute" +product.mm + "<br>");
+                console.log(product.title);
+                console.log(product.description);
+                console.log("Event DateTime" + product.eventDateTime);
+                console.log(product.location);
+                console.log("day " + product.dd);
+                console.log("month " + product.MM);
+                console.log("year " + product.yyyy);
+                console.log("hour" + product.hh);
+                console.log("minute" +product.mm );
             });
         })
     }
