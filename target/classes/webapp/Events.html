@@ -20,22 +20,11 @@
 </head>
 <body>
 
-<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: #1a90c7">&#9776;</span>
-<!--Nav.js should really be handling this. This is a temporary fix-->
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 40px">&times;</a>
-    <a href="index.html">Home</a>
-    <a href ="Timelines.html">Timelines</a>
-    <a href="Events.html">Events</a>
-    <a href="EventDetails.html">Event Details</a>
-    <a href="AddEvent.html">Add Event</a>
-</div>
-
 <div class="main">
 
 <img src="images/AileronIcon.png" class="imgcontainer">
 <h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Events</h1>
-
+<a class="button" href="Timelines.html">Go to Timelines</a>
 </div>
 
 <!-- 1 -->
@@ -55,22 +44,26 @@
            $.get("/linkedEventsServlet", function (responseJson) {
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
                $.each(responseJson, function (index, product) {
-                   // console.log(product.title + "<br>");
-                   // console.log(product.description + "<br>");
-                   // console.log(product.eventDateTime + "<br>");
-                   // console.log(product.location + "<br>");
-
                    timeline_json.events.push({
                        "start_date": {
                            "month": product.MM,
                            "day": product.dd,
-                           "year": product.yyyy
+                           "year": product.yyyy,
+                           "hour":product.hh,
+                           "minute":product.mm
                        },
+                       "group":product.id,
                        "text": {
                            "headline": product.title,
+<<<<<<< HEAD
                            "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>",
 
                        }
+=======
+                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form><p>The linked id is </p>" + product.id,
+
+                   },
+>>>>>>> MichaelDev
                    });
 
                     console.log(timeline_json);
@@ -78,11 +71,6 @@
                });
            })
 
-    var additionalOptions = {
-        default_bg_color: {r:16, g:171, b:150},
-        hash_bookmark:true,
-
-    }
 
 </script>
 </body>
