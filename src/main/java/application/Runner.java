@@ -46,6 +46,7 @@ public class Runner {
         timelineId = "";
         eventId = "";
         searchTimelines=null;
+
         /*
         servlet handler controls the context, ie where web resources are located.
          */

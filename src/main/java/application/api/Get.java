@@ -7,6 +7,7 @@ import application.model.Timeline;
 import application.repositories.EventRepository;
 import com.google.gson.*;
 
+import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
@@ -78,7 +79,6 @@ public class Get {
                     if (jelement instanceof JsonObject) {
                         JsonObject timelineFromGson = jelement.getAsJsonObject();
 
-
                         if (path.contains("/TimelineEventAttachment")){
                             Attachment attachment = new Attachment();
                             attachment.setTitle(timelineFromGson.get("Title").toString());
@@ -112,16 +112,24 @@ public class Get {
                                         event.setDescription(jsonObject2.get("Description").toString());
                                         event.setLocation(jsonObject2.get("Location").toString());
                                         event.setId(jsonObject2.get("Id").toString());
-                                        //System.out.println(event.toString());
-
-                                        //add event to timeline object
+                                        JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
+                                        String eventId;
+                                        for (int events = 0; events < temp2.size(); events++) {
+                                            eventId = temp2.get(events).toString();
+                                            event.setLinkedEvents(eventId);
+                                        }
+                                        JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
+                                        for (int attach = 0; attach < temp3.size(); attach++) {
+                                            Attachment attachment = new Attachment();
+                                            JsonObject attachmentObject = (JsonObject) temp3.get(attach);
+                                            attachment.setAttachmentId(attachmentObject.get("Id").toString());
+                                            attachment.seteventId(attachmentObject.get("TimelineEventId").toString());
+                                            attachment.setTitle(attachmentObject.get("Title").toString());
+                                            event.addAttachment(attachment);
+                                            Runner.attachmentRepository.add(attachment);
+                                        }
                                         timeline.addTimelineEvent(event);
                                         Runner.eventRepository.add(event);
-                                        /*
-                                        Are these no longer used?
-                                         */
-                                        JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
-                                        JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
                                     }
                                     Runner.timelineRepository.add(timeline);
                                 }
@@ -144,7 +152,6 @@ public class Get {
                      */
                     } else if (jelement instanceof JsonArray) {
                         JsonArray timelineFromGson = jelement.getAsJsonArray();
-
                         if (path.contains("/TimelineEventAttachment")) {
                             for (int i = 0; i < timelineFromGson.size(); i++) {
                                 JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
@@ -341,22 +348,20 @@ public class Get {
                     //Insert Repository part here
                 }else if(path.contains("/Timeline")){
                         Timeline timeline = (Timeline) object;
-//<<<<<<< HEAD
-//                        String eventId = "";
-//                        for (int i = 0; i < timelineFromGson.size(); i++) {
-//                            JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
-//                            timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
-//                            eventId = temp.get("TimelineEventId").toString();
-//                            Event event = Runner.eventRepository.get(eventId);
-//                            timeline.addTimelineEvent(event);
-//                        }
-//                        Runner.timelineRepository.add(timeline);
-//=======
+                        String eventId;
+                        for (int i = 0; i < timelineFromGson.size(); i++) {
+                            JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
+                            timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
+                            eventId = temp.get("TimelineEventId").toString();
+                            Event event = Runner.eventRepository.get(eventId);
+                            timeline.addTimelineEvent(event);
+                        }
+                        Runner.timelineRepository.add(timeline);
                         for (int i = 0; i < timelineFromGson.size(); i++) {
                             JsonObject temp = timelineFromGson.get(i).getAsJsonObject();
                             timeline.setLinkedTimelineEventIds(temp.get("TimelineEventId").toString());
                         }
-//>>>>>>> 7dd4a07e1c9bebabedc4b1825024d6082783af9e
+
                     }
             } catch (ProtocolException e) {
                 e.printStackTrace();

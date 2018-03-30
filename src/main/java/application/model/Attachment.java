@@ -261,7 +261,7 @@ public class Attachment {
 
     @Override
     public String toString(){
-        String str = this.attachmentId + ", " + this.title;
+        String str = "{" + this.eventId + " , " + this.attachmentId + ", " + this.title + "}";
         return str;
     }
 
