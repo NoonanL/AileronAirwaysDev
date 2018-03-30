@@ -82,6 +82,7 @@
                     text: "Date: " + product.dateTime,
                     "class": "timelineDateTIme"
                 });
+                // -----------ADDING THE BUTTON FOR OPENING A TIMELINE----------------
                 //build a form tag
                 var timelineForm=$("<form/>",{
                     //fill the form with an action
@@ -103,6 +104,30 @@
                 //append the input and button to the form tag
                 timelineForm.append(timelineIDinput);
                 timelineForm.append(timelineButton);
+                // ---------------------ADDING A BUTTON FOR DELETING TIMELINES------------------
+                //build a form tag
+                var deletetimelineForm=$("<form/>",{
+                    //fill the form with an action
+                    action:"/deleteTimelineServlet",
+                    method: "post"
+
+                });
+                //make an invisible input field with the value of the timeline's ID
+                var timelineIDinput=$("<input/>",{
+                    value:timelineId,
+                    name:"timelineId",
+                    hidden:""
+                });
+                //make the timeline button with type submit
+                var timelineButton=$("<button/>",{
+                    "class":"button",
+                    type:"submit",
+                    text:"Delete Timeline"
+                });
+                //append the input and button to the form tag
+                timelineForm.append(timelineIDinput);
+                timelineForm.append(timelineButton);
+                //-------------------------------------------------------------
                 //create a list item variable
                 var listItem = $("<dt />", {
                     text:""
@@ -111,6 +136,7 @@
                 listItem.append(timelineTitle);
                 listItem.append(timelineDateTime);
                 listItem.append(timelineForm);
+                listItem.append(deletetimelineForm);
                 //add each listItem instance to the table
                 $("#tableDiv").append(listItem);
             });

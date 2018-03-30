@@ -158,6 +158,46 @@
           
       }
     </script>
+
+    <script>
+        //function to fill the attachment div with any attachments
+        fetchAttachments();
+        function fetchAttachments() {
+            console.log("Grabbing attachments");
+            // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+            $.get("/AttachmentServlet", function (responseJson) {
+                // Create HTML <ul> element and append it to HTML DOM element with ID "tableDiv".
+                $("<dl id='attachmentDiv'>").appendTo($("#attachments"));
+                //for each response
+                $.each(responseJson, function (index, product) {
+                    //this is the object builder
+                    //if the file is an image, display it as an image
+                    if product.type="img"{
+                        var eventAttachment = $("<img />", {
+                            text: product.title,
+                            "class": "imageThumb",
+                            src:product.href
+                        });
+                    }
+                    else{
+                        var eventAttachment = $("<img />", {
+                            text:product.title,
+                            "class": "imageThumb",
+                            src:"images/NavThumbs/file.png"
+                        });
+                    }
+                    //create a list item variable
+                    var listItem = $("<dt />", {
+                        text:""
+                    });
+                    //append each timeline's data to a list item tag
+                    listItem.append(eventAttachment);
+                    //add each listItem instance to the table
+                    $("#attachmentDiv").append(listItem);
+                });
+            })
+        }
+    </script>
     
     
     <!--this script calls the Google maps API-->      
