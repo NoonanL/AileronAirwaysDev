@@ -24,37 +24,32 @@ public class Runner {
     Declare repository for Timeline objects for persistence
      */
     public static TimelineRepository timelineRepository = new TimelineRepository();
-
     /*
     Declare repository for Event objects for persistence
      */
     public static EventRepository eventRepository = new EventRepository();
-
     /*
     Declare repository for Event objects for persistence
      */
     public static AttachmentRepository attachmentRepository = new AttachmentRepository();
 
-
+    public static String timelineId;
+    public static String eventId;
+    public static String searchTimelines;
 
     private void start() throws Exception {
         Server server = new Server(PORT);
 
 
+        //Run get Timelines and Events to populate both timeline and event repositories
+        timelineRepository.getAllTimelinesAndEvents();
+        timelineId = "";
+        eventId = "";
+        searchTimelines=null;
         //Run get Timelines and Events to populate repository. Pure hack atm.
-        timelineRepository.getAPITimelines();
-        eventRepository.getAPIEvents();
+        //timelineRepository.getAPITimelines();
+       // eventRepository.getAPIEvents();
 
-        Timeline testTimeline = timelineRepository.get("1234567");
-        System.out.println(testTimeline.toString());
-        ArrayList<String> ids = testTimeline.getLinkedTimelineEventIds();
-        ArrayList<Event> events = testTimeline.getTimelineEvents();
-        for(Event e : events){
-            System.out.println(e.toString());
-        }
-        for(String s : ids){
-            System.out.println(s);
-        }
 
         //Print all Timelines fetched from API
         //System.out.println(timelineRepository.getTimelines());
