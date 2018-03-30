@@ -6,16 +6,12 @@ import application.model.Event;
 import application.model.Timeline;
 import com.google.gson.Gson;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LinkedEventsServlet extends HttpServlet{
 
@@ -46,9 +42,9 @@ public class LinkedEventsServlet extends HttpServlet{
         Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
         //get the events on that timeline
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
-        System.out.println(testData.toString());
+        //System.out.println(testData.toString());
         String json = new Gson().toJson(testData);
-        System.out.println(json);
+        //System.out.println(json);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

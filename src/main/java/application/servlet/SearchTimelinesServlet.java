@@ -31,8 +31,10 @@ public class SearchTimelinesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchString = request.getParameter("searchBox");
         Runner.searchTimelines = searchString;
+        //System.out.println(Runner.searchTimelines);
         SearchFunction s = new SearchFunction("Timeline",searchString);
-        System.out.println(s);
+        //System.out.println(s);
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(s.SearchFunction());

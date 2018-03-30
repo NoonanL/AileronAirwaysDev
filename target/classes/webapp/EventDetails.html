@@ -79,12 +79,14 @@
     $.get("/eventDetailsServlet", function (responseJson) {
         console.log("got here");
         //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-        $.each(responseJson, function (index, product) {
-            console.log(product.title);
-            sampleEventTitle=product.title;
-            sampleEventDateTime=product.dateTime;
-            sampleDescription=product.description;
-        });
+
+            console.log(responseJson.title);
+            sampleEventTitle=responseJson.title;
+            console.log(responseJson.dateTime);
+            sampleEventDateTime=responseJson.dateTime;
+            console.log(responseJson.description);
+            sampleDescription=responseJson.description;
+
     });
 
     function initMap() {
