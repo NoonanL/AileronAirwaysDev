@@ -29,6 +29,7 @@ public class AddEventServlet extends HttpServlet {
         String lng = request.getParameter("lng");
         String description = request.getParameter("description");
         String selectedTimeline = request.getParameter("selectedTimeline");
+        System.out.println(request.getParameter("attachments"));
 
         //System.out.println(selectedTimeline);
         newEvent.setTitle(title);

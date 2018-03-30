@@ -21,9 +21,10 @@ public class DeleteTimelineServlet extends HttpServlet {
         String timelineId = request.getParameter("timelineId");
         System.out.println(timelineId);
 
-        Timeline timeline = Runner.timelineRepository.get(timelineId);
-        timeline.deleteTimeline();
-        Runner.timelineRepository.remove(timelineId);
+        //Timeline timeline = Runner.timelineRepository.get(timelineId);
+        //timeline.deleteTimeline();
+        //Runner.timelineRepository.remove(timelineId);
+        response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
     }
 
     /*
