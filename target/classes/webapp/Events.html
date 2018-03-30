@@ -28,7 +28,7 @@
 </div>
 
 <!-- 1 -->
-<link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+<link title="timeline-styles" rel="stylesheet" href="timeline-custom.css">
 
 <!-- 2 -->
 <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
@@ -52,10 +52,10 @@
                            "hour":product.hh,
                            "minute":product.mm
                        },
-                       "group":product.id,
+                       "group":product.linkedEvents,
                        "text": {
                            "headline": product.title,
-                           "text": product.description+"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form><p>The linked id is </p>" + product.id,
+                           "text": product.description +"<form action='/SelectEventServlet' method = 'post'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form><p>The linked id is </p>" + product.linkedEvents,
 
                    },
                    });
