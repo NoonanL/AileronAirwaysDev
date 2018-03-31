@@ -24,30 +24,37 @@ public class SearchFunction{
         ArrayList searchResults = new ArrayList();
         Iterator it;
 
-        if(objectType.equals("Timeline")){
-            it = Runner.timelineRepository.getTimelines().listIterator();
-            searchResults = new ArrayList<Timeline>();
-            while (it.hasNext()){
-                Timeline n = (Timeline) it.next();
-                if (n.getId().contains(searchString) || n.getTitle().contains(searchString) || n.getDateTime().contains(searchString)){
-                    searchResults.add(n);
+        if (!searchString.equals("")) {
+
+            if (objectType.equals("Timeline")) {
+                it = Runner.timelineRepository.getTimelines().listIterator();
+                searchResults = new ArrayList<Timeline>();
+                while (it.hasNext()) {
+                    Timeline n = (Timeline) it.next();
+                    if (n.getId().contains(searchString) || n.getTitle().contains(searchString) || n.getDateTime().contains(searchString)) {
+                        searchResults.add(n);
+                    }
+                }
+
+            } else if (objectType.equals("Event")) {
+                it = Runner.eventRepository.getEvents().listIterator();
+                searchResults = new ArrayList<Event>();
+                while (it.hasNext()) {
+                    Event n = (Event) it.next();
+                    if (n.getId().contains(searchString) || n.getTitle().contains(searchString)) {
+                        searchResults.add(n);
+                    }
                 }
             }
 
-        }else if (objectType.equals("Event")){
-            it = Runner.eventRepository.getEvents().listIterator();
-            searchResults = new ArrayList<Event>();
-            while (it.hasNext()){
-                Event n = (Event) it.next();
-                if (n.getId().contains(searchString) || n.getTitle().contains(searchString)){
-                    searchResults.add(n);
-                }
-            }
+            //System.out.println(searchResults.toString());
+            String json = new Gson().toJson(searchResults);
+            return json;
         }
-
-        //System.out.println(searchResults.toString());
-        String json = new Gson().toJson(searchResults);
-        return json;
+        else{
+            return "Search String Empty";
+        }
     }
+
 
 }

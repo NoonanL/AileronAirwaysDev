@@ -30,14 +30,14 @@ public class SearchTimelinesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchString = request.getParameter("searchBox");
-        Runner.searchTimelines = searchString;
-        //System.out.println(Runner.searchTimelines);
-        SearchFunction s = new SearchFunction("Timeline",searchString);
-        //System.out.println(s);
+        if(!searchString.equals("")){
+            Runner.searchTimelines = searchString;
+            SearchFunction s = new SearchFunction("Timeline",searchString);
+            response.getWriter().write(s.SearchFunction());
+        }else{System.out.println("Search String Empty");}
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(s.SearchFunction());
         response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
     }
 
