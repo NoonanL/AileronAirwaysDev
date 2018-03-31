@@ -134,6 +134,7 @@ public class Runner {
         starts server
          */
         server.start();
+        server.setAttribute("org.eclipse.jetty.server.Request.maxFormContentSize", -1);
         System.out.println("Server started, will run until terminated");
         server.join();
     }
