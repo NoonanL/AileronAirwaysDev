@@ -220,6 +220,18 @@ public class Timeline {
         //System.out.println(event.toString());
     }
 
+    public void removeEventFromArray(String eventId){
+        System.out.println(this.timelineEvents);
+        if(!this.timelineEvents.isEmpty()) {
+            for (Event event : this.timelineEvents) {
+                if (event.getId().equals(eventId)) {
+                    this.timelineEvents.remove(event);
+                    break;
+                }
+            }
+            System.out.println(this.timelineEvents);
+        }
+    }
      /*
     ----------------------------------------------------------------------------------------
     Overrides

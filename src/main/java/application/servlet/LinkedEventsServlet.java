@@ -76,17 +76,22 @@ public class LinkedEventsServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("I am a get method");
         //get the timeline that the id points to
-        Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
-        //get the events on that timeline
-        ArrayList<Event> testData = testTimeline.getTimelineEvents();
-        //System.out.println(testData.toString());
-        String json = new Gson().toJson(testData);
-        //System.out.println(json);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
-
-
+        if(!Runner.timelineId.equals("")){
+            System.out.println(Runner.timelineId);
+            Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
+            //get the events on that timeline
+            ArrayList<Event> testData = testTimeline.getTimelineEvents();
+            //System.out.println(testData.toString());
+            String json = new Gson().toJson(testData);
+            //System.out.println(json);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        }else {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.sendRedirect(response.encodeRedirectURL("/Timelines.html"));
+        }
 
     }
 
