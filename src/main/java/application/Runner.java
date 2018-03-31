@@ -1,8 +1,5 @@
 package application;
 
-import application.model.Attachment;
-import application.model.Event;
-import application.model.Timeline;
 import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
@@ -12,7 +9,7 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
 
 
 public class Runner {

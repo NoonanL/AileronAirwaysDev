@@ -2,6 +2,8 @@ package application.servlet;
 
 import application.Runner;
 import application.model.Timeline;
+import application.repositories.EventRepository;
+import application.repositories.TimelineRepository;
 import com.google.gson.Gson;
 import util.SearchFunction;
 
@@ -25,7 +27,13 @@ public class TimelineRegisterServlet extends HttpServlet{
         Timeline timeline = new Timeline();
         timeline.setTitle(request.getParameter("timeline_title"));
         timeline.createTimeline();
-        Runner.timelineRepository.add(timeline);
+
+        /*
+        Resets repositories to sort date function issue
+         */
+        Runner.timelineRepository = new TimelineRepository();
+        Runner.eventRepository = new EventRepository();
+        Runner.timelineRepository.getAllTimelinesAndEvents();
         //System.out.println(timeline.toString());
         response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
     }
