@@ -11,7 +11,28 @@
       font-family: arial, sans-serif;
       font-size: 11pt;
     }
-      
+
+    .deleteEventButton{
+        background-color: #ff1000;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius:5px;
+    }
+
+    .deleteEventButton:hover{
+        background-color: white;
+        color: black;
+        border: 2px solid #ff1000;
+    }
   </style>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -21,20 +42,63 @@
 <body>
 
 <div class="main">
-
 <img src="images/AileronIcon.png" class="imgcontainer">
 <h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Events</h1>
 <a class="button" href="Timelines.html">Go to Timelines</a>
-</div>
+
+    <button id="preview" class="button">Add Event</button>
 
 <!-- 1 -->
-<link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+<link title="timeline-styles" rel="stylesheet" href="timeline-custom.css">
 
 <!-- 2 -->
 <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 <div id="timelineboxshadow">
 <div id='timeline-embed' style="width: 100%; height: 600px;"></div>
 </div>
+
+    <div id="formdiv">
+        <form id="newEventForm" action="" method="post">
+            <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
+            <!--Title of the event-->
+            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
+            <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
+            <!--Date of the event-->
+            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
+            <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
+            <!--Time of the event-->
+            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
+            <h3>Event Location:</h3>
+            <!--Location of the event - not user input, value is appended by map on click-->
+            <input  id="lat" readonly required name="lat">
+            <input id="lng" readonly required name="lng">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <!--this div tag holds the map-->
+            <div id="mapboxshadow">
+                <div id="map" style="width:100%"> </div>
+            </div>
+            <label for="details" class="textLabel" autofocus><h3>Event details:</h3></label>
+            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" rows="10" cols="100" required name="description"></textarea>
+            <br>
+            <!--attachment(s) upload (if any)-->
+            <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
+            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+            <input class="button" type="submit" name="submit" id="submit" value="Submit" />
+        </form>
+    </div>
+
+<script>
+    $(function(){
+        $("#formdiv").hide();
+        $("#preview").on("click", function(){
+            $("#timeline-embed, #formdiv, #timelineboxshadow").toggle();
+            $(this).text(function(i, text){
+                return text === "Add Event" ? "View Timeline" : "Add Event";
+            });
+        });
+    });
+</script>
+
 <!-- 3 -->
 <script type="text/javascript">
     console.log("Getting Events by id");
@@ -55,7 +119,22 @@
                        "group":product.linkedEvents,
                        "text": {
                            "headline": product.title,
+<<<<<<< HEAD
                            "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>"}
+=======
+                           "text": product.description +"" +
+                           "<form action='/selectEventServlet' method = 'post'>" +
+                           " <input value="+product.id+ " name='eventId' hidden>" +
+                           " </input> " +
+                           "<input class='button' type = 'submit' value = 'view event details' />" +
+                           " </form>" +
+                           "<form action='/deleteEventServlet' method = 'post'>" +
+                           " <input value="+product.id+ " name='eventId' hidden>" +
+                           " </input> " +
+                           "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
+                           " </form>"
+                   },
+>>>>>>> MichaelDev
                    });
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
@@ -63,9 +142,9 @@
 
 
 </script>
+</div>
 </body>
 </html>
-
 <script>
 
     //function to fetch the timelineEvents
@@ -89,6 +168,11 @@
         })
     }
 </script>
+<script src="locationSelector.js"> </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
+</script>
+
 
 
 
