@@ -77,7 +77,7 @@ public class LinkedEventsServlet extends HttpServlet{
         //System.out.println("I am a get method");
         //get the timeline that the id points to
         if(!Runner.timelineId.equals("")){
-            System.out.println(Runner.timelineId);
+            //System.out.println(Runner.timelineId);
             Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
             //get the events on that timeline
             ArrayList<Event> testData = testTimeline.getTimelineEvents();

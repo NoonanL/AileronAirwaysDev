@@ -16,13 +16,13 @@ public class DeleteEventServlet extends HttpServlet{
          */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello I am a post method");
+        //System.out.println("Hello I am a post method");
 
         String eventId = request.getParameter("eventId");
         System.out.println(eventId);
 
         if(!eventId.equals("")) {
-            System.out.println("Deleting event id " + eventId);
+            //System.out.println("Deleting event id " + eventId);
             Event event = Runner.eventRepository.get(eventId);
             Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
             timeline.unLinkEvent(eventId);
@@ -32,7 +32,7 @@ public class DeleteEventServlet extends HttpServlet{
             response.sendRedirect(response.encodeRedirectURL("Events.html"));
         }
         else{
-            System.out.println("eventId = " + eventId + " (probably null...");
+            System.out.println("Failed to delete event with eventId = " + eventId + " (probably null)...");
         }
     }
 

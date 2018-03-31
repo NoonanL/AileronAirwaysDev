@@ -221,7 +221,7 @@ public class Timeline {
     }
 
     public void removeEventFromArray(String eventId){
-        System.out.println(this.timelineEvents);
+        //System.out.println(this.timelineEvents);
         if(!this.timelineEvents.isEmpty()) {
             for (Event event : this.timelineEvents) {
                 if (event.getId().equals(eventId)) {
@@ -229,7 +229,7 @@ public class Timeline {
                     break;
                 }
             }
-            System.out.println(this.timelineEvents);
+            //System.out.println(this.timelineEvents);
         }
     }
      /*

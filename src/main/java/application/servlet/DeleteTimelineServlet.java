@@ -16,10 +16,10 @@ public class DeleteTimelineServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello I am a post method");
+        //System.out.println("Hello I am a post method");
 
         String timelineId = request.getParameter("timelineId");
-        System.out.println(timelineId);
+        //System.out.println(timelineId);
 
         Timeline timeline = Runner.timelineRepository.get(timelineId);
         timeline.deleteTimeline();
