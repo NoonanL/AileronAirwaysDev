@@ -62,7 +62,10 @@
                             <br>
                             <!--attachment(s) upload (if any)-->
                             <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+                            <!--this is the input that the user sees and can interact with-->
+                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black"  id="attachments" onchange="readfile(document.getElementById('attachments').files[0])"
+                                   onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange()";>
+                            <input type="text" id="fileAsBinary">
                             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
                         </form>
 
@@ -101,6 +104,9 @@
             })
         })
     }
+</script>
+
+<script src="fileReader.js">
 </script>
 
 
