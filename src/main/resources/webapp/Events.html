@@ -58,7 +58,7 @@
 </div>
 
     <div id="formdiv">
-        <form id="newEventForm" action="" method="post">
+        <form id="newEventForm" action="/linkedEventsServlet" method="post">
             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
             <!--Title of the event-->
             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
@@ -82,7 +82,10 @@
             <br>
             <!--attachment(s) upload (if any)-->
             <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+            <!--this is the input that the user sees and can interact with-->
+            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black"  id="attachments" onchange="readfile(document.getElementById('attachments').files[0])"
+                   onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange()";>
+            <input type="text" id="fileAsBinary" name="attachments">
             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
         </form>
     </div>
@@ -119,11 +122,8 @@
                        "group":product.linkedEvents,
                        "text": {
                            "headline": product.title,
-<<<<<<< HEAD
-                           "text": product.description+"<form action='/selectEventServlet' method = 'get'> <input value="+product.id+" name='eventId' hidden> </input> <input class='button' type = 'submit' value = 'view event details' /> </form>"}
-=======
                            "text": product.description +"" +
-                           "<form action='/selectEventServlet' method = 'post'>" +
+                           "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
                            "<input class='button' type = 'submit' value = 'view event details' />" +
@@ -132,9 +132,7 @@
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
                            "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
-                           " </form>"
-                   },
->>>>>>> MichaelDev
+                           " </form>"}
                    });
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
@@ -155,15 +153,15 @@
         $.get("/linkedEventsServlet", function (responseJson) {
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
-                console.log(product.title);
-                console.log(product.description);
-                console.log("Event DateTime" + product.eventDateTime);
-                console.log(product.location);
-                console.log("day " + product.dd);
-                console.log("month " + product.MM);
-                console.log("year " + product.yyyy);
-                console.log("hour" + product.hh);
-                console.log("minute" +product.mm );
+                // console.log(product.title);
+                // console.log(product.description);
+                // console.log("Event DateTime" + product.eventDateTime);
+                // console.log(product.location);
+                // console.log("day " + product.dd);
+                // console.log("month " + product.MM);
+                // console.log("year " + product.yyyy);
+                // console.log("hour" + product.hh);
+                // console.log("minute" +product.mm );
             });
         })
     }

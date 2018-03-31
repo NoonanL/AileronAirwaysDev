@@ -30,6 +30,43 @@ public class LinkedEventsServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Hello I am a post method");
+        /*
+
+         */
+        Event newEvent = new Event();
+
+        String title = request.getParameter("title");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String lat = request.getParameter("lat");
+        String lng = request.getParameter("lng");
+        String description = request.getParameter("description");
+        //String selectedTimeline = request.getParameter("selectedTimeline");
+        System.out.println(request.getParameter("attachments"));
+
+        //System.out.println(selectedTimeline);
+        newEvent.setTitle(title);
+        newEvent.setEventDateTime(date + " " + time);
+        System.out.println(date + " " + time);
+        newEvent.setDescription(description);
+        newEvent.setLocation(lat + " " + lng);
+        //System.out.println(newEvent.toString());
+        Runner.eventRepository.add(newEvent);
+        newEvent.createEvent();
+
+//        if(selectedTimeline!=null) {
+            Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+            timeline.addTimelineEvent(newEvent);
+            timeline.linkEvent(newEvent.getId());
+//            //System.out.println(timeline.toString());
+//        }
+//        else{
+//            System.out.println("No timeline selected");
+//        }
+
+        //Runner.timelineId = request.getParameter("selectedTimeline");
+        response.sendRedirect(response.encodeRedirectURL("/Events.html"));
+   // }
     }
 
     /*

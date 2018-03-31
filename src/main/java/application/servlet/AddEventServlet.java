@@ -51,7 +51,7 @@ public class AddEventServlet extends HttpServlet {
             System.out.println("No timeline selected");
         }
 
-        Runner.timelineId = request.getParameter("selectedTimeline");
+        //Runner.timelineId = request.getParameter("selectedTimeline");
         response.sendRedirect(response.encodeRedirectURL("/Events.html"));
     }
 
