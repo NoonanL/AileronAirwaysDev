@@ -108,9 +108,9 @@
                 //build a form tag
                 var deletetimelineForm=$("<form/>",{
                     //fill the form with an action
+                    "class":"confirmRequired",
                     action:"/deleteTimelineServlet",
                     method: "post"
-
                 });
                 //make an invisible input field with the value of the timeline's ID
                 var timelineIDinput=$("<input/>",{
@@ -145,7 +145,7 @@
 </script>
 <script src="nav.js"> </script>
 <script src="modal.js"> </script>
-
+<script src="confirmRequired.js"></script>
 
 
 
