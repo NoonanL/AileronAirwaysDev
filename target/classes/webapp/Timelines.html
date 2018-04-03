@@ -105,29 +105,28 @@
                 timelineForm.append(timelineIDinput);
                 timelineForm.append(timelineButton);
                 // ---------------------ADDING A BUTTON FOR DELETING TIMELINES------------------
-                //build a form tag
+                //build a form tag for deleting timelines
                 var deletetimelineForm=$("<form/>",{
                     //fill the form with an action
                     "class":"confirmRequired",
                     action:"/deleteTimelineServlet",
                     method: "post"
-
                 });
                 //make an invisible input field with the value of the timeline's ID
-                var timelineIDinput=$("<input/>",{
+                var deletetimelineIDinput=$("<input/>",{
                     value:timelineId,
                     name:"timelineId",
                     hidden:""
                 });
                 //make the timeline button with type submit
-                var timelineButton=$("<button/>",{
+                var deletetimelineButton=$("<button/>",{
                     "class":"button",
                     type:"submit",
                     text:"Delete Timeline"
                 });
                 //append the input and button to the form tag
-                timelineForm.append(timelineIDinput);
-                timelineForm.append(timelineButton);
+                deletetimelineForm.append(deletetimelineIDinput);
+                deletetimelineForm.append(deletetimelineButton);
                 //-------------------------------------------------------------
                 //create a list item variable
                 var listItem = $("<dt />", {
