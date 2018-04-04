@@ -27,6 +27,7 @@ public class Attachment {
     private String eventId;
     private String attachmentId;
     private String title;
+    private String type;
 
     /*
     ----------------------------------------------------------------------------------------
@@ -44,6 +45,12 @@ public class Attachment {
         this.eventId = eventId;
         this.attachmentId = UUID.randomUUID().toString();
         this.title = title;
+        this.type = "";
+        if(title.contains(".jpeg") || title.contains(".png")){
+            this.type = "img";
+        }else{
+            this.type = "doc";
+        }
     }
 
     public Attachment(){

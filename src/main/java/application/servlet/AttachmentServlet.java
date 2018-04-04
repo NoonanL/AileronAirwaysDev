@@ -41,8 +41,8 @@ public class AttachmentServlet extends HttpServlet {
         //Get event associated with that Id from repository
         Event event = Runner.eventRepository.get(var);
         //get attachments associated with that event
-        ArrayList<Attachment> testData = event.getAttachments();
 
+        ArrayList<Attachment> testData = event.getAttachments();
         /*
         prepare json array of attachments and return to html.
          */

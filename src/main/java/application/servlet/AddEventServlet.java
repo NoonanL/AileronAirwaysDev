@@ -122,7 +122,9 @@ public class AddEventServlet extends HttpServlet {
                             Attachment attachment = new Attachment(newEvent.getId(),fileName);
                             newEvent.addAttachment(attachment);
                             attachment.createAttachment(filePath.replace("\\","\\\\"));
-                        }else{System.out.println("No file to upload.");}
+                        }else{
+                            System.out.println("No file to upload.");
+                        }
                     }
                 }
             }
