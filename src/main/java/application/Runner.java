@@ -122,6 +122,12 @@ public class Runner {
         DeleteEventServlet deleteEventServlet = new DeleteEventServlet();
         handler.addServlet(new ServletHolder(deleteEventServlet), "/deleteEventServlet");
 
+        /*
+        Servlet to handle deleting attachments
+         */
+        Test test = new Test();
+        handler.addServlet(new ServletHolder(test), "/test");
+
 
         /*
         sets default servlet path.

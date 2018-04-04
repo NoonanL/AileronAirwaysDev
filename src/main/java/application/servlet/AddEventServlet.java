@@ -3,7 +3,6 @@ package application.servlet;
 import application.Runner;
 import application.model.Event;
 import application.model.Timeline;
-import com.google.gson.Gson;
 import util.FileParser;
 
 import javax.servlet.ServletException;
@@ -24,6 +23,7 @@ public class AddEventServlet extends HttpServlet {
         Event newEvent = new Event();
 
         String title = request.getParameter("title");
+        //System.out.println(title);
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String lat = request.getParameter("lat");
@@ -32,14 +32,13 @@ public class AddEventServlet extends HttpServlet {
         String selectedTimeline = request.getParameter("selectedTimeline");
         String attachmentString = request.getParameter("attachments");
         String filename = request.getParameter("filename");
-        System.out.println(attachmentString);
-
+        //System.out.println(attachmentString);
         FileParser fileParser = new FileParser();
         fileParser.fileParser(attachmentString,filename);
         //System.out.println(selectedTimeline);
         newEvent.setTitle(title);
         newEvent.setEventDateTime(date + " " + time);
-        System.out.println(date + " " + time);
+        //System.out.println(date + " " + time);
         newEvent.setDescription(description);
         newEvent.setLocation(lat + " " + lng);
         //System.out.println(newEvent.toString());

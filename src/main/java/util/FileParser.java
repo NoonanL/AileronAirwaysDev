@@ -1,13 +1,11 @@
 package util;
 
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-
+import java.nio.charset.StandardCharsets;
 
 
 public class FileParser {
@@ -17,8 +15,10 @@ public class FileParser {
     public void fileParser(String inputString, String ext) throws IOException {
 
         String fileExtension = ".";
+        //System.out.println(inputString);
+        //System.out.println(ext);
         fileExtension = (fileExtension + ext.substring(ext.lastIndexOf(".") + 1));
-        System.out.println(fileExtension);
+        //System.out.println(fileExtension);
         StringBuffer sbf = new StringBuffer();
         sbf.append(inputString);
         String dest = "new_file" + fileExtension;
@@ -38,31 +38,17 @@ public class FileParser {
             bwr.close();
         }
         else if (fileExtension.equals(".png")){
-            InputStream stream = IOUtils.toInputStream(inputString, "UTF-8");
+            InputStream stream = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+            System.out.println(stream.toString());
             BufferedImage image = ImageIO.read(stream);
-            ImageIO.write(image, "png", new File(dest));
+            ImageIO.write(image, "jpg", new File(dest));
         }
         else if(fileExtension.equals(".jpg")|| fileExtension.equals(".jpeg")){
-            OutputStream outputStream = null;
-            byte [] imageInByteArray = Base64.decodeBase64(
-                    inputString);
-            try {
-                outputStream = new FileOutputStream("new_file.jpeg");
-                outputStream.write(imageInByteArray);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }finally{
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            InputStream stream = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+            System.out.println(stream.toString());
+            BufferedImage image = ImageIO.read(stream);
+            ImageIO.write(image, "jpg", new File(dest));
             }
-
-
-        }
 
 
 

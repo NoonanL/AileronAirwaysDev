@@ -5,19 +5,12 @@ import application.api.CallBuilder;
 import application.api.Get;
 import application.api.Put;
 import util.ParameterStringBuilder;
-
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
-import javax.imageio.stream.ImageOutputStream;
-import javax.print.DocFlavor;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
