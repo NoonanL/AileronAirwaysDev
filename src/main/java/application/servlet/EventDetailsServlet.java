@@ -36,11 +36,11 @@ public class EventDetailsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(Runner.eventId);
+        //System.out.println(Runner.eventId);
 
         //get the event that the id points to
         Event event = Runner.eventRepository.get(Runner.eventId);
-        System.out.println(event.toString());
+        //System.out.println(event.toString());
         //prepare json array of events and return it to html
         String json = new Gson().toJson(event);
         response.setContentType("application/json");
