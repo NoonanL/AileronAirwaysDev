@@ -105,17 +105,6 @@
                 timelineForm.append(timelineIDinput);
                 timelineForm.append(timelineButton);
                 // ---------------------ADDING A BUTTON FOR DELETING TIMELINES------------------
-<<<<<<< HEAD
-                //build a form tag
-                var deletetimelineForm=$("<form/>",{
-                    //fill the form with an action
-                    action:"/deleteTimelineServlet",
-                    method: "post"
-
-                });
-                //make an invisible input field with the value of the timeline's ID
-                var timelineIDinput=$("<input/>",{
-=======
                 //build a form tag for deleting timelines
                 var deletetimelineForm=$("<form/>",{
                     //fill the form with an action
@@ -125,29 +114,21 @@
                 });
                 //make an invisible input field with the value of the timeline's ID
                 var deletetimelineIDinput=$("<input/>",{
->>>>>>> ScottDev
                     value:timelineId,
                     name:"timelineId",
                     hidden:""
                 });
                 //make the timeline button with type submit
-<<<<<<< HEAD
-                var timelineButton=$("<button/>",{
-=======
                 var deletetimelineButton=$("<button/>",{
->>>>>>> ScottDev
                     "class":"button",
                     type:"submit",
                     text:"Delete Timeline"
                 });
                 //append the input and button to the form tag
-<<<<<<< HEAD
-                deletetimelineForm.append(timelineIDinput);
-                deletetimelineForm.append(timelineButton);
-=======
+
                 deletetimelineForm.append(deletetimelineIDinput);
                 deletetimelineForm.append(deletetimelineButton);
->>>>>>> ScottDev
+
                 //-------------------------------------------------------------
                 //create a list item variable
                 var listItem = $("<dt />", {
