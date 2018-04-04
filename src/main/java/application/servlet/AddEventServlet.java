@@ -2,6 +2,7 @@ package application.servlet;
 
 
 import application.Runner;
+import application.model.Attachment;
 import application.model.Event;
 import application.model.Timeline;
 import org.apache.commons.fileupload.FileItem;
@@ -22,7 +23,7 @@ public class AddEventServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\LiamN\\Desktop\\test";
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\uploads";
     private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
@@ -112,6 +113,15 @@ public class AddEventServlet extends HttpServlet {
                             File storeFile = new File(filePath);
                             // saves the file on disk
                             item.write(storeFile);
+
+
+                            /*
+                                CREATE ATTACHMENT AND LINK IT TO EVENT HERE
+                            */
+                            System.out.println(filePath.replace("\\","\\\\"));
+                            Attachment attachment = new Attachment(newEvent.getId(),fileName);
+                            newEvent.addAttachment(attachment);
+                            attachment.createAttachment(filePath.replace("\\","\\\\"));
                         }else{System.out.println("No file to upload.");}
                     }
                 }
@@ -128,6 +138,8 @@ public class AddEventServlet extends HttpServlet {
             //System.out.println(newEvent.toString());
             Runner.eventRepository.add(newEvent);
             newEvent.createEvent();
+
+
 
             if(!selectedTimeline.equals("")) {
                 Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
