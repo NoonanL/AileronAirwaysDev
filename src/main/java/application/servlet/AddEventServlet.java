@@ -1,75 +1,150 @@
 package application.servlet;
 
+
 import application.Runner;
 import application.model.Event;
 import application.model.Timeline;
-import util.FileParser;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 
 public class AddEventServlet extends HttpServlet {
 
-    /*
-        Override function for html POST methods.
-         */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //System.out.println("Hello I am a post method");
+    private static final long serialVersionUID = 1L;
+
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\LiamN\\Desktop\\test";
+    private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+
+
+    /**
+     * handles file upload via HTTP POST method
+     */
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response) throws ServletException, IOException {
+
+
 
         Event newEvent = new Event();
 
-        String title = request.getParameter("title");
-        //System.out.println(title);
-        String date = request.getParameter("date");
-        String time = request.getParameter("time");
-        String lat = request.getParameter("lat");
-        String lng = request.getParameter("lng");
-        String description = request.getParameter("description");
-        String selectedTimeline = request.getParameter("selectedTimeline");
-        String attachmentString = request.getParameter("attachments");
-        String filename = request.getParameter("filename");
-        //System.out.println(attachmentString);
-        FileParser fileParser = new FileParser();
-        fileParser.fileParser(attachmentString,filename);
-        //System.out.println(selectedTimeline);
-        newEvent.setTitle(title);
-        newEvent.setEventDateTime(date + " " + time);
-        //System.out.println(date + " " + time);
-        newEvent.setDescription(description);
-        newEvent.setLocation(lat + " " + lng);
-        //System.out.println(newEvent.toString());
-        Runner.eventRepository.add(newEvent);
-        newEvent.createEvent();
-
-        if(selectedTimeline!=null) {
-            Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
-            timeline.addTimelineEvent(newEvent);
-            timeline.linkEvent(newEvent.getId());
-            //System.out.println(timeline.toString());
-        }
-        else{
-            System.out.println("No timeline selected");
+        // checks if the request actually contains upload file
+        if (!ServletFileUpload.isMultipartContent(request)) {
+            System.out.println("Request does not contain upload data");
+            return;
         }
 
-        //Runner.timelineId = request.getParameter("selectedTimeline");
+        // configures upload settings
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(THRESHOLD_SIZE);
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setFileSizeMax(MAX_FILE_SIZE);
+        upload.setSizeMax(MAX_REQUEST_SIZE);
+
+        // constructs the directory path to store upload file
+        String uploadPath = UPLOAD_DIRECTORY;
+        // creates the directory if it does not exist
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+
+        try {
+            // parses the request's content to extract file data
+            List formItems = upload.parseRequest(request);
+            //System.out.println(formItems.size());
+
+            String title = "";
+            String date = "";
+            String time = "";
+            String lat = "";
+            String lng = "";
+            String description = "";
+            String selectedTimeline = "";
+
+            // iterates over form's fields
+            for (Object formItem : formItems) {
+                FileItem item = (FileItem) formItem;
+                if (item.isFormField()) {
+                    String testString = item.getFieldName();
+                    switch (testString) {
+                        case "title":
+                            title = item.getString();
+                            break;
+                        case "date":
+                            date = item.getString();
+                            break;
+                        case "time":
+                            time = item.getString();
+                            break;
+                        case "lat":
+                            lat = item.getString();
+                            break;
+                        case "lng":
+                            lng = item.getString();
+                            break;
+                        case "description":
+                            description = item.getString();
+                            break;
+                        case "selectedTimeline":
+                            selectedTimeline = item.getString();
+                            break;
+                    }
+                }
+                // processes only fields that are not form fields
+                else {
+                    if (!item.isFormField()) {
+                        String fileName = new File(item.getName()).getName();
+                        String filePath = uploadPath + File.separator + fileName;
+                        if(!fileName.equals("")) {
+                            File storeFile = new File(filePath);
+                            // saves the file on disk
+                            item.write(storeFile);
+                        }else{System.out.println("No file to upload.");}
+                    }
+                }
+            }
+
+
+            //System.out.println("Selected Timeline is: " + selectedTimeline);
+            newEvent.setTitle(title);
+            //System.out.println(title);
+            newEvent.setEventDateTime(date + " " + time);
+            //System.out.println(date + " " + time);
+            newEvent.setDescription(description);
+            newEvent.setLocation(lat + " " + lng);
+            //System.out.println(newEvent.toString());
+            Runner.eventRepository.add(newEvent);
+            newEvent.createEvent();
+
+            if(!selectedTimeline.equals("")) {
+                Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
+                timeline.addTimelineEvent(newEvent);
+                timeline.linkEvent(newEvent.getId());
+                Runner.timelineId = selectedTimeline;
+                //System.out.println(Runner.timelineId);
+            }
+            else{
+                Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+                timeline.addTimelineEvent(newEvent);
+                timeline.linkEvent(newEvent.getId());
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Error, " + ex.getMessage());
+        }
         response.sendRedirect(response.encodeRedirectURL("/Events.html"));
     }
-
-    /*
-    Override function for html GET methods.
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello I am a get method");
-        //String json = null;
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-       // response.getWriter().write(json);
-
-    }
-
 }

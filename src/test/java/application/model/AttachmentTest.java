@@ -14,14 +14,14 @@ public class AttachmentTest
     public void setUp() throws Exception {
     }
 
-    /*@Test
+    /*@AddEventServlet
     public void t10testCreateAttachment() throws Exception {
         Attachment test = new Attachment(
                 "testingId",
                 "b8147090-f83a-492c-a230-9a2fba426e26",
                 "testTitle" );
 
-        System.out.println("Test: Create an Event");
+        System.out.println("AddEventServlet: Create an Event");
         System.out.println("------------------------");
         test.createAttachment();
 
@@ -31,7 +31,7 @@ public class AttachmentTest
     public void t11uploadFile() throws Exception{
         Attachment test = new Attachment();
 
-        System.out.println("Test: Get Linked Events");
+        System.out.println("AddEventServlet: Get Linked Events");
         System.out.println("------------------------");
         test.createAndUploadAttachment("Place the path of the file you want to upload here!");
     }
@@ -40,7 +40,7 @@ public class AttachmentTest
     public void t12downloadfile() throws Exception{
         Attachment test = new Attachment();
 
-        System.out.println("Test: Get Linked Events");
+        System.out.println("AddEventServlet: Get Linked Events");
         System.out.println("------------------------");
         test.downloadAttachment("tokyo.png",
                 "C:\\Users\\Superleon\\Desktop\\tokyodownload.png");
@@ -61,8 +61,8 @@ public class AttachmentTest
     public void t14testCreateAttachment() throws Exception{
         Attachment test = new Attachment(
                 "1932",
-                "Tokyo Test",
-                "Tokyo Test Attach" );
+                "Tokyo AddEventServlet",
+                "Tokyo AddEventServlet Attach" );
 
         test.createAttachment("C:\\Users\\Superleon\\Desktop\\tokyo.png");
 
@@ -78,7 +78,7 @@ public class AttachmentTest
 
     }
 
-////    @Test
+////    @AddEventServlet
 ////    public void t14testDeleteAttachment() throws Exception{
 ////        Attachment test = new Attachment("testingId", "1967", "Hello");
 ////        System.out.println(test);

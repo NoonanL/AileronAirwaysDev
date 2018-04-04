@@ -15,8 +15,8 @@ public class TimelineRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        Timeline timeline01 = new Timeline("testId 01", "Test Title 01");
-        Timeline timeline02 = new Timeline("testId 02", "Test Title 02");
+        Timeline timeline01 = new Timeline("testId 01", "AddEventServlet Title 01");
+        Timeline timeline02 = new Timeline("testId 02", "AddEventServlet Title 02");
         timelineRepository.add(timeline01);
         timelineRepository.add(timeline02);
     }
@@ -28,7 +28,7 @@ public class TimelineRepositoryTest {
 
     @Test
     public void add() throws UnsupportedEncodingException {
-        Timeline timeline03 = new Timeline("testId 03", "Test Title 03");
+        Timeline timeline03 = new Timeline("testId 03", "AddEventServlet Title 03");
         timelineRepository.add(timeline03);
         System.out.println(timelineRepository.getTimelines());
     }
@@ -40,7 +40,7 @@ public class TimelineRepositoryTest {
 
     @Test
     public void remove() throws UnsupportedEncodingException {
-        Timeline timeline03 = new Timeline("testId 03", "Test Title 03");
+        Timeline timeline03 = new Timeline("testId 03", "AddEventServlet Title 03");
         timelineRepository.add(timeline03);
         System.out.println(timelineRepository.getTimelines());
         timelineRepository.remove("testId 03");

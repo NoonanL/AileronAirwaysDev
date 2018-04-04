@@ -9,8 +9,6 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import java.io.UnsupportedEncodingException;
-
 
 public class Runner {
 
@@ -121,13 +119,6 @@ public class Runner {
          */
         DeleteEventServlet deleteEventServlet = new DeleteEventServlet();
         handler.addServlet(new ServletHolder(deleteEventServlet), "/deleteEventServlet");
-
-        /*
-        Servlet to handle deleting attachments
-         */
-        Test test = new Test();
-        handler.addServlet(new ServletHolder(test), "/test");
-
 
         /*
         sets default servlet path.
