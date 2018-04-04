@@ -182,7 +182,7 @@
                 $.each(responseJson, function (index, product) {
                     //this is the object builder
                     //if the file is an image, display it as an image
-                    if product.type="img"{
+                    if (product.type="img"){
                         var eventAttachment = $("<img />", {
                             text: product.title,
                             "class": "imageThumb",

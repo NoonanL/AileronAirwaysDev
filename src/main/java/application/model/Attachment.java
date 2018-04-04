@@ -28,6 +28,7 @@ public class Attachment {
     private String attachmentId;
     private String title;
     private String type;
+    private String href;
 
     /*
     ----------------------------------------------------------------------------------------
@@ -152,7 +153,7 @@ public class Attachment {
             BufferedImage image = ImageIO.read(new File(filepath));
                 ImageIO.write(image, "png", out);
         }
-        else if(filename.contains(".jpg")){
+        else if(filename.contains(".jpg") || filename.contains(".jpeg")){
                 BufferedImage image = ImageIO.read(new File(filepath));
                 ImageIO.write(image, "jpg", out);
             }
@@ -207,7 +208,7 @@ public class Attachment {
             BufferedImage image = ImageIO.read(connection.getInputStream());
             ImageIO.write(image, "png", new File(filePath));
         }
-        else if(filePath.contains(".jpg")){
+        else if(filePath.contains(".jpg") || filePath.contains(".jpeg")){
             BufferedImage image = ImageIO.read(connection.getInputStream());
             ImageIO.write(image, "jpg", new File(filePath));
         }
@@ -251,6 +252,13 @@ public class Attachment {
         this.title = title.replaceAll("\"","").replaceAll("\\+", " ");
     }
 
+    public void setHref(String href){
+        this.href = href;
+    }
+
+    public String getHref(){
+        return this.href;
+    }
 
 
     /*

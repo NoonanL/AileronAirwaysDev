@@ -37,12 +37,18 @@ public class AttachmentServlet extends HttpServlet {
         /*
         Get eventId parameter from html request.
          */
-        String var = request.getParameter("eventId");
+        //String var = request.getParameter("eventId");
         //Get event associated with that Id from repository
-        Event event = Runner.eventRepository.get(var);
+        Event event = Runner.eventRepository.get(Runner.eventId);
         //get attachments associated with that event
 
         ArrayList<Attachment> testData = event.getAttachments();
+
+        for(Attachment a : testData){
+            a.downloadAttachment(a.getTitle(),"C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads");
+            a.setHref("C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + a.getTitle());
+            //System.out.println(a.getHref());
+        }
         /*
         prepare json array of attachments and return to html.
          */
