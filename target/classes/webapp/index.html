@@ -20,7 +20,7 @@
                 </div>
                 <div class="row">
 
-                        <form style="text-align: center" action="/searchTimelinesServlet">
+                        <form class="confirmRequired" style="text-align: center" action="/searchTimelinesServlet">
                             <input type="text" placeholder="Search.." name="searchBox">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -62,7 +62,10 @@
                             <br>
                             <!--attachment(s) upload (if any)-->
                             <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+                            <!--this is the input that the user sees and can interact with-->
+                            <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black"  id="attachments" onchange="readfile(document.getElementById('attachments').files[0])"
+                                   onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange()";>
+                            <input type="text" id="fileAsBinary">
                             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
                         </form>
 
@@ -101,6 +104,23 @@
             })
         })
     }
+</script>
+
+<script src="fileReader.js">
+</script>
+
+<script>
+    //script to limit the size of an input box
+    var uploadField = document.getElementById("attachments");
+    uploadField.onchange = function() {
+        //if the file is larger than 2MB
+        if(this.files[0].size > 2097152){
+            //tell the user its too big
+            alert("File is too big!");
+            //reset the inputbox value
+            this.value = "";
+        };
+    };
 </script>
 
 
