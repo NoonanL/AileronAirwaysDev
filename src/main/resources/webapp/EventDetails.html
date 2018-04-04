@@ -77,14 +77,24 @@
     var sampleEventDateTime="";
     var sampleDescription="";
     var sampleLocation="";
+    var yyyy="";
+    var MM="";
+    var dd="";
+    var hh="";
+    var mm="";
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
     $.get("/eventDetailsServlet", function (responseJson) {
         console.log("got here");
         //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             console.log(responseJson.title);
             sampleEventTitle=responseJson.title;
-            console.log(responseJson.dateTime);
-            sampleEventDateTime=responseJson.dateTime;
+            //console.log(responseJson.eventDateTime);
+            yyyy=responseJson.yyyy;
+            MM=responseJson.MM;
+            dd=responseJson.dd;
+            hh=responseJson.hh;
+            mm=responseJson.mm;
+            sampleEventDateTime = (yyyy + "/" + MM + "/" + dd + " " + hh + ":" + mm);
             console.log(responseJson.description);
             sampleDescription=responseJson.description;
             console.log("here the the response from the servlet"+ responseJson.location);

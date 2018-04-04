@@ -19,7 +19,7 @@ public class DeleteEventServlet extends HttpServlet{
         //System.out.println("Hello I am a post method");
 
         String eventId = request.getParameter("eventId");
-        System.out.println(eventId);
+        //System.out.println(eventId);
 
         if(!eventId.equals("")) {
             //System.out.println("Deleting event id " + eventId);

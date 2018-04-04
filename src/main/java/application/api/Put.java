@@ -86,8 +86,8 @@ public class Put {
             //get server response code and message
             int status = con.getResponseCode();
             String response = con.getResponseMessage();
-            System.out.println(status);
-            System.out.println(response);
+            //System.out.println(status);
+            //System.out.println(response);
 
             //disconnect from server
             con.disconnect();
