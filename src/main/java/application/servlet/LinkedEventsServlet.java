@@ -54,19 +54,12 @@ public class LinkedEventsServlet extends HttpServlet{
         Runner.eventRepository.add(newEvent);
         newEvent.createEvent();
 
-//        if(selectedTimeline!=null) {
-            Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
-            timeline.addTimelineEvent(newEvent);
-            timeline.linkEvent(newEvent.getId());
-//            //System.out.println(timeline.toString());
-//        }
-//        else{
-//            System.out.println("No timeline selected");
-//        }
+        Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+        timeline.addTimelineEvent(newEvent);
+        timeline.linkEvent(newEvent.getId());
 
-        //Runner.timelineId = request.getParameter("selectedTimeline");
         response.sendRedirect(response.encodeRedirectURL("/Events.html"));
-   // }
+
     }
 
     /*

@@ -34,28 +34,30 @@ public class AttachmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("I'm a get method");
         /*
         Get eventId parameter from html request.
          */
-        //String var = request.getParameter("eventId");
-        //Get event associated with that Id from repository
-        Event event = Runner.eventRepository.get(Runner.eventId);
+        //Event event = Runner.eventRepository.get(Runner.eventId);
         //get attachments associated with that event
 
-        ArrayList<Attachment> testData = event.getAttachments();
-
-        for(Attachment a : testData){
-            a.downloadAttachment(a.getTitle(),"C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads");
-            a.setHref("C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + a.getTitle());
-            //System.out.println(a.getHref());
-        }
+        //ArrayList<Attachment> testData = event.getAttachments();
+//        for(Attachment a : testData){
+//            //System.out.println(a.getTitle());
+//            String title = a.getTitle();
+//            Attachment test = new Attachment();
+//            String filepath = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title;
+//            test.downloadAttachment(title, filepath);
+//            a.setHref("C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title);
+//            System.out.println(a.getHref());
+//        }
         /*
         prepare json array of attachments and return to html.
          */
-        String json = new Gson().toJson(testData);
+        //String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+       //response.getWriter().write(json);
 
     }
 

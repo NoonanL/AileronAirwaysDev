@@ -33,7 +33,7 @@ public class AttachmentTest
 
         System.out.println("AddEventServlet: Get Linked Events");
         System.out.println("------------------------");
-        test.createAndUploadAttachment("Place the path of the file you want to upload here!");
+        test.createAndUploadAttachment("C:\\Users\\LiamN\\Desktop\\Lake_mapourika_NZ.jpeg");
     }
 
     @Test
@@ -42,8 +42,8 @@ public class AttachmentTest
 
         System.out.println("AddEventServlet: Get Linked Events");
         System.out.println("------------------------");
-        test.downloadAttachment("tokyo.png",
-                "C:\\Users\\Superleon\\Desktop\\tokyodownload.png");
+        test.downloadAttachment("Lake_mapourika_NZ.jpeg",
+                "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\Lake_mapourika_NZ.jpeg");
     }
 
     @Test
