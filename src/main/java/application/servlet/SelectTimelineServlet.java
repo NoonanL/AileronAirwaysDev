@@ -31,6 +31,7 @@ Override function for html POST methods.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
         Runner.timelineId = request.getParameter("timelineId");
+        Runner.attachmentRepository.cleanUpFiles();
         //get the timeline that the id points to
         if(!Runner.timelineId.equals("")){
             //System.out.println(Runner.timelineId);
@@ -44,11 +45,11 @@ Override function for html POST methods.
                 for (Attachment a : testData) {
                     //System.out.println(a.getTitle());
                     String title = a.getTitle();
-                    Attachment test = new Attachment();
+                    //Attachment test = new Attachment();
                     String filepath = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title;
-                    test.downloadAttachment(title, filepath);
-                    a.setHref("C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title);
-                    System.out.println(a.getHref());
+                    a.setHref(filepath);
+                    a.downloadAttachment(title, filepath);
+                    //System.out.println(a.getHref());
                 }
             }
         }else {

@@ -1,6 +1,8 @@
 package application.repositories;
 
 import application.model.Attachment;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -37,6 +39,19 @@ public class AttachmentRepository {
         Predicate<Attachment> predicate = e->e.getId().equals(id);
         this.objects.removeIf(predicate);
 
+    }
+
+    public void cleanUpFiles(){
+        for(Attachment object : objects) {
+            if (object.getHref() != null) {
+                File file = new File(object.getHref());
+                if (file.delete()) {
+                    System.out.println("File " + object.getHref() + " deleted successfully.");
+                } else {
+                    System.out.println("File " + object.getHref() + " failed to delete.");
+                }
+            }
+        }
     }
 
     @Override

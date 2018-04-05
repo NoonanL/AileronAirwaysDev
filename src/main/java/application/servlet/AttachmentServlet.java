@@ -38,11 +38,11 @@ public class AttachmentServlet extends HttpServlet {
         /*
         Get eventId parameter from html request.
          */
-        //Event event = Runner.eventRepository.get(Runner.eventId);
+        Event event = Runner.eventRepository.get(Runner.eventId);
         //get attachments associated with that event
 
-        //ArrayList<Attachment> testData = event.getAttachments();
-//        for(Attachment a : testData){
+        ArrayList<Attachment> testData = event.getAttachments();
+        //for(Attachment a : testData){
 //            //System.out.println(a.getTitle());
 //            String title = a.getTitle();
 //            Attachment test = new Attachment();
@@ -54,10 +54,10 @@ public class AttachmentServlet extends HttpServlet {
         /*
         prepare json array of attachments and return to html.
          */
-        //String json = new Gson().toJson(testData);
+        String json = new Gson().toJson(testData);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-       //response.getWriter().write(json);
+        response.getWriter().write(json);
 
     }
 
