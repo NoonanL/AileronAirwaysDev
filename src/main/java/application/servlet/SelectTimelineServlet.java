@@ -38,7 +38,7 @@ Override function for html POST methods.
             Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
             //get the events on that timeline
             ArrayList<Event> events = testTimeline.getTimelineEvents();
-
+            System.out.println(getServletContext().getRealPath("/SelectTimelineServlet"));
             for(Event e : events) {
                 ArrayList<Attachment> testData = e.getAttachments();
                 //System.out.println(testData.toString());
