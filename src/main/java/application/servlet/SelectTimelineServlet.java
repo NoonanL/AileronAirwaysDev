@@ -46,7 +46,7 @@ Override function for html POST methods.
                     //System.out.println(a.getTitle());
                     String title = a.getTitle();
                     //Attachment test = new Attachment();
-                    String filepath = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title;
+                    String filepath = Runner.hardcodedDownloadsDirectory + title;
                     a.setHref(filepath);
                     a.downloadAttachment(title, filepath);
                     //System.out.println(a.getHref());

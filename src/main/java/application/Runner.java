@@ -31,6 +31,7 @@ public class Runner {
     public static String timelineId;
     public static String eventId;
     public static String searchTimelines;
+    public static String hardcodedDownloadsDirectory;
 
     private void start() throws Exception {
         Server server = new Server(PORT);
@@ -41,6 +42,7 @@ public class Runner {
         timelineId = "";
         eventId = "";
         searchTimelines=null;
+        hardcodedDownloadsDirectory = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\src\\main\\resources\\webapp\\images\\downloads\\";
 
         /*
         servlet handler controls the context, ie where web resources are located.

@@ -34,7 +34,7 @@ public class AttachmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("I'm a get method");
+        //System.out.println("I'm a get method");
         /*
         Get eventId parameter from html request.
          */
