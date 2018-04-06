@@ -30,7 +30,11 @@ Override function for html POST methods.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
+
+        if(request.getParameter("timelineId") != null){
         Runner.timelineId = request.getParameter("timelineId");
+        }
+
         Runner.attachmentRepository.cleanUpFiles();
         //get the timeline that the id points to
         if(!Runner.timelineId.equals("")){

@@ -42,15 +42,7 @@ public class AttachmentServlet extends HttpServlet {
         //get attachments associated with that event
 
         ArrayList<Attachment> testData = event.getAttachments();
-        //for(Attachment a : testData){
-//            //System.out.println(a.getTitle());
-//            String title = a.getTitle();
-//            Attachment test = new Attachment();
-//            String filepath = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title;
-//            test.downloadAttachment(title, filepath);
-//            a.setHref("C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\downloads\\" + title);
-//            System.out.println(a.getHref());
-//        }
+
         /*
         prepare json array of attachments and return to html.
          */

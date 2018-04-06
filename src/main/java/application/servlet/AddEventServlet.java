@@ -23,7 +23,7 @@ public class AddEventServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\LiamN\\Dropbox\\AileronAirwaysDev\\uploads";
+    private static final String UPLOAD_DIRECTORY = "src\\main\\resources\\webapp\\images\\uploads";
     private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
@@ -101,6 +101,7 @@ public class AddEventServlet extends HttpServlet {
                             break;
                         case "selectedTimeline":
                             selectedTimeline = item.getString();
+                            //Runner.timelineId = selectedTimeline;
                             break;
                     }
                 }
@@ -122,6 +123,13 @@ public class AddEventServlet extends HttpServlet {
                             Attachment attachment = new Attachment(newEvent.getId(),fileName);
                             newEvent.addAttachment(attachment);
                             attachment.createAttachment(filePath.replace("\\","\\\\"));
+                                File file = new File(filePath.replace("\\","\\\\"));
+                                if (file.delete()) {
+                                    System.out.println("File " + filePath.replace("\\","\\\\") + " deleted successfully.");
+                                } else {
+                                    System.out.println("File " + filePath.replace("\\","\\\\") + " failed to delete.");
+                                }
+
                         }else{
                             System.out.println("No file to upload.");
                         }
@@ -144,13 +152,15 @@ public class AddEventServlet extends HttpServlet {
 
 
             if(!selectedTimeline.equals("")) {
+                Runner.timelineId = selectedTimeline;
                 Timeline timeline = Runner.timelineRepository.get(selectedTimeline);
                 timeline.addTimelineEvent(newEvent);
                 timeline.linkEvent(newEvent.getId());
-                Runner.timelineId = selectedTimeline;
+                //Runner.timelineId = selectedTimeline;
                 //System.out.println(Runner.timelineId);
             }
             else{
+                //Runner.timelineId = selectedTimeline;
                 Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
                 timeline.addTimelineEvent(newEvent);
                 timeline.linkEvent(newEvent.getId());
@@ -159,6 +169,7 @@ public class AddEventServlet extends HttpServlet {
         } catch (Exception ex) {
             System.out.println("Error, " + ex.getMessage());
         }
-        response.sendRedirect(response.encodeRedirectURL("/Events.html"));
+
+        response.sendRedirect(response.encodeRedirectURL("/selectTimelineServlet"));
     }
 }
