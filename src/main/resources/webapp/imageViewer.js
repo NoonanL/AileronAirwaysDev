@@ -14,13 +14,9 @@ $(document).on('click','.imageThumb',function(){
     //get the source of the image clicked on
     var imageSrc=$(this).attr("src");
     console.log(imageSrc);
-    //imageSrc = '"'+imageSrc+'"';
-    //imageSrc = imageSrc.substring(21);
-
-    //get the img tag within the modal
-    //var largeImage = document.getElementById("largeImage");
-    //set the source of the image tag in the modal to be identical to that of the thumb
+    //set the LargeImage src to the imagesrc
     $("#largeImage").attr("src", imageSrc);
+    //open the modal
     picmodal.style.display = "block";
 });
 
@@ -37,7 +33,7 @@ picspan.onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target == picmodal) {
         picmodal.style.display = "none";
     }
 };
