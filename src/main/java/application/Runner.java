@@ -42,7 +42,9 @@ public class Runner {
         timelineId = "";
         eventId = "";
         searchTimelines=null;
+
         hardcodedDownloadsDirectory = "src\\main\\resources\\webapp\\images\\downloads\\";
+
 
         /*
         servlet handler controls the context, ie where web resources are located.
