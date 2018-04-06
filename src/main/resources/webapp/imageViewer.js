@@ -1,9 +1,6 @@
 // Get the modal
 var picmodal = document.getElementById('picModal');
 
-// Get the button that opens the modal
-var picbtn = document.getElementsByClassName("imageThumb");
-
 // Get the <span> element that closes the modal
 var picspan = document.getElementsByClassName("close")[0];
 
@@ -19,12 +16,7 @@ $(document).on('click','.imageThumb',function(){
     //open the modal
     picmodal.style.display = "block";
 });
-
-
-
-
 //see https://stackoverflow.com/questions/5563783/jquery-class-click-multiple-elements-click-event-once
-
 
 // When the user clicks on <span> (x), close the modal
 picspan.onclick = function() {
