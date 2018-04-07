@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class LinkedEventsServletTest {
+public class EventsServletTest {
 
     @Before
     public void setUp() throws Exception {

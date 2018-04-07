@@ -83,8 +83,8 @@ public class Runner {
          /*
         Servlet to handle Linked Events
          */
-        LinkedEventsServlet linkedEventsServlet = new LinkedEventsServlet();
-        handler.addServlet(new ServletHolder(linkedEventsServlet), "/linkedEventsServlet");
+        EventsServlet eventsServlet = new EventsServlet();
+        handler.addServlet(new ServletHolder(eventsServlet), "/eventsServlet");
 
         /*
         Servlet to handle Attachments

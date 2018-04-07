@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LinkedEventsServlet extends HttpServlet{
+public class EventsServlet extends HttpServlet{
 
     /*
     constructor for servlet
      */
-    public LinkedEventsServlet(){    }
+    public EventsServlet(){    }
 
 
 

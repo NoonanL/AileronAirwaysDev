@@ -46,10 +46,13 @@ public class AttachmentRepository {
             if (object.getHref() != null) {
                 //System.out.println(object.getHref());
                 File file = new File(object.getHref());
-                if (file.delete()) {
-                    System.out.println("File " + object.getHref() + " deleted successfully.");
-                } else {
-                    System.out.println("File " + object.getHref() + " failed to delete.");
+                if(file.exists()){
+                    file.delete();
+//                if (file.delete()) {
+//                    System.out.println("File " + object.getHref() + " deleted successfully.");
+//                } else {
+//                    System.out.println("File " + object.getHref() + " failed to delete.");
+//                }
                 }
             }
         }
