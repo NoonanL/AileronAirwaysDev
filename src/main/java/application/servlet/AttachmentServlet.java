@@ -38,9 +38,10 @@ public class AttachmentServlet extends HttpServlet {
         /*
         Get eventId parameter from html request.
          */
-        Event event = Runner.eventRepository.get(Runner.eventId);
-        //get attachments associated with that event
-
+//        Event event = Runner.eventRepository.get(Runner.eventId);
+//        //get attachments associated with that event
+        Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+        Event event = timeline.getTimelineEvent(Runner.eventId);
         ArrayList<Attachment> testData = event.getAttachments();
 
         /*

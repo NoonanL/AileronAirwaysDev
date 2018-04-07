@@ -22,13 +22,18 @@ public class DeleteEventServlet extends HttpServlet{
         //System.out.println(eventId);
 
         if(!eventId.equals("")) {
-            //System.out.println("Deleting event id " + eventId);
-            Event event = Runner.eventRepository.get(eventId);
             Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+            Runner.timelineRepository.remove(Runner.timelineId);
             timeline.unLinkEvent(eventId);
             timeline.removeEventFromArray(eventId);
-            event.deleteEvent();
-            Runner.eventRepository.remove(eventId);
+            Runner.timelineRepository.add(timeline);
+            //System.out.println("Deleting event id " + eventId);
+            //Event event = Runner.eventRepository.get(eventId);
+            //Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+            //timeline.unLinkEvent(eventId);
+            //timeline.removeEventFromArray(eventId);
+            //event.deleteEvent();
+            //Runner.eventRepository.remove(eventId);
             response.sendRedirect(response.encodeRedirectURL("Events.html"));
         }
         else{

@@ -243,4 +243,23 @@ public class Timeline {
         String str = "\n{" + this.id + ", " + this.title + ", " + this.timelineEvents + ", " + this.dateTime + "}";
         return str;
     }
+
+    public Event getTimelineEvent(String eventId) {
+        for (Event event : this.timelineEvents)
+            if(event.getId().equals(eventId)){
+                return event;
+            }
+        return null;
+    }
+
+    public void removeEventAttachment(String eventId, String attachmentId) throws UnsupportedEncodingException {
+        for (Event e : timelineEvents) {
+            if (e.getId().equals(eventId)) {
+                e.removeAttachment(attachmentId);
+            }
+        }
+
+    }
+
+
 }

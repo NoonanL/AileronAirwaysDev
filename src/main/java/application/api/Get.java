@@ -118,18 +118,30 @@ public class Get {
                                             eventId = temp2.get(events).toString();
                                             event.setLinkedEvents(eventId);
                                         }
+                                        //System.out.println("got here");
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
+                                        //System.out.println(event.toString());
+
+
                                         for (int attach = 0; attach < temp3.size(); attach++) {
+
                                             Attachment attachment = new Attachment();
                                             JsonObject attachmentObject = (JsonObject) temp3.get(attach);
+                                            //System.out.println(attachmentObject.get("Id").toString());
                                             attachment.setAttachmentId(attachmentObject.get("Id").toString());
+                                            //System.out.println(attachmentObject.get("TimelineEventId").toString());
                                             attachment.seteventId(attachmentObject.get("TimelineEventId").toString());
+                                            //System.out.println(attachmentObject.get("Title").toString());
                                             attachment.setTitle(attachmentObject.get("Title").toString());
-                                            event.addAttachment(attachment);
-                                            Runner.attachmentRepository.add(attachment);
+                                            //System.out.println("got here");
+                                            //System.out.println(attachmentObject.get("IsDeleted").toString());
+                                            if (attachmentObject.get("IsDeleted").toString().equals("false")) {
+                                                event.addAttachment(attachment);
+                                                Runner.attachmentRepository.add(attachment);
+                                            }//System.out.println(attachment.toString());
                                         }
                                         timeline.addTimelineEvent(event);
-                                        Runner.eventRepository.add(event);
+                                        //Runner.eventRepository.add(event);
                                     }
                                     Runner.timelineRepository.add(timeline);
                                 }

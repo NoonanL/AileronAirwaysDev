@@ -52,6 +52,7 @@ public class Attachment {
         }else{
             this.type = "doc";
         }
+        this.href = "src\\main\\resources\\webapp\\images\\downloads\\" + title;
     }
 
     public Attachment(){
@@ -161,7 +162,7 @@ public class Attachment {
         }catch (Exception e ){System.out.println(e);}
         out.close();
         int responseCode = connection.getResponseCode();
-        System.out.println("Service returned response code " + responseCode);
+        //System.out.println("Service returned response code " + responseCode);
     }
 
 
@@ -177,8 +178,9 @@ public class Attachment {
 
 
     public void deleteAttachment(String Id) throws UnsupportedEncodingException {
-        this.attachmentId = Id;
+        //this.attachmentId = Id;
         Map<String, String> attachmap = buildMap();
+        attachmap.put("AttachmentId", Id);
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(attachmap);
         //call the Put class method which requires the path (which api call you're executing and the postData itself
@@ -196,7 +198,7 @@ public class Attachment {
         //Checks for filetype of the new path some error checking might be good here for conflicting types
         if (filePath.contains(".doc")) {
             BufferedReader in = Put.getBufferedReader(connection.getResponseCode(), connection.getInputStream(), connection.getErrorStream());
-            System.out.println(connection.getInputStream().read());
+            //System.out.println(connection.getInputStream().read());
             PrintWriter writer = new PrintWriter(filePath);
             String inputLine;
             while ((inputLine = in.readLine()) != null)
@@ -253,6 +255,7 @@ public class Attachment {
     //set title
     public void setTitle(String title){
         this.title = title.replaceAll("\"","").replaceAll("\\+", " ");
+        this.href = "src\\main\\resources\\webapp\\images\\downloads\\" + this.title;
     }
 
     public void setHref(String href){

@@ -39,7 +39,8 @@ public class EventDetailsServlet extends HttpServlet{
         //System.out.println(Runner.eventId);
 
         //get the event that the id points to
-        Event event = Runner.eventRepository.get(Runner.eventId);
+        Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
+        Event event = timeline.getTimelineEvent(Runner.eventId);
         //System.out.println(event.toString());
         //prepare json array of events and return it to html
         String json = new Gson().toJson(event);

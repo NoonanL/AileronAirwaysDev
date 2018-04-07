@@ -2,6 +2,7 @@ package application.servlet;
 
 import application.Runner;
 import application.model.Timeline;
+import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
 import com.google.gson.Gson;
@@ -33,6 +34,8 @@ public class TimelineRegisterServlet extends HttpServlet{
          */
         Runner.timelineRepository = new TimelineRepository();
         Runner.eventRepository = new EventRepository();
+        Runner.attachmentRepository.cleanUpFiles();
+        Runner.attachmentRepository = new AttachmentRepository();
         Runner.timelineRepository.getAllTimelinesAndEvents();
         //System.out.println(timeline.toString());
         response.sendRedirect(response.encodeRedirectURL("Timelines.html"));
@@ -46,7 +49,7 @@ public class TimelineRegisterServlet extends HttpServlet{
         //System.out.println("Hello I am a get method");
         String json;
 
-
+        Runner.attachmentRepository.cleanUpFiles();
         if(Runner.searchTimelines != null){
             SearchFunction s = new SearchFunction("Timeline",Runner.searchTimelines);
             json = s.SearchFunction();

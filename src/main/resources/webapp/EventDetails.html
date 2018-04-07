@@ -220,9 +220,10 @@
                         method: "post"
                     });
                     //make an invisible input field with the value of the attatchment's ID
+                    console.log(product.id);
                     var deleteattatchmentIDinput=$("<input/>",{
-                        value:product.id,
-                        name:"attatchmentId",
+                        value:product.attachmentId,
+                        name:"attachmentId",
                         hidden:""
                     });
                     //make the attatchment button with type submit

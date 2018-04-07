@@ -42,12 +42,12 @@ Override function for html POST methods.
             Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
             //get the events on that timeline
             ArrayList<Event> events = testTimeline.getTimelineEvents();
-            System.out.println(getServletContext().getRealPath("/SelectTimelineServlet"));
+            //System.out.println(getServletContext().getRealPath("/SelectTimelineServlet"));
             for(Event e : events) {
                 ArrayList<Attachment> testData = e.getAttachments();
                 //System.out.println(testData.toString());
                 for (Attachment a : testData) {
-                    //System.out.println(a.getTitle());
+                    System.out.println(a.getAttachmentId());
                     String title = a.getTitle();
                     //Attachment test = new Attachment();
                     String filepath = Runner.hardcodedDownloadsDirectory + title;

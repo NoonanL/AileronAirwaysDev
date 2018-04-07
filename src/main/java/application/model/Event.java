@@ -8,6 +8,7 @@ import util.ParameterStringBuilder;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Event {
 
@@ -47,7 +48,7 @@ public class Event {
         this.location = location;
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
-        attachments = new ArrayList<>();
+        //attachments = new ArrayList<>();
     }
 
     public Event(String title, String description, String eventDateTime, String location) {
@@ -58,7 +59,7 @@ public class Event {
         this.location = location;
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
-        linkedEvents = new ArrayList<>();
+        //linkedEvents = new ArrayList<>();
     }
 
     public Event(){
@@ -71,7 +72,7 @@ public class Event {
         this.location = "";
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
-        linkedEvents = new ArrayList<>();
+        //linkedEvents = new ArrayList<>();
     }
 
     /*
@@ -283,6 +284,24 @@ public class Event {
         this.attachments = attachments;
     }
 
+    public void removeAttachment(String attachmentId) throws UnsupportedEncodingException {
+        if(!attachmentId.equals("")){
+            deleteAttachmentFromApi(attachmentId);
+            Predicate<Attachment> predicate = e->e.getAttachmentId().equals(attachmentId);
+            this.attachments.removeIf(predicate);
+            System.out.println("Removed attachment " + attachmentId + " from event");
+        }
+    }
+
+    private void deleteAttachmentFromApi(String attachmentId) throws UnsupportedEncodingException {
+//        for(Attachment a : this.attachments){
+//            if(a.getId().equals(attachmentId)){
+//                a.deleteAttachment(attachmentId);
+//
+//        }
+        Attachment a = new Attachment();
+        a.deleteAttachment(attachmentId);
+    }
      /*
     ----------------------------------------------------------------------------------------
     Overrides

@@ -23,7 +23,7 @@ public class AddEventServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String UPLOAD_DIRECTORY = "src\\main\\resources\\webapp\\images\\uploads";
+    private static final String UPLOAD_DIRECTORY = "src\\main\\resources\\webapp\\images\\downloads";
     private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
@@ -119,16 +119,11 @@ public class AddEventServlet extends HttpServlet {
                             /*
                                 CREATE ATTACHMENT AND LINK IT TO EVENT HERE
                             */
-                            System.out.println(filePath.replace("\\","\\\\"));
+                            //System.out.println(filePath.replace("\\","\\\\"));
                             Attachment attachment = new Attachment(newEvent.getId(),fileName);
                             newEvent.addAttachment(attachment);
                             attachment.createAttachment(filePath.replace("\\","\\\\"));
-                                File file = new File(filePath.replace("\\","\\\\"));
-                                if (file.delete()) {
-                                    System.out.println("File " + filePath.replace("\\","\\\\") + " deleted successfully.");
-                                } else {
-                                    System.out.println("File " + filePath.replace("\\","\\\\") + " failed to delete.");
-                                }
+                            //Runner.attachmentRepository.add(attachment);
 
                         }else{
                             System.out.println("No file to upload.");
@@ -146,7 +141,7 @@ public class AddEventServlet extends HttpServlet {
             newEvent.setDescription(description);
             newEvent.setLocation(lat + " " + lng);
             //System.out.println(newEvent.toString());
-            Runner.eventRepository.add(newEvent);
+            //Runner.eventRepository.add(newEvent);
             newEvent.createEvent();
 
 

@@ -36,13 +36,11 @@ public class Runner {
     private void start() throws Exception {
         Server server = new Server(PORT);
 
-
         //Run get Timelines and Events to populate both timeline and event repositories
         timelineRepository.getAllTimelinesAndEvents();
         timelineId = "";
         eventId = "";
         searchTimelines=null;
-
         hardcodedDownloadsDirectory = "src\\main\\resources\\webapp\\images\\downloads\\";
 
 
