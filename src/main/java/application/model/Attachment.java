@@ -47,9 +47,10 @@ public class Attachment {
         this.title = title;
     }
 
-    public Attachment(String eventId, String title){
+    public Attachment(String eventId, String filepath){
         this.eventId = eventId;
         this.attachmentId = UUID.randomUUID().toString();
+        String title = (new File(filepath)).getName();
         this.title = title;
     }
 

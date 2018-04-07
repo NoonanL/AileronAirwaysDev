@@ -51,8 +51,21 @@ public class TimelineRepositoryTest {
     @Test
     public void getAPITimelines() throws UnsupportedEncodingException {
         Runner.timelineRepository.getAPITimelines();
+
         System.out.println(Runner.timelineRepository.toString());
     }
+
+//    @Test
+//    public void wipeTimeline() throws UnsupportedEncodingException {
+//        Runner.timelineRepository.getAPITimelines();
+//        for (Timeline timeline: Runner.timelineRepository.getTimelines()
+//                ) {
+//            System.out.println(timeline.getId());
+//            System.out.println("Deleted");
+//            timeline.deleteTimeline();
+//        }
+//        System.out.println(Runner.eventRepository.toString());
+//    }
 
     @Test
     public void getAllTimelinesAndEvents() throws UnsupportedEncodingException {

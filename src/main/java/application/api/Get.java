@@ -99,40 +99,46 @@ public class Get {
                                 JsonArray temp = (JsonArray) timelineFromGson.get("Timelines");
                                 for (int i = 0; i < temp.size(); i++) {
                                     JsonObject timelinesFromJson = (JsonObject) temp.get(i);
-                                    Timeline timeline = new Timeline();
-                                    timeline.setCreationTimeStamp(timelinesFromJson.get("CreationTimeStamp").toString());
-                                    timeline.setTitle(timelinesFromJson.get("Title").toString());
-                                    timeline.setId(timelinesFromJson.get("Id").toString());
-                                    JsonArray temp1 = (JsonArray) timelinesFromJson.get("TimelineEvents");
-                                    for (int x = 0; x < temp1.size(); x++) {
-                                        Event event = new Event();
-                                        JsonObject jsonObject2 = (JsonObject) temp1.get(x);
-                                        event.setTitle(jsonObject2.get("Title").toString());
-                                        event.setEventDateTime(jsonObject2.get("EventDateTime").toString());
-                                        event.setDescription(jsonObject2.get("Description").toString());
-                                        event.setLocation(jsonObject2.get("Location").toString());
-                                        event.setId(jsonObject2.get("Id").toString());
-                                        JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
-                                        String eventId;
-                                        for (int events = 0; events < temp2.size(); events++) {
-                                            eventId = temp2.get(events).toString();
-                                            event.setLinkedEvents(eventId);
+                                    if (timelinesFromJson.get("IsDeleted").getAsBoolean() == false) {
+                                        Timeline timeline = new Timeline();
+                                        //System.out.println("Timeline" + timelinesFromJson.get("IsDeleted").toString());
+                                        timeline.setCreationTimeStamp(timelinesFromJson.get("CreationTimeStamp").toString());
+                                        timeline.setTitle(timelinesFromJson.get("Title").toString());
+                                        timeline.setId(timelinesFromJson.get("Id").toString());
+                                        JsonArray temp1 = (JsonArray) timelinesFromJson.get("TimelineEvents");
+                                        for (int x = 0; x < temp1.size(); x++) {
+                                            Event event = new Event();
+                                            JsonObject jsonObject2 = (JsonObject) temp1.get(x);
+                                            //System.out.println("Event" + jsonObject2.get("IsDeleted").toString());
+                                            if(jsonObject2.get("IsDeleted").getAsBoolean() == false){
+                                            event.setTitle(jsonObject2.get("Title").toString());
+                                            event.setEventDateTime(jsonObject2.get("EventDateTime").toString());
+                                            event.setDescription(jsonObject2.get("Description").toString());
+                                            event.setLocation(jsonObject2.get("Location").toString());
+                                            event.setId(jsonObject2.get("Id").toString());
+                                            JsonArray temp2 = (JsonArray) jsonObject2.get("LinkedTimelineEventIds");
+                                            String eventId;
+                                            for (int events = 0; events < temp2.size(); events++) {
+                                                eventId = temp2.get(events).toString();
+                                                event.setLinkedEvents(eventId);
+                                            }
+                                            JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
+                                            for (int attach = 0; attach < temp3.size(); attach++) {
+                                                Attachment attachment = new Attachment();
+                                                JsonObject attachmentObject = (JsonObject) temp3.get(attach);
+                                                attachment.setAttachmentId(attachmentObject.get("Id").toString());
+                                                attachment.seteventId(attachmentObject.get("TimelineEventId").toString());
+                                                attachment.setTitle(attachmentObject.get("Title").toString());
+                                                event.addAttachment(attachment);
+                                                Runner.attachmentRepository.add(attachment);
+                                            }
+                                            timeline.addTimelineEvent(event);
+                                            Runner.eventRepository.add(event);
                                         }
-                                        JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
-                                        for (int attach = 0; attach < temp3.size(); attach++) {
-                                            Attachment attachment = new Attachment();
-                                            JsonObject attachmentObject = (JsonObject) temp3.get(attach);
-                                            attachment.setAttachmentId(attachmentObject.get("Id").toString());
-                                            attachment.seteventId(attachmentObject.get("TimelineEventId").toString());
-                                            attachment.setTitle(attachmentObject.get("Title").toString());
-                                            event.addAttachment(attachment);
-                                            Runner.attachmentRepository.add(attachment);
-                                        }
-                                        timeline.addTimelineEvent(event);
-                                        Runner.eventRepository.add(event);
                                     }
                                     Runner.timelineRepository.add(timeline);
                                 }
+                            }
                             }
 
                             /*

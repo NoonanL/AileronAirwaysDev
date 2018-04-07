@@ -53,4 +53,16 @@ public class EventRepositoryTest {
         Runner.eventRepository.getAPIEvents();
         System.out.println(Runner.eventRepository.toString());
     }
+
+//    @Test
+//    public void wipeApi() throws UnsupportedEncodingException {
+//        Runner.eventRepository.getAPIEvents();
+//        for (Event event: Runner.eventRepository.getEvents()
+//                ) {
+//            System.out.println(event.getId());
+//            System.out.println("Deleted");
+//            event.deleteEvent();
+//        }
+//        System.out.println(Runner.eventRepository.toString());
+//    }
 }

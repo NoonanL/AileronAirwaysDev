@@ -228,8 +228,8 @@ public class Event {
     //set eventdatetime
     public void setEventDateTime(String eventDateTime){
         //System.out.println(eventDateTime);
-        this.eventDateTime = eventDateTime
-                .replaceAll("%3A","/")
+        this.eventDateTime = eventDateTime;
+     /*           .replaceAll("%3A","/")
                 .replaceAll("\"","")
                 .replaceAll("-","/")
                 .replaceAll(":","/")
@@ -237,9 +237,9 @@ public class Event {
                 .replaceAll(" ","/")
                 .replaceAll("\\+", "/")
                 .replaceAll("%2F", "/");
-        //System.out.println(this.eventDateTime);
+        System.out.println(this.eventDateTime);
         String[] temp = this.eventDateTime.split("/");
-        //System.out.println(Arrays.toString(temp));
+        System.out.println(Arrays.toString(temp));
         this.dd = temp[0];
         //System.out.println(this.dd);
         this.MM = temp[1];
@@ -249,7 +249,7 @@ public class Event {
         this.hh = temp[3];
         //System.out.println(this.hh);
         this.mm = temp[4];
-        //System.out.println(this.mm);
+        //System.out.println(this.mm);*/
 
     }
 
