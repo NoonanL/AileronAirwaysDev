@@ -47,7 +47,7 @@
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
                             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
                             <!--Time of the event-->
-                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
+                            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="timeInput" value="now" data-time-inline-picker="true" type="time" name="time">
                             <h3>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
                             <input  id="lat" readonly required name="lat">
@@ -110,6 +110,7 @@
 
 <script src="fileReader.js">
 </script>
+<script src="defaultTime.js"></script>
 
 <!--<script src="attachMaxSize.js"></script>-->
 
