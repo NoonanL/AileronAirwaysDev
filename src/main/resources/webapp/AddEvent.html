@@ -75,6 +75,15 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2
 src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
 </script>
 <script src="attachMaxSize.js"></script>
+<script>
+    //get the time
+    var d = new Date(); // for now
+    d.getHours(); // => 9
+    d.getMinutes(); // =>  30
+    d.getSeconds(); // => 51
+    var timestamp = d.getHours() + ":" + d.getMinutes();
+    console.log(timestamp);
+</script>
 
 
 
