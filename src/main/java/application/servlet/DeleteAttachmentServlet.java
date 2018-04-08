@@ -23,7 +23,7 @@ public class DeleteAttachmentServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("Hello I am a post method");
+        //System.out.println("Hello I am a post method");
         /*
         Get eventId parameter from html request.
          */

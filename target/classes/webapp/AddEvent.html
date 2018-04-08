@@ -26,9 +26,9 @@
                 <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
                 <!--Date of the event-->
                 <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
-                <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
+                <label for="time" class="textLabel"><h3>Event Time:</h3></label>
                 <!--Time of the event-->
-                <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
+                <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" value="now" data-time-inline-picker="true" id="timeInput" type="time" name="time" required>
                 <!--Details of the event-->
                 <label for="desc" class="textLabel" autofocus><h3>Event details:</h3></label>
                 <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%"  rows="10" cols="100" required name="description"></textarea>
@@ -69,6 +69,7 @@
 </html>
 <script src="locationSelector.js"> </script>
 </script>
+<script src="defaultTime"></script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
 <script async defer

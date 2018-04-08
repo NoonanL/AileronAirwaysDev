@@ -289,7 +289,7 @@ public class Event {
             deleteAttachmentFromApi(attachmentId);
             Predicate<Attachment> predicate = e->e.getAttachmentId().equals(attachmentId);
             this.attachments.removeIf(predicate);
-            System.out.println("Removed attachment " + attachmentId + " from event");
+            //System.out.println("Removed attachment " + attachmentId + " from event");
         }
     }
 
