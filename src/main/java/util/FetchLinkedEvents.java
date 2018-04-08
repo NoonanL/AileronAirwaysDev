@@ -13,13 +13,13 @@ public class FetchLinkedEvents {
 
     ArrayList<String> linkedArrayList;
 
-    public void getAllLinks(String id) throws UnsupportedEncodingException {
+    public void getAllLinks(String timelineId) throws UnsupportedEncodingException {
         //TimelineRepository timelineRepository = new TimelineRepository();
         //Runner.timelineRepository.getAllTimelinesAndEvents();
         List<ArrayList<Event>> list = new ArrayList<>();
 //
 //        //get the timeline that the id points to
-        Timeline testTimeline = Runner.timelineRepository.get(id);
+        Timeline testTimeline = Runner.timelineRepository.get(timelineId);
 //        //get the events on that timeline
         ArrayList<Event> testData = testTimeline.getTimelineEvents();
 //
@@ -37,7 +37,7 @@ public class FetchLinkedEvents {
 
                 for (String linkedeventId : arrayList
                         ) {
-                    Event event1 = Runner.eventRepository.get(linkedeventId);
+                    Event event1 = testTimeline.getTimelineEvent(linkedeventId);
                     events.add(event1);
 
                 }
