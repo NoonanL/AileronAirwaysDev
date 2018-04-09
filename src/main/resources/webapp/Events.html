@@ -106,21 +106,56 @@
     });
 
 </script>
+<script>
+    //function to fill the attachment div with any attachments
+    function getAttachment() {
+        console.log("getAttachment function running");
+        var link = "images/AileronIcon.png";
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/eventsServlet", function (responseJson) {
+            $.each(responseJson, function (index, product) {
+                //for each response
+                $.each(product.attachments, function (index, attachment) {
+
+                    //this is the object builder
+                    //console.log(attachment.href);
+                    //if the file is an image, display it as an image
+                    if (attachment.href != null) {
+                        link = attachment.href;
+                        console.log(attachment.href);
+                    }
+                })
+            })
+        });
+        return link;
+
+    }
+</script>
+
 
 <!-- 3 -->
 <script type="text/javascript">
     console.log("Getting Events by id");
+    var link = "images/AileronIcon.png";
     var timeline_json = {
         "events": []}
            // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
            $.get("/eventsServlet", function (responseJson) {
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
                $.each(responseJson, function (index, product) {
+                   $.each(product.attachments, function (count, attachment) {
+                       if (attachment.href !== "") {
+                           link = "images/downloads/" + attachment.title;
+                       }
+                   });
+                   //console.log(link);
                    timeline_json.events.push({
+
+
                        "media": {
-                           "url": "https://www.flickr.com/photos/66460556@N08/14316580521/in/photolist-nP7dBc-kWQBmy-o5xcFJ-f6q1bX-8ARhPt-9ZT3Q3-a93YVF-5w7GFF-fzDHKn-pYoWo4-d31ULN-pfFy2p-ksz8G4-9ZSkV9-nRbZ2X-cFn6F1-eiwzhV-YdPyVA-dJ344x-gnSByT-9ZQctz-nAnscv-7wZNbH-omPW1Q-6ajoTW-a94W88-6z9aB2-42Hip-2ZhRzy-UQqwKP-UaXLDo-65uUhi-p3W4PL-fmcaMA-2hrMuN-guBUoy-8u9Hee-W1vM1Y-4DXC8p-9eUNvd-dt7RQc-9ZT3xb-CLurke-e5TEaq-4E27JJ-myJTKc-pgQBgp-nivLLN-99xHfv-4aRvPH",
-                           "caption": "Test Media for the events",
-                           "thumbnail": "https://www.flickr.com/photos/66460556@N08/14316580521/in/photolist-nP7dBc-kWQBmy-o5xcFJ-f6q1bX-8ARhPt-9ZT3Q3-a93YVF-5w7GFF-fzDHKn-pYoWo4-d31ULN-pfFy2p-ksz8G4-9ZSkV9-nRbZ2X-cFn6F1-eiwzhV-YdPyVA-dJ344x-gnSByT-9ZQctz-nAnscv-7wZNbH-omPW1Q-6ajoTW-a94W88-6z9aB2-42Hip-2ZhRzy-UQqwKP-UaXLDo-65uUhi-p3W4PL-fmcaMA-2hrMuN-guBUoy-8u9Hee-W1vM1Y-4DXC8p-9eUNvd-dt7RQc-9ZT3xb-CLurke-e5TEaq-4E27JJ-myJTKc-pgQBgp-nivLLN-99xHfv-4aRvPH"
+                           "url": link,
+                           //"caption": "Test Media for the events",
+                           "thumbnail": link
                        },
                        "start_date": {
                            "month": product.MM,
@@ -146,15 +181,18 @@
                            "</form>"
                    }
                    });
+                   link = "images/AileronIcon.png";
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
            })
 
 
 </script>
-</div>
+
 </body>
 </html>
+
+
 <script>
 
     //function to fetch the timelineEvents
