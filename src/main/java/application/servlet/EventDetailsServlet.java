@@ -14,14 +14,6 @@ import java.util.ArrayList;
 
 public class EventDetailsServlet extends HttpServlet{
 
-    /*
-    I need to be passed something to specify which event details i have to provide
-     */
-
-    /*
-    constructor for servlet
-     */
-    public EventDetailsServlet(){    }
 
     /*
         Override function for html POST methods.
@@ -36,8 +28,6 @@ public class EventDetailsServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //System.out.println(Runner.eventId);
-
         //get the event that the id points to
         Timeline timeline = Runner.timelineRepository.get(Runner.timelineId);
         Event event = timeline.getTimelineEvent(Runner.eventId);

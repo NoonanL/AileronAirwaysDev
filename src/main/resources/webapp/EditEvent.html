@@ -14,7 +14,7 @@
 
 
     <div class="row">
-	   <form id="newEventForm" action="/addEventServlet" method="post">
+	   <form id="newEventForm" action="/editDetailsServlet" method="post" enctype="multipart/form-data">
            <div class="col-5">
                 <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                 <!--Title of the event-->
@@ -29,8 +29,8 @@
                 <label for="description" class="textLabel" autofocus><h3>Event details:</h3></label>
                 <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%" id="description" rows="10" cols="100" required name="description"></textarea>
                 <!--attachment(s) upload (if any)-->
-                <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-                <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" id="attachment" name="attachments">
+                <label for="attachments" class="textLabel" autofocus ><h3>Attachments:</h3></label>
+               <input type="file" name="uploadFile" />
                <!-- a div for the attachments-->
                <h3 >Attachments:</h3>
                <div style="max-height: 15%">

@@ -171,11 +171,15 @@
                            "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
+                           " <input value='view'"+ " name='mode' hidden>" +
+                           " </input> " +
                            "<input class='button' type = 'submit' value = 'View Event Details' />" +
 
                            " </form>" +
-                           "<form action='/editEventServlet' method = 'get'>" +
+                           "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
+                           " </input> " +
+                           " <input value='edit'"+ " name='mode' hidden>" +
                            " </input> " +
                            "<input class='button' type = 'submit' value = 'Edit Event' />" +
 

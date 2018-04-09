@@ -106,26 +106,56 @@
     });
 
 </script>
+<script>
+    //function to fill the attachment div with any attachments
+    function getAttachment() {
+        console.log("getAttachment function running");
+        var link = "images/AileronIcon.png";
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/eventsServlet", function (responseJson) {
+            $.each(responseJson, function (index, product) {
+                //for each response
+                $.each(product.attachments, function (index, attachment) {
 
+                    //this is the object builder
+                    //console.log(attachment.href);
+                    //if the file is an image, display it as an image
+                    if (attachment.href != null) {
+                        link = attachment.href;
+                        console.log(attachment.href);
+                    }
+                })
+            })
+        });
+        return link;
+
+    }
+</script>
 
 
 <!-- 3 -->
 <script type="text/javascript">
     console.log("Getting Events by id");
+    var link = "images/AileronIcon.png";
     var timeline_json = {
         "events": []}
            // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
            $.get("/eventsServlet", function (responseJson) {
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
                $.each(responseJson, function (index, product) {
-                   //console.log(product.attachments);
-
+                   $.each(product.attachments, function (count, attachment) {
+                       if (attachment.href !== "") {
+                           link = "images/downloads/" + attachment.title;
+                       }
+                   });
+                   //console.log(link);
                    timeline_json.events.push({
 
+
                        "media": {
-                           "url": getAttachment(),
-                           "caption": "Test Media for the events",
-                           "thumbnail": getAttachment()
+                           "url": link,
+                           //"caption": "Test Media for the events",
+                           "thumbnail": link
                        },
                        "start_date": {
                            "month": product.MM,
@@ -141,15 +171,18 @@
                            "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
+                           " <input value='view'"+ " name='mode' hidden>" +
+                           " </input> " +
                            "<input class='button' type = 'submit' value = 'View Event Details' />" +
-<<<<<<< HEAD
-=======
+
                            " </form>" +
-                           "<form action='/editEventServlet' method = 'get'>" +
+                           "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
+                           " <input value='edit'"+ " name='mode' hidden>" +
+                           " </input> " +
                            "<input class='button' type = 'submit' value = 'Edit Event' />" +
->>>>>>> ScottDev
+
                            " </form>" +
                            "<form action='/deleteEventServlet' method = 'post'>" +
                                " <input value="+product.id+ " name='eventId' hidden>" +
@@ -159,38 +192,18 @@
                            "</form>"
                    }
                    });
+                   link = "images/AileronIcon.png";
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
            })
 
 
 </script>
-</div>
+
 </body>
 </html>
 
-<script>
-    //function to fill the attachment div with any attachments
 
-    function getAttachment() {
-        console.log("getAttachment function running");
-        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-        $.get("/eventsServlet", function (responseJson) {
-            $.each(responseJson, function (index, product) {
-                //for each response
-                $.each(product.attachments, function (index, attachment) {
-                    //this is the object builder
-                    //if the file is an image, display it as an image
-                    if (attachment.href != null) {
-                        return attachment.href;
-                    }
-                })
-            })
-        })
-
-    }
-
-</script>
 <script>
 
     //function to fetch the timelineEvents

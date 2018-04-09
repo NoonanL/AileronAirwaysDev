@@ -29,12 +29,17 @@ Override function for html POST methods.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("Hello I am a get method");
         Runner.eventId = request.getParameter("eventId");
+        String mode = request.getParameter("mode");
         //System.out.println(Runner.eventId);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        response.sendRedirect(response.encodeRedirectURL("/EventDetails.html"));
+        if(mode.equals("view")) {
+            response.sendRedirect(response.encodeRedirectURL("/EventDetails.html"));
+        } else if(mode.equals("edit")){
+            response.sendRedirect(response.encodeRedirectURL("/EditEvent.html"));
+        }
 
     }
 }
