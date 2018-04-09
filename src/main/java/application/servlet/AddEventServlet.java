@@ -35,8 +35,6 @@ public class AddEventServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-
-
         Event newEvent = new Event();
 
         // checks if the request actually contains upload file
@@ -166,5 +164,13 @@ public class AddEventServlet extends HttpServlet {
         }
 
         response.sendRedirect(response.encodeRedirectURL("/selectTimelineServlet"));
+    }
+
+    /*
+Override function for html GET methods.
+ */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

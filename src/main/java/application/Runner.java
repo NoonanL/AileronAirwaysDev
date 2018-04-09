@@ -123,6 +123,12 @@ public class Runner {
         handler.addServlet(new ServletHolder(deleteEventServlet), "/deleteEventServlet");
 
         /*
+        Servlet to handle deleting attachments
+         */
+        EditDetailsServlet editDetailsServlet = new EditDetailsServlet();
+        handler.addServlet(new ServletHolder(editDetailsServlet), "/editDetailsServlet");
+
+        /*
         sets default servlet path.
          */
         DefaultServlet ds = new DefaultServlet();
