@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aileron Airways ETT</title>
+<link href="StyleSheet.css" rel="styleSheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+<img src="images/AileronIcon.png" class="imgcontainer">
+<h1 style="font-size: 32px; text-decoration: none; text-align: center";> Edit Event</h1>
+
+
+    <div class="row">
+	   <form id="newEventForm" action="/addEventServlet" method="post">
+           <div class="col-5">
+                <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
+                <!--Title of the event-->
+                <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text" id="title" required name="title"/>
+                <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
+                <!--Date of the event-->
+                <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" id="date" data-date-inline-picker="true" required name="date"/>
+                <label for="time" class="textLabel"><h3>Event Time:</h3></label>
+                <!--Time of the event-->
+                <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" value="now" data-time-inline-picker="true" id="time" type="time" name="time" required>
+                <!--Details of the event-->
+                <label for="desc" class="textLabel" autofocus><h3>Event details:</h3></label>
+                <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%"  rows="10" cols="100" required name="description"></textarea>
+                <!--attachment(s) upload (if any)-->
+                <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
+                <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+               <!-- Submit the form-->
+           </div>
+           <div class="col-7">
+           <h3 id>Event Location:</h3>
+           <!--Location of the event - not user input, value is appended by map on click-->
+
+               <input id="lat" readonly required name="lat">
+               <input id="lng" readonly required name="lng">
+           <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+           <!--this div tag holds the map-->
+
+           <div id="mapboxshadow">
+           <div id="map" style="width:100%"> </div>
+
+           </div>
+           </div>
+
+
+    </form>
+
+
+    </div>
+ 
+  
+</div>
+
+
+
+
+    <script src="nav.js"> </script>
+</body>
+</html>
+<script src="locationSelector.js"> </script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
+</script>
+<script async defer
+src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
+</script>
+<script src="attachMaxSize.js"></script>
+<script>
+   //fill the page with details from the event
+    var EventTitle="";
+    var EventDateTime="";
+    var Description="";
+    var Location="";
+    var yyyy="";
+    var MM="";
+    var dd="";
+    var hh="";
+    var mm="";
+    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+    $.get("/eventDetailsServlet", function (responseJson) {
+        console.log("got here");
+        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+        console.log(responseJson.title);
+        EventTitle=responseJson.title;
+        //console.log(responseJson.eventDateTime);
+        yyyy=responseJson.yyyy;
+        MM=responseJson.MM;
+        dd=responseJson.dd;
+        hh=responseJson.hh;
+        mm=responseJson.mm;
+        EventDateTime = (yyyy + "/" + MM + "/" + dd + " " + hh + ":" + mm);
+        console.log(responseJson.description);
+        Description=responseJson.description;
+        console.log("here the the response from the servlet"+ responseJson.location);
+        Location=responseJson.location;
+        //replace the space in the response with a comma so that the map can use it
+        Location = Location.replace(" ",",");
+        $("#title").attr({
+            'value':EventTitle
+        });
+        $("#date").attr({
+            'value':'"'+dd+':'+MM+':'+yyyy+'"'
+        });
+        $("#time").attr({
+            'value': hh + ':' + mm
+        });
+        $("#description").attr({
+            'value':Description
+        });
+    });
+</script>
+
+
