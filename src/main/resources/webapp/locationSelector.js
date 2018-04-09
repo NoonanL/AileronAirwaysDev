@@ -1,7 +1,6 @@
 
     //myLatLng is the variable that holds the starting location of the map - I have initialised it as glasgow
     var myLatLng = {lat: 55.86515, lng: -4.25763};
-
     /*//function to get the user's position using location data
 
     //startPos is the variable that will hold the user's position data

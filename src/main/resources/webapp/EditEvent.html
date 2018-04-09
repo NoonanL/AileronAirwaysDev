@@ -26,11 +26,35 @@
                 <!--Time of the event-->
                 <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" value="now" data-time-inline-picker="true" id="time" type="time" name="time" required>
                 <!--Details of the event-->
-                <label for="desc" class="textLabel" autofocus><h3>Event details:</h3></label>
-                <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%"  rows="10" cols="100" required name="description"></textarea>
+                <label for="description" class="textLabel" autofocus><h3>Event details:</h3></label>
+                <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%" id="description" rows="10" cols="100" required name="description"></textarea>
                 <!--attachment(s) upload (if any)-->
                 <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-                <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" name="attachments"></input>
+                <input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black" id="attachment" name="attachments">
+               <!-- a div for the attachments-->
+               <h3 >Attachments:</h3>
+               <div style="max-height: 15%">
+                   <!-- scrollable div for attachments-->
+                   <div style="width:100%; overflow-y:auto; overflow-x: scroll;">
+                       <dl id="attachments"></dl>
+                   </div>
+               </div>
+               <!--ImageViewer Goes in here-->
+               <div id="picModal" style="overflow-y: auto;"class="modal">
+                   <div style ="card container centre" class="modal-content">
+                       <div style ="height:50px;" class="modal-header">
+                           <span class="close">&times;</span>
+                       </div>
+                       <div class="modal-body">
+                           <div>
+                               <img id="largeImage" style="max-width: 80%; max-height:80%; height:400px;width:auto;" src="">
+                               <br>
+                           </div>
+                       </div>
+                       <div style ="height:50px;" class="modal-footer"></div>
+                   </div>
+               </div>
+
                <!-- Submit the form-->
            </div>
            <div class="col-7">
@@ -100,21 +124,90 @@ src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_F
         Description=responseJson.description;
         console.log("here the the response from the servlet"+ responseJson.location);
         Location=responseJson.location;
-        //replace the space in the response with a comma so that the map can use it
-        Location = Location.replace(" ",",");
+        var latlng=Location.split(" ");
+        var lat=latlng[0];
+        var lng=latlng[1]
         $("#title").attr({
             'value':EventTitle
         });
         $("#date").attr({
-            'value':'"'+dd+':'+MM+':'+yyyy+'"'
+            'value':+yyyy+'-'+MM+'-'+dd
         });
         $("#time").attr({
             'value': hh + ':' + mm
         });
         $("#description").attr({
-            'value':Description
+            'text':Description
         });
+        var desc = $('#description');
+        desc.val(Description);
+        $("#lat").attr({
+            'value':lat
+        });
+        $("#lng").attr({
+            'value':lng
+        });
+
+        map.setCenter(new google.maps.LatLng(lat, lng));
+        map.setZoom(10);
+
     });
+</script>
+<script src="imageViewer.js"></script>
+<script>
+    //function to fill the attachment div with any attachments
+    fetchAttachments();
+    function fetchAttachments() {
+        console.log("Grabbing attachments");
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/attachmentServlet", function (responseJson) {
+            // Create HTML <ul> element and append it to HTML DOM element with ID "tableDiv".
+            $("<dl id='attachmentDiv'>").appendTo($("#attachments"));
+            //for each response
+            $.each(responseJson, function (index, product) {
+                //this is the object builder
+                //if the file is an image, display it as an image
+                if (product.type="img"){
+                    var eventAttachment = $("<img />", {
+                        text: product.title,
+                        "class": "imageThumb",
+                        src:"images/downloads/" + product.title
+                    });
+                }
+                else{
+                    var eventAttachment = $("<img />", {
+                        text:product.title,
+                        "class": "imageThumb",
+                        src:"images/NavThumbs/file.png"
+                    });
+                }
+                // ---------------------ADDING A BUTTON FOR DELETING attatchments------------------
+                //build a form tag for deleting attatchments
+                var deleteattatchmentForm=$("<form/>",{
+                    //fill the form with an action
+                    "class":"confirmRequired",
+                    action:"/deleteAttachmentServlet",
+                    method: "post"
+                });
+                //make an invisible input field with the value of the attatchment's ID
+                console.log(product.id);
+                var deleteattatchmentIDinput=$("<input/>",{
+                    value:product.attachmentId,
+                    name:"attachmentId",
+                    hidden:""
+                });
+
+                var listItem = $("<dt />", {
+                    text:""
+                });
+                //append each timeline's data to a list item tag
+                listItem.append(eventAttachment);
+                listItem.append(deleteattatchmentForm);
+                //add each listItem instance to the table
+                $("#attachmentDiv").append(listItem);
+            });
+        })
+    }
 </script>
 
 
