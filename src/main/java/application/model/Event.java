@@ -25,6 +25,7 @@ public class Event {
     private String eventDateTime;
     private String location;
     private ArrayList<String> linkedEvents;
+    private ArrayList<Event> eventsLinked;
     private ArrayList<Attachment> attachments;
     private String yyyy;
     private String MM;
@@ -48,6 +49,7 @@ public class Event {
         this.location = location;
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
+        this.eventsLinked = new ArrayList<>();
         //attachments = new ArrayList<>();
     }
 
@@ -59,6 +61,7 @@ public class Event {
         this.location = location;
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
+        this.eventsLinked = new ArrayList<>();
         //linkedEvents = new ArrayList<>();
     }
 
@@ -72,6 +75,7 @@ public class Event {
         this.location = "";
         this.linkedEvents = new ArrayList<>();
         this.attachments = new ArrayList<>();
+        this.eventsLinked = new ArrayList<>();
         //linkedEvents = new ArrayList<>();
     }
 
@@ -270,6 +274,14 @@ public class Event {
 
     public ArrayList getLinkedEvents(){
         return this.linkedEvents;
+    }
+
+    public void setEventsLinked(Event eventsLinked){
+        this.eventsLinked.add(eventsLinked);
+    }
+
+    public ArrayList getEventsLinked(){
+        return this.eventsLinked;
     }
 
     public ArrayList<Attachment> getAttachments() {

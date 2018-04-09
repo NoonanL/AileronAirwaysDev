@@ -64,7 +64,7 @@
             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
             <label for="date" class="textLabel" autofocus><h3>Event Date:</h3></label>
             <!--Date of the event-->
-            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="date" data-date-inline-picker="true" required name="date"/>
+            <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="date" type="date" data-date-inline-picker="true" required name="date"/>
             <label for="time" class="textLabel" autofocus required><h3>Event Time:</h3></label>
             <!--Time of the event-->
             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="time" data-time-inline-picker="true" type="time" name="time">
@@ -78,11 +78,11 @@
                 <div id="map" style="width:100%"> </div>
             </div>
             <label for="details" class="textLabel" autofocus><h3>Event details:</h3></label>
-            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" rows="10" cols="100" required name="description"></textarea>
+            <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="details" rows="10" cols="100" required name="description"></textarea>
             <br>
             <!--attachment(s) upload (if any)-->
             <label for="attachments" class="textLabel" autofocus name="attachments"><h3>Attachments:</h3></label>
-            <input type="file" name="uploadFile" />
+            <input type="file" id="attachments" name="uploadFile" />
             <!--this is the input that the user sees and can interact with-->
             <!--<input type="file" style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5); width:80%;color:black"  id="attachments" onchange="readfile(document.getElementById('attachments').files[0])"-->
             <!--onkeyup="this.onchange()" oninput="this.onchange()" name="filename">-->
@@ -114,6 +114,11 @@
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
                $.each(responseJson, function (index, product) {
                    timeline_json.events.push({
+                       //attachments go in here
+                       // "media":{
+                       //     "url":
+                       //     "caption": "A plane"
+                       // },
                        "start_date": {
                            "month": product.MM,
                            "day": product.dd,
@@ -121,7 +126,7 @@
                            "hour":product.hh,
                            "minute":product.mm
                        },
-                       "group":product.linkedEvents,
+                       "group":product.title,
                        "text": {
                            "headline": product.title,
                            "text": product.description +"" +
