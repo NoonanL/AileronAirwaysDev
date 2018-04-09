@@ -1,5 +1,6 @@
 package application;
 
+import application.model.Timeline;
 import application.repositories.AttachmentRepository;
 import application.repositories.EventRepository;
 import application.repositories.TimelineRepository;
@@ -8,11 +9,14 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import util.FetchLinkedEvents;
+
+import java.util.ArrayList;
 
 
 public class Runner {
 
-    private static final int PORT = 9000;
+    private static final int PORT = 8080;
     private Runner() {}
 
     /*
@@ -42,6 +46,13 @@ public class Runner {
         eventId = "";
         searchTimelines=null;
         hardcodedDownloadsDirectory = "src\\main\\resources\\webapp\\images\\downloads\\";
+
+        FetchLinkedEvents linkedEvents = new FetchLinkedEvents();
+        ArrayList<Timeline> timelines = timelineRepository.getTimelines();
+        for (Timeline timeline: timelines
+             ) {
+            linkedEvents.getAllLinks(timeline.getId());
+        }
 
 
         /*

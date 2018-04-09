@@ -6,6 +6,7 @@ import application.model.Event;
 import application.model.Timeline;
 import application.repositories.EventRepository;
 import com.google.gson.*;
+import util.FetchLinkedEvents;
 
 import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
@@ -117,6 +118,7 @@ public class Get {
                                         for (int events = 0; events < temp2.size(); events++) {
                                             eventId = temp2.get(events).toString();
                                             event.setLinkedEvents(eventId);
+
                                         }
                                         //System.out.println("got here");
                                         JsonArray temp3 = (JsonArray) jsonObject2.get("Attachments");
