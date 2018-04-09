@@ -34,10 +34,8 @@
         border: 2px solid #ff1000;
     }
   </style>
-
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link href="StyleSheet.css" rel="stylesheet" type="text/css">
-  
 </head>
 <body>
 
@@ -56,7 +54,6 @@
 <div id="timelineboxshadow">
 <div id='timeline-embed' style="width: 100%; height: 600px;"></div>
 </div>
-
     <div id="formdiv">
         <form id="newEventForm" action="/addEventServlet" method="post" enctype="multipart/form-data">
             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
@@ -91,17 +88,23 @@
             <input class="button" type="submit" name="submit" id="submit" value="Submit" />
         </form>
     </div>
-
+    <br>
+</div>
 <script>
+    //function to toggle the page content between timeline and add event form
     $(function(){
         $("#formdiv").hide();
+        //on click of the defined button run the function
         $("#preview").on("click", function(){
+            //toggle between the divs
             $("#timeline-embed, #formdiv, #timelineboxshadow").toggle();
+            //append the different text to the button each time it is clicked
             $(this).text(function(i, text){
                 return text === "Add Event" ? "View Timeline" : "Add Event";
             });
         });
     });
+
 </script>
 
 <!-- 3 -->
@@ -114,6 +117,11 @@
                //iterate over the JSON array of timeline data passed from backend for each object append this to the page
                $.each(responseJson, function (index, product) {
                    timeline_json.events.push({
+                       "media": {
+                           "url": "https://www.flickr.com/photos/66460556@N08/14316580521/in/photolist-nP7dBc-kWQBmy-o5xcFJ-f6q1bX-8ARhPt-9ZT3Q3-a93YVF-5w7GFF-fzDHKn-pYoWo4-d31ULN-pfFy2p-ksz8G4-9ZSkV9-nRbZ2X-cFn6F1-eiwzhV-YdPyVA-dJ344x-gnSByT-9ZQctz-nAnscv-7wZNbH-omPW1Q-6ajoTW-a94W88-6z9aB2-42Hip-2ZhRzy-UQqwKP-UaXLDo-65uUhi-p3W4PL-fmcaMA-2hrMuN-guBUoy-8u9Hee-W1vM1Y-4DXC8p-9eUNvd-dt7RQc-9ZT3xb-CLurke-e5TEaq-4E27JJ-myJTKc-pgQBgp-nivLLN-99xHfv-4aRvPH",
+                           "caption": "Test Media for the events",
+                           "thumbnail": "https://www.flickr.com/photos/66460556@N08/14316580521/in/photolist-nP7dBc-kWQBmy-o5xcFJ-f6q1bX-8ARhPt-9ZT3Q3-a93YVF-5w7GFF-fzDHKn-pYoWo4-d31ULN-pfFy2p-ksz8G4-9ZSkV9-nRbZ2X-cFn6F1-eiwzhV-YdPyVA-dJ344x-gnSByT-9ZQctz-nAnscv-7wZNbH-omPW1Q-6ajoTW-a94W88-6z9aB2-42Hip-2ZhRzy-UQqwKP-UaXLDo-65uUhi-p3W4PL-fmcaMA-2hrMuN-guBUoy-8u9Hee-W1vM1Y-4DXC8p-9eUNvd-dt7RQc-9ZT3xb-CLurke-e5TEaq-4E27JJ-myJTKc-pgQBgp-nivLLN-99xHfv-4aRvPH"
+                       },
                        "start_date": {
                            "month": product.MM,
                            "day": product.dd,
@@ -128,13 +136,15 @@
                            "<form action='/selectEventServlet' method = 'get'>" +
                            " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
-                           "<input class='button' type = 'submit' value = 'view event details' />" +
+                           "<input class='button' type = 'submit' value = 'View Event Details' />" +
                            " </form>" +
                            "<form action='/deleteEventServlet' method = 'post'>" +
-                           " <input value="+product.id+ " name='eventId' hidden>" +
+                               " <input value="+product.id+ " name='eventId' hidden>" +
                            " </input> " +
                            "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
-                           " </form>"}
+
+                           "</form>"
+                   }
                    });
                    window.timeline = new TL.Timeline('timeline-embed', timeline_json);
                });
