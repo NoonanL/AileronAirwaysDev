@@ -109,41 +109,41 @@
     console.log("Getting Events by id");
     var timeline_json = {
         "events": []}
-           // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-           $.get("/eventsServlet", function (responseJson) {
-               //iterate over the JSON array of timeline data passed from backend for each object append this to the page
-               $.each(responseJson, function (index, product) {
-                   timeline_json.events.push({
-                       //attachments go in here
-                       // "media":{
-                       //     "url":
-                       //     "caption": "A plane"
-                       // },
-                       "start_date": {
-                           "month": product.MM,
-                           "day": product.dd,
-                           "year": product.yyyy,
-                           "hour":product.hh,
-                           "minute":product.mm
-                       },
-                       "group":product.title,
-                       "text": {
-                           "headline": product.title,
-                           "text": product.description +"" +
-                           "<form action='/selectEventServlet' method = 'get'>" +
-                           " <input value="+product.id+ " name='eventId' hidden>" +
-                           " </input> " +
-                           "<input class='button' type = 'submit' value = 'view event details' />" +
-                           " </form>" +
-                           "<form action='/deleteEventServlet' method = 'post'>" +
-                           " <input value="+product.id+ " name='eventId' hidden>" +
-                           " </input> " +
-                           "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
-                           " </form>"}
-                   });
-                   window.timeline = new TL.Timeline('timeline-embed', timeline_json);
-               });
-           })
+    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+    $.get("/eventsServlet", function (responseJson) {
+        //iterate over the JSON array of timeline data passed from backend for each object append this to the page
+        $.each(responseJson, function (index, product) {
+            timeline_json.events.push({
+                "start_date": {
+                    "month": product.MM,
+                    "day": product.dd,
+                    "year": product.yyyy,
+                    "hour":product.hh,
+                    "minute":product.mm
+                },
+                // "group":product.linkedEvents,
+                 "text": {
+                    "headline": product.title,
+                    "text": product.description +"" +
+                    "<form action='/selectEventServlet' method = 'get'>" +
+                    " <input value="+product.id+ " name='eventId' hidden>" +
+                    " </input> " +
+                    "<input class='button' type = 'submit' value = 'View Event Details' />" +
+                    " </form>" +
+                    "<form action='/editEventServlet' method = 'get'>" +
+                    " <input value="+product.id+ " name='eventId' hidden>" +
+                    " </input> " +
+                    "<input class='button' type = 'submit' value = 'Edit Event' />" +
+                    " </form>" +
+                    "<form action='/deleteEventServlet' method = 'post'>" +
+                    " <input value="+product.id+ " name='eventId' hidden>" +
+                    " </input> " +
+                    "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
+                    " </form>"}
+            });
+            window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+        });
+    })
 
 
 </script>
