@@ -54,28 +54,20 @@
                        <div style ="height:50px;" class="modal-footer"></div>
                    </div>
                </div>
-
-               <!-- Submit the form-->
            </div>
            <div class="col-7">
-           <h3 id>Event Location:</h3>
-           <!--Location of the event - not user input, value is appended by map on click-->
-
+                <h3 id>Event Location:</h3>
+                <!--Location of the event - not user input, value is appended by map on click-->
                <input id="lat" readonly required name="lat">
                <input id="lng" readonly required name="lng">
-           <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-           <!--this div tag holds the map-->
-
-           <div id="mapboxshadow">
-           <div id="map" style="width:100%"> </div>
-
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                <!--this div tag holds the map-->
+                <div id="mapboxshadow">
+                    <div id="map" style="width:100%"> </div>
+                </div>
            </div>
-           </div>
-
-
+           <input class="button" type="submit" name="submit" id="submit" value="Update Event" />
     </form>
-
-
     </div>
  
   
@@ -136,9 +128,7 @@ src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_F
         $("#time").attr({
             'value': hh + ':' + mm
         });
-        $("#description").attr({
-            'text':Description
-        });
+
         var desc = $('#description');
         desc.val(Description);
         $("#lat").attr({
@@ -147,10 +137,8 @@ src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_F
         $("#lng").attr({
             'value':lng
         });
-
         map.setCenter(new google.maps.LatLng(lat, lng));
-        map.setZoom(10);
-
+        map.setZoom(12);
     });
 </script>
 <script src="imageViewer.js"></script>
