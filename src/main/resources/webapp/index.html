@@ -38,6 +38,7 @@
                             <label for="title" class="textLabel" autofocus><h1 style="color:black">Choose a timeline:</h1></label>
                             <select id="timelineSelector" name = "selectedTimeline">
                                 <!-- timeline names will be dropped in here-->
+
                             </select>
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
@@ -62,6 +63,7 @@
                             <br>
                             <select id="linkedeventSelector" name = "selectedLinkedEvent">
                                 <!-- timeline names will be dropped in here-->
+                                <option value="unlinked event">Unlinked Event</option>
                             </select>
                             <!--attachment(s) upload (if any)-->
                             <label for="attachments" class="textLabel" autofocus ><h3>Attachments:</h3></label>
@@ -115,8 +117,6 @@
     function eventSelector(){
     //a script to fill the options dropdown with all the events on that timeline
     console.log("Events Data Loading");
-    //unlinked is an option
-    $("#linkedeventSelector").append("UNLINKED");
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
     $.get("/timelineRegisterServlet", function (responseJson) {
         //iterate over the JSON array of event data passed from backend for each object append this to the page
@@ -124,7 +124,7 @@
             //this is the object builder for event options - the way it works is it displays the titles to the user
             // but then it takes the value ID!!!! HOW CLEVER IS THAT?!?!
             $.each(product.timelineEvents, function (count, event) {
-                var eventOption = $("<option />", {
+                var eventOption = $("<option/>", {
                     text: event.title,
                     value: event.id,
                 });
