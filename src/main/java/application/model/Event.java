@@ -160,6 +160,7 @@ public class Event {
     //currently can make some really odd things happen here
     public void linkEvents(String linkedEventId) throws UnsupportedEncodingException {
         Map<String, String> createEventMap = buildMap();
+        createEventMap.put("TimelineEventId" , this.id);
         createEventMap.put("LinkedToTimelineEventId" , linkedEventId);
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(createEventMap);

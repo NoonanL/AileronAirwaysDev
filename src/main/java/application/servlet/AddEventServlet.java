@@ -72,6 +72,7 @@ public class AddEventServlet extends HttpServlet {
             String lng = "";
             String description = "";
             String selectedTimeline = "";
+            String selectedLinkedEvent ="";
 
             // iterates over form's fields
             for (Object formItem : formItems) {
@@ -96,6 +97,9 @@ public class AddEventServlet extends HttpServlet {
                             break;
                         case "description":
                             description = item.getString();
+                            break;
+                        case "selectedLinkedEvent":
+                            selectedLinkedEvent = item.getString();
                             break;
                         case "selectedTimeline":
                             selectedTimeline = item.getString();
@@ -123,12 +127,11 @@ public class AddEventServlet extends HttpServlet {
                             attachment.createAttachment(filePath.replace("\\","\\\\"));
                             //Runner.attachmentRepository.add(attachment);
 
-                        }else{
-                            System.out.println("No file to upload.");
                         }
                     }
                 }
             }
+
 
 
             //System.out.println("Selected Timeline is: " + selectedTimeline);
@@ -141,7 +144,10 @@ public class AddEventServlet extends HttpServlet {
             //System.out.println(newEvent.toString());
             //Runner.eventRepository.add(newEvent);
             newEvent.createEvent();
-
+            if(!selectedLinkedEvent.equals("unlinked event")){
+                newEvent.setLinkedEvents(selectedLinkedEvent);
+                newEvent.linkEvents(selectedLinkedEvent);
+            }
 
 
             if(!selectedTimeline.equals("")) {
