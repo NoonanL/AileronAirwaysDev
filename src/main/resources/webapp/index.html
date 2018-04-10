@@ -34,10 +34,11 @@
                     </div>
                     <div class="modal-body">
                         <form id="newEventForm" action="/addEventServlet" method="post" enctype="multipart/form-data">
+                            <h1 style="color:black">Create a New event</h1>
                             <h2 style="color:black">Choose a timeline:</h2>
                             <!--Timeline to create event on-->
                             <label for="title" class="textLabel" autofocus><strong>Timeline: </strong></label>
-                            <select id="timelineSelector" name = "selectedTimeline">
+                            <select id="timelineSelector" name = "selectedTimeline" required>
                                 <!-- timeline names will be dropped in here-->
                                 <option selected disabled>Choose a timeline</option>
 
