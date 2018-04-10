@@ -34,11 +34,23 @@
                     </div>
                     <div class="modal-body">
                         <form id="newEventForm" action="/addEventServlet" method="post" enctype="multipart/form-data">
+                            <h1 style="color:black">Create a New event</h1>
+                            <h2 style="color:black">Choose a timeline:</h2>
                             <!--Timeline to create event on-->
-                            <label for="title" class="textLabel" autofocus><h1 style="color:black">Choose a timeline:</h1></label>
-                            <select id="timelineSelector" name = "selectedTimeline">
+                            <label for="title" class="textLabel" autofocus><strong>Timeline: </strong></label>
+                            <select id="timelineSelector" name = "selectedTimeline" required>
                                 <!-- timeline names will be dropped in here-->
+                                <option value="" selected disabled hidden>Choose a timeline</option>
+
                             </select>
+                            <br>
+                            <div id="eventSelectorContainer" hidden="true">
+                                <label for="linkedeventSelector" class="textLabel">Optional -<i> Is this event linked to another event?: </i></label>
+                                <select id="linkedeventSelector" name = "selectedLinkedEvent">
+                                    <!-- timeline names will be dropped in here-->
+                                    <option value="unlinked event">--Unlinked--</option>
+                                </select>
+                            </div>
                             <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                             <!--Title of the event-->
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
@@ -50,8 +62,8 @@
                             <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="timeInput" value="now" data-time-inline-picker="true" type="time" name="time">
                             <h3>Event Location:</h3>
                             <!--Location of the event - not user input, value is appended by map on click-->
-                            <input  id="lat" readonly required name="lat">
-                            <input id="lng" readonly required name="lng">
+                            <input  id="lat" readonly hidden name="lat">
+                            <input id="lng" readonly hidden name="lng">
                             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             <!--this div tag holds the map-->
                             <div id="mapboxshadow">
@@ -59,10 +71,7 @@
                             </div>
                             <label for="details" class="textLabel" autofocus><h3>Event details:</h3></label>
                             <textarea style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" rows="10" cols="100" required name="description"></textarea>
-                            <br>
-                            <select id="linkedeventSelector" name = "selectedLinkedEvent">
-                                <!-- timeline names will be dropped in here-->
-                            </select>
+
                             <!--attachment(s) upload (if any)-->
                             <label for="attachments" class="textLabel" autofocus ><h3>Attachments:</h3></label>
                             <input type="file" name="uploadFile" />
@@ -111,6 +120,7 @@
     }
 </script>
 <script>
+<<<<<<< HEAD
     eventSelector();
     function eventSelector(){
     //a script to fill the options dropdown with all the events on that timeline
@@ -133,6 +143,50 @@
             })
         })
     })}
+=======
+    //script to build selector options for linked event input
+    var timelineSelected = document.getElementById("timelineSelector");
+    //each time a timeline is selected from the timeline dropdown
+    timelineSelected.onchange = function() {
+        //do eventsSelector using the value (the timelineID) that you have just changed timelineSelector to
+        eventSelector(this.value);
+    };
+
+    //a function to fill the options dropdown with all the events on a timeline whenever the timelineSelector is changed
+    function eventSelector(timelineID){
+        //make the eventselector visible if it isnt already
+        $('#eventSelectorContainer').removeAttr('hidden');
+        //to stop the selector from being spammed by a picky user we must clear it each time we are gonna run this function
+        //otherwise it would overflow
+        var eventSelector = document.getElementById("linkedeventSelector");
+        //while the eventSelector has more than one child
+        while (eventSelector.childElementCount>1) {
+
+            //pop an option off the end of the selector - until there is one. and that one will be "unlinked event"
+            eventSelector.removeChild(eventSelector.lastChild);
+        }
+        //now we can go ahead and add event data undearneath the unlinked option
+        // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        $.get("/timelineRegisterServlet", function (responseJson) {
+            //iterate over the JSON array of event data passed from backend for each object append this to the page
+            $.each(responseJson, function (index, product) {
+                if(product.id === timelineID) {
+                   // console.log(product.id);
+                //this is the object builder for event options - displays the event title and takes value of event id
+                $.each(product.timelineEvents, function (count, event) {
+                        //console.log(event);
+                        var eventOption = $("<option/>", {
+                            text: event.title,
+                            value: event.id,
+                        });
+                        //append the input and button to the form tag
+                        $("#linkedeventSelector").append(eventOption);
+
+                    })
+                }
+            })
+        })}
+>>>>>>> 57dcf4d830cfa1247cea21be6c725a97668ad5da
 </script>
 
 <script src="fileReader.js">

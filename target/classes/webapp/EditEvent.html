@@ -58,8 +58,8 @@
            <div class="col-7">
                 <h3 id>Event Location:</h3>
                 <!--Location of the event - not user input, value is appended by map on click-->
-               <input id="lat" readonly required name="lat">
-               <input id="lng" readonly required name="lng">
+               <input id="lat" readonly hidden name="lat">
+               <input id="lng" readonly hidden name="lng">
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                 <!--this div tag holds the map-->
                 <div id="mapboxshadow">
@@ -85,7 +85,7 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ&callback=initMap&libraries=places">
 </script>
 <script async defer
-src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ"
+src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_FJQO40KE-ysT2OaVWQtyQ">
 </script>
 <script src="attachMaxSize.js"></script>
 <script>
@@ -128,7 +128,6 @@ src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_F
         $("#time").attr({
             'value': hh + ':' + mm
         });
-
         var desc = $('#description');
         desc.val(Description);
         $("#lat").attr({

@@ -76,6 +76,7 @@ public class EditDetailsServlet extends HttpServlet {
             String lng = "";
             String description = "";
             String selectedTimeline = "";
+            String selectedLinkedEvent = "";
 
             // iterates over form's fields
             for (Object formItem : formItems) {
@@ -101,9 +102,13 @@ public class EditDetailsServlet extends HttpServlet {
                         case "description":
                             description = item.getString();
                             break;
+                        case "selectedLinkedEvent":
+                            //System.out.println("selected event is not null");
+                            description = item.getString();
+                            break;
                         case "selectedTimeline":
                             selectedTimeline = item.getString();
-                            //Runner.timelineId = selectedTimeline;
+
                             break;
                     }
                 }
@@ -121,15 +126,13 @@ public class EditDetailsServlet extends HttpServlet {
                             /*
                                 CREATE ATTACHMENT AND LINK IT TO EVENT HERE
                             */
-                            //System.out.println(filePath.replace("\\","\\\\"));
+
                             Attachment attachment = new Attachment(event.getId(),fileName);
                             event.addAttachment(attachment);
                             attachment.createAttachment(filePath.replace("\\","\\\\"));
-                            //Runner.attachmentRepository.add(attachment);
 
-                        }//else{
-                            //System.out.println("No file to upload.");
-                        //}
+
+                        }
                     }
                 }
             }
@@ -141,6 +144,11 @@ public class EditDetailsServlet extends HttpServlet {
             event.editEventDateTime(date + " " + time);
             event.setDescription(description);
             event.editEventDescription(description);
+            if(!selectedLinkedEvent.equals("")){
+                //System.out.println("selectedLinkedEvent is "+ selectedLinkedEvent);
+                event.setLinkedEvents(selectedLinkedEvent);
+                event.linkEvents(selectedLinkedEvent);
+            }
             event.setLocation(lat + " " + lng);
             event.editEventLocation(lat + " " + lng);
 

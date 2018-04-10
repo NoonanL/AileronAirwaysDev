@@ -53,7 +53,7 @@ public class TimelineRegisterServlet extends HttpServlet{
         if(Runner.searchTimelines != null){
             SearchFunction s = new SearchFunction("Timeline",Runner.searchTimelines);
             json = s.SearchFunction();
-            System.out.println(json);
+            //System.out.println(json);
         }else {
             json = new Gson().toJson(application.Runner.timelineRepository.getTimelines());
         }
