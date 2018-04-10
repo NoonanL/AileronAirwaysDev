@@ -57,7 +57,6 @@
     <div id="formdiv">
             <form id="newEventForm" action="/addEventServlet" method="post" enctype="multipart/form-data">
                 <!--Timeline to create event on-->
-                <label for="title" class="textLabel" autofocus><h1 style="color:black">Choose a timeline:</h1></label>
                 <label for="title" class="textLabel" autofocus><h2>Event Title:</h2></label>
                 <!--Title of the event-->
                 <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" type="text"  id="title" required name="title"/>
@@ -69,8 +68,8 @@
                 <input style="box-shadow: 1px 2px 4px rgba(16, 171, 150, .5);" id="timeInput" value="now" data-time-inline-picker="true" type="time" name="time">
                 <h3>Event Location:</h3>
                 <!--Location of the event - not user input, value is appended by map on click-->
-                <input  id="lat" readonly required name="lat">
-                <input id="lng" readonly required name="lng">
+                <input  id="lat" readonly hidden name="lat">
+                <input id="lng" readonly hidden name="lng">
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                 <!--this div tag holds the map-->
                 <div id="mapboxshadow">
