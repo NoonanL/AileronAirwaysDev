@@ -123,11 +123,12 @@
 
     //a function to fill the options dropdown with all the events on a timeline whenever the timelineSelector is changed
     function eventSelector(timelineID){
+        console.log(timelineID);
         //to stop the selector from being spammed by a picky user we must clear it each time we are gonna run this function
         //otherwise it would overflow
         var eventSelector = document.getElementById("linkedeventSelector");
         //while the eventSelector has more than one child
-        while (eventSelector.childElementCount.length==1) {
+        while (eventSelector.childElementCount.length>1) {
             //pop an option off the end of the selector - until there is one. and that one will be "unlinked event"
             eventSelector.removeChild(eventSelector.lastChild);
         }
@@ -136,16 +137,20 @@
         $.get("/timelineRegisterServlet", function (responseJson) {
             //iterate over the JSON array of event data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
+                if(product.id === timelineID) {
+                   // console.log(product.id);
                 //this is the object builder for event options - displays the event title and takes value of event id
                 $.each(product.timelineEvents, function (count, event) {
-                    console.log(event);
-                    var eventOption = $("<option/>", {
-                        text: event.title,
-                        value: event.id,
-                    });
-                    //append the input and button to the form tag
-                    $("#linkedeventSelector").append(eventOption);
-                })
+                        //console.log(event);
+                        var eventOption = $("<option/>", {
+                            text: event.title,
+                            value: event.id,
+                        });
+                        //append the input and button to the form tag
+                        $("#linkedeventSelector").append(eventOption);
+
+                    })
+                }
             })
         })}
 </script>

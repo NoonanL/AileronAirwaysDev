@@ -7,5 +7,5 @@ uploadField.onchange = function() {
         alert("Max file size is 2MB, please select another file.");
         //reset the inputbox value
         this.value = "";
-    };
+    }
 };
