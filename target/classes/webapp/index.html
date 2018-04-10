@@ -128,7 +128,8 @@
         //otherwise it would overflow
         var eventSelector = document.getElementById("linkedeventSelector");
         //while the eventSelector has more than one child
-        while (eventSelector.childElementCount.length==1) {
+        while (eventSelector.childElementCount>1) {
+
             //pop an option off the end of the selector - until there is one. and that one will be "unlinked event"
             eventSelector.removeChild(eventSelector.lastChild);
         }
@@ -137,8 +138,8 @@
         $.get("/timelineRegisterServlet", function (responseJson) {
             //iterate over the JSON array of event data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
-                if(product.id = timelineID) {
-                    console.log("product and timelineID match");
+                if(product.id === timelineID) {
+                   // console.log(product.id);
                 //this is the object builder for event options - displays the event title and takes value of event id
                 $.each(product.timelineEvents, function (count, event) {
                         //console.log(event);
@@ -149,7 +150,7 @@
                         //append the input and button to the form tag
                         $("#linkedeventSelector").append(eventOption);
 
-                })
+                    })
                 }
             })
         })}

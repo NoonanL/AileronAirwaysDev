@@ -128,7 +128,8 @@
         //otherwise it would overflow
         var eventSelector = document.getElementById("linkedeventSelector");
         //while the eventSelector has more than one child
-        while (eventSelector.childElementCount.length>1) {
+        while (eventSelector.childElementCount>1) {
+
             //pop an option off the end of the selector - until there is one. and that one will be "unlinked event"
             eventSelector.removeChild(eventSelector.lastChild);
         }
