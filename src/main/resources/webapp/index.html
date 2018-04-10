@@ -121,21 +121,16 @@
         eventSelector(this.value);
     };
 
-
+    //a function to fill the options dropdown with all the events on a timeline whenever the timelineSelector is changed
     function eventSelector(timelineID){
-        //a function to fill the options dropdown with all the events on a timeline whenever the timelineSelector is changed
-        //to stop the selector from being spammed by a picky user we must clear it before we start
+        //to stop the selector from being spammed by a picky user we must clear it each time we are gonna run this function
+        //otherwise it would overflow
         var eventSelector = document.getElementById("linkedeventSelector");
-        while (eventSelector.firstChild) {
-            eventSelector.removeChild(eventSelector.firstChild);
+        //while the eventSelector has more than one child
+        while (eventSelector.childElementCount.length==1) {
+            //pop an option off the end of the selector - until there is one. and that one will be "unlinked event"
+            eventSelector.removeChild(eventSelector.lastChild);
         }
-        //then we must re append the option to have it stay unlinked
-        var unlinkedOption = $("<option/>", {
-            text: "unlinked event",
-            value: "unlinked event",
-        });
-        //re-append the option for it to stay unlinked because we just emptied it completely and thats nae use.
-        $("#linkedeventSelector").append(unlinkedOption);
         //now we can go ahead and add event data undearneath the unlinked option
         // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
         $.get("/timelineRegisterServlet", function (responseJson) {
