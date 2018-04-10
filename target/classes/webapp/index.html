@@ -116,8 +116,7 @@
     //a script to fill the options dropdown with all the events on that timeline
     console.log("Events Data Loading");
     //unlinked is an option
-        var unlinked = "--unlinked--"
-    $("#linkedeventSelector").append(unlinked);
+    $("#linkedeventSelector").append("UNLINKED");
     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
     $.get("/timelineRegisterServlet", function (responseJson) {
         //iterate over the JSON array of event data passed from backend for each object append this to the page
@@ -133,8 +132,7 @@
                 $("#linkedeventSelector").append(eventOption);
             })
         })
-    })
-        $("#linkedeventSelector").value("--UNLINKED--");}
+    })}
 </script>
 
 <script src="fileReader.js">
