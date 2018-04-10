@@ -154,7 +154,7 @@
                        }
                    });
 
-                   //console.log(link);
+                   console.log(index);
                    timeline_json.events.push({
                        "media": {
                            "url": link,
@@ -168,7 +168,7 @@
                            "hour":product.hh,
                            "minute":product.mm
                        },
-                       "group":index,
+                       "group": '"' + index + '"',
                        "text": {
                            "headline": product.title,
                            "text": product.description +"" +
@@ -194,15 +194,13 @@
                            "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
 
                            "</form>"
-                   }
+                            }
                    });
-
                    link = "images/AileronIcon.png";
-                   //window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+                });
                });
-                   window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+               window.timeline = new TL.Timeline('timeline-embed', timeline_json);
 
-               });
            })
 // =======
 //     // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
