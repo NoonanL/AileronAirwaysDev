@@ -5,6 +5,7 @@ import application.Runner;
 import application.model.Event;
 import application.model.Timeline;
 import com.google.gson.Gson;
+import util.FetchLinkedEvents;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -70,12 +71,20 @@ public class EventsServlet extends HttpServlet{
         //System.out.println("I am a get method");
         //get the timeline that the id points to
         if(!Runner.timelineId.equals("")){
-            //System.out.println(Runner.timelineId);
-            Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
-            //get the events on that timeline
-            ArrayList<Event> testData = testTimeline.getTimelineEvents();
-            //System.out.println(testData.toString());
-            String json = new Gson().toJson(testData);
+
+            FetchLinkedEvents fetchLinkedEvents = new FetchLinkedEvents();
+            ArrayList<ArrayList<Event>> data = fetchLinkedEvents.getAllLinks(Runner.timelineId);
+//            //System.out.println(Runner.timelineId);
+//            Timeline testTimeline = Runner.timelineRepository.get(Runner.timelineId);
+//            ArrayList<Event> events = testTimeline.getTimelineEvents();
+//
+//            for(int i = 0; i < events.size(); i++){
+//                if(events.get(i).getEventsLinked().isEmpty()){
+//                    //System.out.println("FOUND NULL");
+//                    events.remove(i);
+//                }
+//            }
+            String json = new Gson().toJson(data);
             //System.out.println(json);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

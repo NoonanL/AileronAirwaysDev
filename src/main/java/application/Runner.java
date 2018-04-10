@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Runner {
 
-    private static final int PORT = 8080;
+    private static final int PORT = 9000;
     private Runner() {}
 
     /*
@@ -47,12 +47,12 @@ public class Runner {
         searchTimelines=null;
         hardcodedDownloadsDirectory = "src\\main\\resources\\webapp\\images\\downloads\\";
 
-        FetchLinkedEvents linkedEvents = new FetchLinkedEvents();
-        ArrayList<Timeline> timelines = timelineRepository.getTimelines();
-        for (Timeline timeline: timelines
-             ) {
-            linkedEvents.getAllLinks(timeline.getId());
-        }
+//        FetchLinkedEvents linkedEvents = new FetchLinkedEvents();
+//        ArrayList<Timeline> timelines = timelineRepository.getTimelines();
+//        for (Timeline timeline: timelines
+//             ) {
+//            linkedEvents.getAllLinks(timeline.getId());
+//        }
 
 
         /*

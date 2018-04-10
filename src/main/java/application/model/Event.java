@@ -272,11 +272,11 @@ public class Event {
         this.linkedEvents.add(linkedEvent.replaceAll("\"","").replaceAll("\\+", " "));
     }
 
-    public ArrayList getLinkedEvents(){
+    public ArrayList<String> getLinkedEvents(){
         return this.linkedEvents;
     }
 
-    public void setEventsLinked(Event eventsLinked){
+    public void addEventsLinked(Event eventsLinked){
         this.eventsLinked.add(eventsLinked);
     }
 

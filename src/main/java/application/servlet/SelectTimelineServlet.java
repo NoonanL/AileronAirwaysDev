@@ -47,7 +47,7 @@ Override function for html POST methods.
                 ArrayList<Attachment> testData = e.getAttachments();
                 //System.out.println(testData.toString());
                 for (Attachment a : testData) {
-                    System.out.println(a.getAttachmentId());
+                    //System.out.println(a.getAttachmentId());
                     String title = a.getTitle();
                     //Attachment test = new Attachment();
                     String filepath = Runner.hardcodedDownloadsDirectory + title;
