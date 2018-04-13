@@ -18,25 +18,15 @@
     </header>
     <div class="row">
         <div class="col-12">
-            <button id="myBtn" class="button">Create new timeline</button>
-                    <div id="myModal" class="modal">
-                        <div style ="card container centre" class="modal-content">
-                            <div style ="height:50px;" class="modal-header">
-                                <span class="close">&times;</span>
-                            </div>
-                            <div class="modal-body">
-                                    <form action="/timelineRegisterServlet" method = "post">
-                                        <!--Timeline Id: <input type = "text" name = "timeline_id" required>-->
-                                        <!--<br />-->
-                                        Timeline Title: <input type = "text" name = "timeline_title" required/>
-                                        <br />
-                                        <input type = "submit" value = "Create new timeline" />
-                                    </form>
-                                    <br>
-                            </div>
-                            <div style ="height:50px;" class="modal-footer"></div>
-                        </div>
-                    </div>
+            <div>
+                <button class="button" onclick="$('#newTimelineForm').removeAttr('hidden');">New Timeline</button>
+
+                <form id="newTimelineForm" action="/timelineRegisterServlet" method = "post" hidden>
+                    Timeline Title: <input type = "text" name = "timeline_title" required/>
+                    <br />
+                    <input type = "submit" class="" value = "Create new timeline" />
+                </form>
+            </div>
             <br>
         </div>
         <div class="row">

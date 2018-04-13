@@ -65,12 +65,12 @@
                 <div id="mapboxshadow">
                     <div id="map" style="width:100%"> </div>
                 </div>
-               <button class="button" id="resetLocation" >Remove Location</button>
+               <button type='button' id="resetLocation">Remove Location Information </button>
            </div>
            <input class="button" type="submit" name="submit" id="submit" value="Update Event" />
     </form>
     </div>
- 
+
   
 </div>
 
@@ -199,15 +199,12 @@ src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCeXMUZ7brTb_F
 </script>
 
 <script>
-    //location remover
-    var button=document.getElementbyId(removeLocation);
-    button.onClick(resetLocation());
-    resetLocation(){
+    document.getElementById("resetLocation").addEventListener('click', function() {
+        console.log('reset location clicked');
         $("#lat").val("");
         $("#lng").val("");
         alert("location removed");
-    }
-
+    })
 </script>
 
 
