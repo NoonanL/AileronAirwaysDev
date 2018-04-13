@@ -11007,8 +11007,7 @@ TL.TimeNav = TL.Class.extend({
 
     },
 
-    randomiseBackground: function(){
-        var classname = "tl-timemarker-content-container";
+    randomcolorPicker: function(){
         var safeColors = ['00','33','66','99','cc','ff'];
         var rand = function() {
             return Math.floor(Math.random()*6);
@@ -11021,8 +11020,6 @@ TL.TimeNav = TL.Class.extend({
         };
         var newColor;
         newColor = randomColor().toUpperCase();
-        this._el.marker_item_container.className = classname;
-        this._el.marker_item_container.style.backgroundColor = newColor;
         return newColor;
 
     },

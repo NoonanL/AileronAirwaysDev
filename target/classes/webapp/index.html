@@ -14,8 +14,8 @@
                 <h1 style="font-size: 72px; text-decoration: none; text-align: center";> Aileron Airways</h1>
                 <div class="row">
                     <div class="buttoncontainer">
-                        <button class="button" id="myBtn" >Create Event</button>
-                        <button class="button" onclick="window.location.href='Timelines.html'" >View Timelines</button>
+                        <button class="button" id="myBtn" >Quick Event</button>
+                        <button class="button" onclick="window.location.href='Timelines.html'" >Timelines</button>
                     </div>
                 </div>
                 <div class="row">
@@ -120,30 +120,6 @@
     }
 </script>
 <script>
-<<<<<<< HEAD
-    eventSelector();
-    function eventSelector(){
-    //a script to fill the options dropdown with all the events on that timeline
-    console.log("Events Data Loading");
-    //unlinked is an option
-    $("#linkedeventSelector").append("UNLINKED");
-    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-    $.get("/timelineRegisterServlet", function (responseJson) {
-        //iterate over the JSON array of event data passed from backend for each object append this to the page
-        $.each(responseJson, function (index, product) {
-            //this is the object builder for event options - the way it works is it displays the titles to the user
-            // but then it takes the value ID!!!! HOW CLEVER IS THAT?!?!
-            $.each(product.timelineEvents, function (count, event) {
-                var eventOption = $("<option />", {
-                    text: event.title,
-                    value: event.id,
-                });
-                //append the input and button to the form tag
-                $("#linkedeventSelector").append(eventOption);
-            })
-        })
-    })}
-=======
     //script to build selector options for linked event input
     var timelineSelected = document.getElementById("timelineSelector");
     //each time a timeline is selected from the timeline dropdown
@@ -186,7 +162,6 @@
                 }
             })
         })}
->>>>>>> 57dcf4d830cfa1247cea21be6c725a97668ad5da
 </script>
 
 <script src="fileReader.js">

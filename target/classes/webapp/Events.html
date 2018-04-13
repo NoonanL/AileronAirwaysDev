@@ -40,11 +40,17 @@
 <body>
 
 <div class="main">
-<img src="images/AileronIcon.png" class="imgcontainer">
-<h1 style="font-size: 32px; text-decoration: none; text-align: center";> View Events</h1>
-<a class="button" href="Timelines.html">Go to Timelines</a>
 
-    <button id="preview" class="button">Add Event</button>
+    <div class="row">
+        <div class="col-6">
+            <a class="button" href="Timelines.html">Go to Timelines</a>
+
+            <button id="preview" class="button">Add Event</button>
+        </div>
+        <div class="col-6">
+            <img src="images/AileronLogoThumb.png" class="imgcontainer">
+        </div>
+    </div>
 
 <!-- 1 -->
 <link title="timeline-styles" rel="stylesheet" href="timeline-custom.css">
@@ -52,12 +58,11 @@
 <!-- 2 -->
 <script src="timeline.js"></script>
 <div id="timelineboxshadow">
-<div id='timeline-embed' style="width: 100%; height: 600px;"></div>
+<div id='timeline-embed' style="width: 100%; height: 500px;"></div>
 </div>
     <div id="formdiv">
             <form id="newEventForm" action="/addEventServlet" method="post" enctype="multipart/form-data">
                 <!--Timeline to create event on-->
-00
                 <!--<label for="title" class="textLabel" autofocus><h1 style="color:black">Choose a timeline:</h1></label>-->
                 <div id="eventSelectorContainer" hidden="true">
                     <label for="linkedeventSelector" class="textLabel">Optional -<i> Is this event linked to another event?: </i></label>
@@ -160,54 +165,54 @@
                    $.each(eventList, function (num, product) {
 
 
+
                    $.each(product.attachments, function (count, attachment) {
                        if (attachment.href !== "") {
                            link = "images/downloads/" + attachment.title;
                        }
                    });
-
                    console.log(index);
-                   timeline_json.events.push({
-                       "media": {
-                           "url": link,
-                           //"caption": "Test Media for the events",
-                           "thumbnail": link
-                       },
-                       "start_date": {
-                           "month": product.MM,
-                           "day": product.dd,
-                           "year": product.yyyy,
-                           "hour":product.hh,
-                           "minute":product.mm
-                       },
-                       "group": '"' + index + '"',
-                       "text": {
-                           "headline": product.title,
-                           "text": product.description +"" +
-                           "<form action='/selectEventServlet' method = 'get'>" +
-                           " <input value="+product.id+ " name='eventId' hidden>" +
-                           " </input> " +
-                           " <input value='view'"+ " name='mode' hidden>" +
-                           " </input> " +
-                           "<input class='button' type = 'submit' value = 'View Event Details' />" +
+                           timeline_json.events.push({
+                               "media": {
+                                   "url": link,
+                                   //"caption": "Test Media for the events",
+                                   "thumbnail": link
+                               },
+                               "start_date": {
+                                   "month": product.MM,
+                                   "day": product.dd,
+                                   "year": product.yyyy,
+                                   "hour": product.hh,
+                                   "minute": product.mm
+                               },
+                               "group": "Group " + index,
+                               "text": {
+                                   "headline": product.title,
+                                   "text": product.description + "" +
+                                   "<form action='/selectEventServlet' method = 'get'>" +
+                                   " <input value=" + product.id + " name='eventId' hidden>" +
+                                   " </input> " +
+                                   " <input value='view'" + " name='mode' hidden>" +
+                                   " </input> " +
+                                   "<input class='button' type = 'submit' value = 'View Event Details' />" +
 
-                           " </form>" +
-                           "<form action='/selectEventServlet' method = 'get'>" +
-                           " <input value="+product.id+ " name='eventId' hidden>" +
-                           " </input> " +
-                           " <input value='edit'"+ " name='mode' hidden>" +
-                           " </input> " +
-                           "<input class='button' type = 'submit' value = 'Edit Event' />" +
+                                   " </form>" +
+                                   "<form action='/selectEventServlet' method = 'get'>" +
+                                   " <input value=" + product.id + " name='eventId' hidden>" +
+                                   " </input> " +
+                                   " <input value='edit'" + " name='mode' hidden>" +
+                                   " </input> " +
+                                   "<input class='button' type = 'submit' value = 'Edit Event' />" +
 
-                           " </form>" +
-                           "<form action='/deleteEventServlet' method = 'post'>" +
-                               " <input value="+product.id+ " name='eventId' hidden>" +
-                           " </input> " +
-                           "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
+                                   " </form>" +
+                                   "<form action='/deleteEventServlet' method = 'post'>" +
+                                   " <input value=" + product.id + " name='eventId' hidden>" +
+                                   " </input> " +
+                                   "<input class='deleteEventButton' type = 'submit' value = 'Delete Event' />" +
 
-                           "</form>"
-                            }
-                   });
+                                   "</form>"
+                               }
+                           });
                    link = "images/AileronIcon.png";
                 });
                });
