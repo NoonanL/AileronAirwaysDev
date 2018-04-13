@@ -33,18 +33,6 @@ sideNavContent.appendChild(aTag);
 
 //Add an anchor tag to the list
 var aTag = document.createElement('a');
-aTag.setAttribute('href',"Events.html");
-aTag.innerHTML = "Events";
-sideNavContent.appendChild(aTag);
-
-//Add an anchor tag to the list
-var aTag = document.createElement('a');
-aTag.setAttribute('href',"EventDetails.html");
-aTag.innerHTML = "Event Details";
-sideNavContent.appendChild(aTag);
-
-//Add an anchor tag to the list
-var aTag = document.createElement('a');
-aTag.setAttribute('href',"AddEvent.html");
-aTag.innerHTML = "Add Event";
+aTag.setAttribute('href',"Help.html");
+aTag.innerHTML = "Help";
 sideNavContent.appendChild(aTag);

@@ -18,7 +18,7 @@
     </header>
     <div class="row">
         <div class="col-12">
-            <button id="myBtn" class="button">Create new timeline</button>
+            <button id="myBtn" class="button">Create New Timeline</button>
                     <div id="myModal" class="modal">
                         <div style ="card container centre" class="modal-content">
                             <div style ="height:50px;" class="modal-header">
@@ -30,7 +30,7 @@
                                         <!--<br />-->
                                         Timeline Title: <input type = "text" name = "timeline_title" required/>
                                         <br />
-                                        <input type = "submit" value = "Create new timeline" />
+                                        <input type = "submit" value = "Create New Timeline" />
                                     </form>
                                     <br>
                             </div>
@@ -42,7 +42,7 @@
         <div class="row">
 
             <form style="text-align: center" action="/searchTimelinesServlet" method="get">
-                <input type="text" placeholder="Search.." name="searchBox">
+                <input type="text" placeholder="Search Timelines..." name="searchBox">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
 
@@ -72,14 +72,14 @@
             $.each(responseJson, function (index, product) {
                 //this is the object builder
                 var timelineTitle = $("<h2 />", {
-                    text: "Title: " + product.title,
+                    text: product.title,
                     "class": "timelineTitle"
                 });
                 //instantiate variable with the timeline's ID
                 var timelineId = product.id;
                 //instantiate a variable with the timeline's Date and Time of creation
                 var timelineDateTime = $("<h3 />", {
-                    text: "Date: " + product.dateTime,
+                    text: product.dateTime,
                     "class": "timelineDateTIme"
                 });
                 // -----------ADDING THE BUTTON FOR OPENING A TIMELINE----------------
