@@ -12,41 +12,29 @@
 <body>
 
 <div class="main">
-    <header>
-        <img src="images/AileronIcon.png" class="imgcontainer">
-        <h1 style="font-size: 32px; text-decoration: none; text-align: center";> Timelines</h1>
-    </header>
     <div class="row">
-        <div class="col-12">
-            <button id="myBtn" class="button">Create New Timeline</button>
-                    <div id="myModal" class="modal">
-                        <div style ="card container centre" class="modal-content">
-                            <div style ="height:50px;" class="modal-header">
-                                <span class="close">&times;</span>
-                            </div>
-                            <div class="modal-body">
-                                    <form action="/timelineRegisterServlet" method = "post">
-                                        <!--Timeline Id: <input type = "text" name = "timeline_id" required>-->
-                                        <!--<br />-->
-                                        Timeline Title: <input type = "text" name = "timeline_title" required/>
-                                        <br />
-                                        <input type = "submit" value = "Create New Timeline" />
-                                    </form>
-                                    <br>
-                            </div>
-                            <div style ="height:50px;" class="modal-footer"></div>
-                        </div>
-                    </div>
-            <br>
+        <div class="col-4">
+            <div style="box-shadow: 1px 2px 2px 3px rgba(16, 171, 150, .5);">
+            <form action="/timelineRegisterServlet" method = "post">
+                <!--Timeline Id: <input type = "text" name = "timeline_id" required>-->
+                <!--<br />-->
+                Timeline Title: <input type = "text" name = "timeline_title" required/>
+                <br />
+                <input class="button" type = "submit" value = "Create New Timeline" />
+            </form>
+            </div>
         </div>
-        <div class="row">
-
+        <div class="col-4">
             <form style="text-align: center" action="/searchTimelinesServlet" method="get">
                 <input type="text" placeholder="Search Timelines..." name="searchBox">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
-
         </div>
+    <div class="col-4">
+        <div class="inline">
+        <img src="images/AileronLogoThumb.png" class="imgcontainer" style="float: right">
+        </div>
+    </div>
     </div>
     <br>
 

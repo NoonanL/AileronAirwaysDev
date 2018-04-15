@@ -79,7 +79,7 @@ public class Timeline {
         //create hashmap of key-value pairs
         Map<String, String> map = buildMap();
         map.put("title", this.title);
-        System.out.println(map.toString());
+        //System.out.println(map.toString());
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(map);
         //call the Put class method which requires the path (which api call you're executing and the postData itself
@@ -148,7 +148,7 @@ public class Timeline {
      */
 
     public void setTitle(String title) {
-        this.title = title.replaceAll("\"","").replaceAll("\\+", " ");
+        this.title = title.replaceAll("\"","").replaceAll("\\+", " ").replaceAll("%2C", ",");
     }
 
     public String getTitle(){

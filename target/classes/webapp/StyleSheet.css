@@ -313,6 +313,7 @@ h1{
     padding: 2.5px;
     background: rgb(16,171,150);
     width:100%;
+    height:auto;
 
 }
 
@@ -325,7 +326,7 @@ h1{
     box-shadow: 0 15px 20px rgba(16, 171, 150, 0.3);
     width: 70%;
     left: 15%; /* one half of the remaining 30% */
-    height: 600px;
+    height: 500px;
     bottom: 0;
 }
 
@@ -574,4 +575,8 @@ dt{
     height:100px;
     max-width:100%;
     max-height:100%
+}
+
+.inline{
+    display:inline-block;
 }
