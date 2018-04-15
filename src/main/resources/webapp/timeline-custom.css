@@ -812,7 +812,8 @@ color:#c34528;text-decoration:underline}}
     -moz-transition-timing-function:cubic-bezier(.77,0,.175,1);
     -o-transition-timing-function:cubic-bezier(.77,0,.175,1);
     transition-timing-function:cubic-bezier(.77,0,.175,1);
-    box-sizing:border-box;border:1px solid #d9d9d9;
+    box-sizing:border-box;
+    border:1px solid #d9d9d9;
     box-shadow:1px 1px 1px #FFF
 }
 .tl-timemarker .tl-timemarker-content-container:hover{
@@ -1180,7 +1181,7 @@ font-size:12px
     margin-left:80px
 }
 .tl-timegroup.tl-timegroup-alternate{
-    background-color:#fafafa
+    background-color:#fafafa;
 }
 .tl-timegroup.tl-timegroup-hidden{
     display:none

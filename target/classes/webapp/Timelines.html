@@ -12,32 +12,32 @@
 <body>
 
 <div class="main">
+    <img src="images/AileronLogoThumb.png" class="imgcontainer">
+    <br>
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <div style="box-shadow: 1px 2px 2px 3px rgba(16, 171, 150, .5);">
             <form action="/timelineRegisterServlet" method = "post">
                 <!--Timeline Id: <input type = "text" name = "timeline_id" required>-->
-                <!--<br />-->
-                Timeline Title: <input type = "text" name = "timeline_title" required/>
-                <br />
-                <input class="button" type = "submit" value = "Create New Timeline" />
+                <br/>
+                <div style="text-align: center; font-size: 20px">
+                Timeline Title: <input type = "text" name = "timeline_title" style="text-align: center" required/>
+
+                <br/>
+                <input style="margin:15px;    " class="button" type = "submit" value = "Create New Timeline" />
+                </div>
             </form>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
             <form style="text-align: center" action="/searchTimelinesServlet" method="get">
-                <input type="text" placeholder="Search Timelines..." name="searchBox">
+                <br>
+                <br>
+                <input style="font-size: 24px" type="text" placeholder="Search Timelines..." name="searchBox">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-    <div class="col-4">
-        <div class="inline">
-        <img src="images/AileronLogoThumb.png" class="imgcontainer" style="float: right">
-        </div>
     </div>
-    </div>
-    <br>
-
     <div class="row">
         <div class="col-12">
             <div id="tableDiv"> </div>
@@ -134,7 +134,6 @@
     }
 </script>
 <script src="nav.js"> </script>
-<script src="modal.js"> </script>
 <script src="confirmRequired.js"></script>
 
 
