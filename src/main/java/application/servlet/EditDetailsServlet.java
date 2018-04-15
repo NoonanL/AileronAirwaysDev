@@ -104,7 +104,7 @@ public class EditDetailsServlet extends HttpServlet {
                             break;
                         case "selectedLinkedEvent":
                             //System.out.println("selected event is not null");
-                            description = item.getString();
+                            selectedLinkedEvent = item.getString();
                             break;
                         case "selectedTimeline":
                             selectedTimeline = item.getString();
@@ -137,14 +137,15 @@ public class EditDetailsServlet extends HttpServlet {
                 }
             }
 
-
+            System.out.println(selectedLinkedEvent);
+            System.out.println("Got to servlet...");
             event.setTitle(title);
             event.editEventTitle(title);
             event.setEventDateTime(date + " " + time);
             event.editEventDateTime(date + " " + time);
             event.setDescription(description);
             event.editEventDescription(description);
-            if(!selectedLinkedEvent.equals("")){
+            if((!selectedLinkedEvent.equals("")) && (!selectedLinkedEvent.equals("unlinked event")) ){
                 //System.out.println("selectedLinkedEvent is "+ selectedLinkedEvent);
                 event.setLinkedEvents(selectedLinkedEvent);
                 event.linkEvents(selectedLinkedEvent);
