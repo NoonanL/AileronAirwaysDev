@@ -899,13 +899,13 @@ color:#c34528;text-decoration:underline}}
 font-size:12px
 }
 .tl-timemarker:hover .tl-timemarker-timespan{
-    background-color:rgba(191,191,191,.15)
+    background-color: #bfbfbf;
 }
 .tl-timemarker:hover .tl-timemarker-timespan .tl-timemarker-timespan-content{
     background-color:#bfbfbf
 }
 .tl-timemarker:hover .tl-timemarker-timespan .tl-timemarker-line-left,.tl-timemarker:hover .tl-timemarker-timespan .tl-timemarker-line-right{border-color:#a6a6a6}.tl-timemarker:hover .tl-timemarker-timespan .tl-timemarker-line-left:after,.tl-timemarker:hover .tl-timemarker-timespan .tl-timemarker-line-right:after{
- background-color:#3d3d3d
+ background-color: #ffffff
 }
 .tl-timemarker:hover .tl-timemarker-content-container{
     background-color:#bfbfbf;
@@ -1160,7 +1160,7 @@ font-size:12px
     position:absolute;
     top:0;
     left:0;
-    background-color:#f2f2f2;
+    background-color: rgba(26, 144, 199, 0.41);
     display:-ms-flexbox;
     display:-webkit-flex;
     display:flex;
@@ -1176,12 +1176,12 @@ font-size:12px
     -o-transition-timing-function:cubic-bezier(.77,0,.175,1);transition-timing-function:cubic-bezier(.77,0,.175,1)
 }
 .tl-timegroup .tl-timegroup-message{
-    color:#e0e0e0;
-    text-shadow:#FFF 0 2px 2px;
+    color:white;
+    /*text-shadow:#FFF 0 2px 2px;*/
     margin-left:80px
 }
 .tl-timegroup.tl-timegroup-alternate{
-    background-color:#fafafa;
+    background-color: rgba(14, 157, 137, 0.23);
 }
 .tl-timegroup.tl-timegroup-hidden{
     display:none

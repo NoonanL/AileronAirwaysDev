@@ -124,10 +124,13 @@
                     text:""
                 });
                 //append each timeline's data to a list item tag
+                //var row = timelineForm + deletetimelineForm ;
+
                 listItem.append(timelineTitle);
                 listItem.append(timelineDateTime);
-                listItem.append(timelineForm);
-                listItem.append(deletetimelineForm);
+                listItem.append(timelineForm,deletetimelineForm);
+                // listItem.append(timelineForm);
+                // listItem.append(deletetimelineForm);
                 //add each listItem instance to the table
                 $("#tableDiv").append(listItem);
             });

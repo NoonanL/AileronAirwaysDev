@@ -162,7 +162,7 @@ public class EditDetailsServlet extends HttpServlet {
             System.out.println("Error, " + ex.getMessage());
         }
 
-        response.sendRedirect(response.encodeRedirectURL("EventDetails.html"));
+        response.sendRedirect(response.encodeRedirectURL("Events.html"));
     }
 
 }
