@@ -137,8 +137,8 @@ public class EditDetailsServlet extends HttpServlet {
                 }
             }
 
-            System.out.println(selectedLinkedEvent);
-            System.out.println("Got to servlet...");
+            //System.out.println(selectedLinkedEvent);
+            //System.out.println("Got to servlet...");
             event.setTitle(title);
             event.editEventTitle(title);
             event.setEventDateTime(date + " " + time);
