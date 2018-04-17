@@ -208,7 +208,10 @@
                             src:"images/NavThumbs/file.png"
                         });
                     }
-                    console.log(product.title);
+                    var attachmentTitle=$("<p />", {
+                        text: product.title,
+
+                    });
                     // ---------------------ADDING A BUTTON FOR DELETING attatchments------------------
                     //build a form tag for deleting attatchments
                     var deleteattatchmentForm=$("<form/>",{
@@ -240,6 +243,7 @@
                     });
                     //append each timeline's data to a list item tag
                     listItem.append(eventAttachment);
+                    listItem.append(attachmentTitle);
                     listItem.append(deleteattatchmentForm);
                     //add each listItem instance to the table
                     $("#attachmentDiv").append(listItem);
