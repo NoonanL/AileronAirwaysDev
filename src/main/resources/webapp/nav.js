@@ -8,7 +8,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 
     //add the sidenav button to the page
-    document.body.innerHTML += '<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: white">Please open </span>';
+    // document.body.innerHTML += '<span class="openbtn" onclick="openNav()" style="font-size: 40px; color: white">Please open </span>';
 }
 
 //add the sidenav button to the page

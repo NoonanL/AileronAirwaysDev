@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <title>Aileron Airways ETT</title>
 <link href="StyleSheet.css"  rel="styleSheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,6 +29,12 @@
             color: black;
             border: 2px solid #cd0c00;
         }
+
+        @media(max-width:768px){
+            #timelineform{
+                width:100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -38,7 +44,7 @@
     <br>
     <div class="row">
         <div class="col-12">
-            <div style="box-shadow: 1px 2px 2px 3px rgba(16, 171, 150, .5); width:50%; margin-left:25%">
+            <div id ="timelineform" style="box-shadow: 1px 2px 2px 3px rgba(16, 171, 150, .5); width:50%; margin-left:25%">
             <form action="/timelineRegisterServlet" method = "post" style="width:50%; margin-left:25% ">
                 <!--Timeline Id: <input type = "text" name = "timeline_id" required>-->
                 <br/>

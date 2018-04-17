@@ -361,6 +361,14 @@ dt{
     line-height:2em;
     height:200px;
 }
+@media only screen and (max-width:768px){
+    dt{
+        width:100%;
+    }
+    #tableDiv{
+        width:100%;
+    }
+}
 
 .dt-col-1{
     width:48%;
@@ -613,4 +621,6 @@ dt{
     color: black;
     border: 2px solid #1a90c7;
 }
+
+
 
