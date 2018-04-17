@@ -59,7 +59,7 @@
                 <br>
                 <br>
                 <input style="font-size: 24px" type="text" placeholder="Search Timelines..." name="searchBox">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit" style="font-size: 24px"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
@@ -139,8 +139,10 @@
                 });
                 //append the input and button to the form tag
 
-                deletetimelineForm.append(deletetimelineIDinput);
-                deletetimelineForm.append(deletetimelineButton);
+                //deletetimelineForm.append(deletetimelineIDinput);
+                //deletetimelineForm.append(deletetimelineButton);
+                timelineForm.append(deletetimelineIDinput);
+                timelineForm.append(deletetimelineButton);
 
 
                 //-------------------------------------------------------------
@@ -153,23 +155,23 @@
                    style:"display:inline-block"
                 });
 
-                var row1 = timelineTitle;
-                var row2 = timelineDateTime;
-                row3.append(timelineForm);
-                row3.append(deletetimelineForm);
+                //var row1 = timelineTitle;
+                //var row2 = timelineDateTime;
+                //row3.append(timelineForm);
+                //row3.append(deletetimelineForm);
                 //append each timeline's data to a list item tag
 // <<<<<<< HEAD
 //                 //var row = timelineForm + deletetimelineForm ;
 //
-//                 listItem.append(timelineTitle);
-//                 listItem.append(timelineDateTime);
+                listItem.append(timelineTitle);
+                listItem.append(timelineDateTime);
 //                 listItem.append(timelineForm,deletetimelineForm);
-//                 // listItem.append(timelineForm);
+                listItem.append(timelineForm);
 //                 // listItem.append(deletetimelineForm);
 // =======
-                listItem.append(row1);
-                listItem.append(row2);
-                listItem.append(row3);
+//                 listItem.append(row1);
+//                 listItem.append(row2);
+//                 listItem.append(row3);
 //>>>>>>> MichaelDev
                 //add each listItem instance to the table
                 $("#tableDiv").append(listItem);

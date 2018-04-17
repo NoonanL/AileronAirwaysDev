@@ -31,8 +31,8 @@ aTag.setAttribute('href',"Timelines.html");
 aTag.innerHTML = "Timelines";
 sideNavContent.appendChild(aTag);
 
-//Add an anchor tag to the list
-var aTag = document.createElement('a');
-aTag.setAttribute('href',"Help.html");
-aTag.innerHTML = "Help";
-sideNavContent.appendChild(aTag);
+// //Add an anchor tag to the list
+// var aTag = document.createElement('a');
+// aTag.setAttribute('href',"Help.html");
+// aTag.innerHTML = "Help";
+// sideNavContent.appendChild(aTag);
