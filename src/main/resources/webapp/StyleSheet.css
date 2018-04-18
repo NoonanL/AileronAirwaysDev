@@ -359,7 +359,7 @@ dt{
     background-color: rgba(26, 144, 199, 0.75);
     color:white;
     line-height:2em;
-    height:200px;
+    height:300px;
 }
 @media only screen and (max-width:768px){
     dt{

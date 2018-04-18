@@ -89,6 +89,7 @@
             var $tableDiv = $("<dl>").appendTo($("#tableDiv"));
             //iterate over the JSON array of timeline data passed from backend for each object append this to the page
             $.each(responseJson, function (index, product) {
+                console.log(product);
                 //this is the object builder
                 var timelineTitle = $("<h2 />", {
                     text: product.title,
@@ -145,10 +146,10 @@
                 });
                 //append the input and button to the form tag
 
-                //deletetimelineForm.append(deletetimelineIDinput);
-                //deletetimelineForm.append(deletetimelineButton);
-                timelineForm.append(deletetimelineIDinput);
-                timelineForm.append(deletetimelineButton);
+                deletetimelineForm.append(deletetimelineIDinput);
+                deletetimelineForm.append(deletetimelineButton);
+                //timelineForm.append(deletetimelineIDinput);
+                //timelineForm.append(deletetimelineButton);
 
 
                 //-------------------------------------------------------------
@@ -173,7 +174,7 @@
                 listItem.append(timelineDateTime);
 //                 listItem.append(timelineForm,deletetimelineForm);
                 listItem.append(timelineForm);
-//                 // listItem.append(deletetimelineForm);
+                listItem.append(deletetimelineForm);
 // =======
 //                 listItem.append(row1);
 //                 listItem.append(row2);
@@ -183,6 +184,13 @@
                 $("#tableDiv").append(listItem);
             });
         })
+    }
+</script>
+<script>
+    //a script to sort the timeline register
+    var asc=document.getElementById("")
+    btn.onclick = function() {
+        modal.style.display = "block";
     }
 </script>
 <script src="nav.js"> </script>
